@@ -9,6 +9,7 @@ List team members and/or short bio's here...
 * Hi I'm Kanon. I hope we're able to make our ideal web app as a group!
 * Hi, my name is Brandon! I hate sitting and not doing anything for long periods of time.
 * Hi, my name is Zoey! I am excited to start this journey of creating a web application!
+* Hi, my name is Pearly! I'm looking forward to working on our first project together.
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
