@@ -1,8 +1,7 @@
 # Project Title
 
 ## 1. Project Description
-State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  
-This browser based web application to ... 
+Our team, DTC 09, is developing a social events planning web application to help introverted or ambiverted people to find opportunities to connect with others by providing a platform catered to their needs, unlike other platforms that have a broader reach.
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
