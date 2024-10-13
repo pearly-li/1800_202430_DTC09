@@ -1,1 +1,28 @@
-
+/*Zoey-Call To Action*/
+.login_btn {
+    height: 40px;
+    width: 110px;
+    font-weight: bold;
+}
+.signup_btn {
+    height: 40px;
+    width: 110px;
+    background-color: #0424CC;
+    color: white;
+    font-weight: bold;
+}
+.signup_btn:hover, .getstarted_btn:hover {
+    background-color: #061c8f;
+    color: white;
+}
+.login_btn:hover {
+    color: #0424CC;
+    background-color: #eceaea;
+}
+.getstarted_btn {
+    background-color: #0424CC;
+    color: white;
+    font-weight: bold;
+    height: 40px;
+    width: 175px;
+}
