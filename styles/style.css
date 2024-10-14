@@ -1,3 +1,10 @@
+/*Pearly- Nav Bar*/
+#landingNav {
+  display: inline-block;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
 /*Zoey-Call To Action*/
 .login_btn {
   height: 40px;
