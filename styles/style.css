@@ -1,55 +1,59 @@
 /*Zoey-Call To Action*/
 .login_btn {
-    height: 40px;
-    width: 110px;
-    font-weight: bold;
-    color: rgb(62, 62, 62);
-    border: 2px solid;
-    border-color: #eceaea;
+  height: 40px;
+  width: 110px;
+  font-weight: bold;
+  color: rgb(62, 62, 62);
+  border: 2px solid;
+  border-color: #eceaea;
 }
 .signup_btn {
-    height: 40px;
-    width: 110px;
-    background-color: darkslategrey;
-    color: white;
-    font-weight: bold;
+  height: 40px;
+  width: 110px;
+  background-color: darkslategrey;
+  color: white;
+  font-weight: bold;
 }
 .cta_btn {
-    background-color: darkslategrey;
-    color: white;
-    font-weight: bold;
-    height: 55px;
-    width: 350px;
-    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  font-family: Helvetica;
+  background-color: #e1ae17;
+  color: white;
+  font-weight: bold;
+  height: 55px;
+  width: 350px;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.signup_btn:hover, .cta_btn:hover {
-    background-color: rgb(40, 67, 67);
-    color: white;
+.signup_btn:hover,
+.cta_btn:hover {
+  background-color: rgb(40, 67, 67);
+  color: white;
 }
 .login_btn:hover {
-    color: darkslategrey;
-    background-color: #eceaea;
+  color: darkslategrey;
+  background-color: #eceaea;
 }
-.cta_btn:active, .signup_btn:active {
-    color: darkslategrey;
-    background-color: #eceaea;
+.cta_btn:active,
+.signup_btn:active {
+  color: darkslategrey;
+  background-color: #eceaea;
 }
 
 /*Kanon - Landing Page Footer*/
 #landing_footer {
-    background-color: darkslategrey;
-    color: lightgray;
-    font-family: Helvetica;
-    font-size: 14px;
-    text-align: center;
+  background-color: darkslategrey;
+  color: lightgray;
+  font-family: Helvetica;
+  font-size: 14px;
+  text-align: center;
 }
-#landing_footer h1{
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    border-bottom: 1px solid white;
+#landing_footer h1 {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: 1px solid white;
 }
-#landing_footer div h1{
-    font-size: 16px;
-    border: none;
+#landing_footer div h1 {
+  font-size: 16px;
+  border: none;
 }
