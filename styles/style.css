@@ -40,10 +40,11 @@
   color: white;
   background-color: #d0672d;
 }
+.login_btn:active,
 .cta_btn:active,
 .signup_btn:active {
-  color: darkslategrey;
-  background-color: #eceaea;
+  color: white;
+  background-color: #aa5632;
 }
 
 /*Kanon - Landing Page Footer*/
