@@ -33,12 +33,12 @@
 }
 .signup_btn:hover,
 .cta_btn:hover {
-  background-color: rgb(40, 67, 67);
+  background-color: #d0672d;
   color: white;
 }
 .login_btn:hover {
-  color: darkslategrey;
-  background-color: #eceaea;
+  color: white;
+  background-color: #d0672d;
 }
 .cta_btn:active,
 .signup_btn:active {
