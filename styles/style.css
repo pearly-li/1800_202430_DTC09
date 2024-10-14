@@ -10,14 +10,14 @@
   height: 40px;
   width: 110px;
   font-weight: bold;
-  color: rgb(62, 62, 62);
+  color: #2e394f;
   border: 2px solid;
   border-color: #eceaea;
 }
 .signup_btn {
   height: 40px;
   width: 110px;
-  background-color: darkslategrey;
+  background-color: #2e394f;
   color: white;
   font-weight: bold;
 }
@@ -48,7 +48,7 @@
 
 /*Kanon - Landing Page Footer*/
 #landing_footer {
-  background-color: darkslategrey;
+  background-color: #2e394f;
   color: lightgray;
   font-family: Helvetica;
   font-size: 14px;
