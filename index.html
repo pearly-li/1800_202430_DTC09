@@ -1,111 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Social Scout</title>
-    <meta name="comp1800 template" content="My 1800 App" />
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Bootstrap Library CSS CDN v5.3.3 go here -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-
-    <!-- Boostrap Library JS CDN v5.3.3 go here -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- Other libraries go here -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css" />
-  </head>
-
-  <body>
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
-
-    <header class="pb-20">
-      <!--On the Nav bar section-->
-      <img src="./images/social_scout.png" class="w-36 float-left">
-      <nav id="landingNav" class="float-right pr-4">
-        <button class="login_btn rounded-full">
-          <a href="#" alt="Login Button">Login</a>
-        </button>
-        <button class="signup_btn rounded-full">
-          <a href="#" alt="Sign Up Button">Sign Up</a>
-        </button>
-      </nav>
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+</head>
+<body class="flex flex-col min-h-screen">
+    <header>
+        <nav id="navbarPlaceholder"></nav>
     </header>
-
-    <main>
-      <!--On the welcome section-->
-      <section id="hero" class="pt-2 pb-4 z-10 font-serif">
-        <div
-          class="flex flex-col md:flex-row items-center max-w-6xl px-6 py-8 mx-auto"
-        >
-          <div class="w-full md:w-1/2 py-8">
-            <h1
-              class="text-[#92a8d1] text-7xl font-semibold leading-none tracking-tighter"
-            >
-              Welcome to <br /><span class="text-[#034f84]"
-                >Social Scout. <br
-              /></span>
-              Events for introverts.
-            </h1>
-            <button class="cta_btn rounded-full my-5">
-              <a href="#" alt="Find Events Button"
-                >Find Events Tailored for You</a
-              >
-            </button>
-          </div>
-          <div class="w-full md:w-1/2 py-8">
-            <img src="./images/cafeLandingPage.jpg" class="g-image" />
-          </div>
-        </div>
-      </section>
+    <main class="mt-auto">
+        <section class="pt-2 pb-4 font-serif">
+            <div class="flex flex-col md:flex-row justify-center items-center mx-auto">
+                <div class="md:m-0 ml-6 mt-14">
+                    <div class="text-7xl font-semibold tracking-tighter ml-3">
+                        <h1 class="text-[#92a8d1]">
+                            Welcome to
+                        </h1>
+                        <h1 class="text-[#034f84] my-5">Social Scout.</h1>
+                        <h1 class="text-[#92a8d1]">Events for introverts.</h1>
+                    </div>
+                    <button class="cta_btn rounded-full mt-7">
+                        <a href="#" alt="Find Events Button">Find Events Tailored for You</a>
+                    </button>
+                </div>
+                <div class="py-8">
+                    <img src="./images/cafeLandingPage.jpg" class="g-image" />
+                </div>
+            </div>
+        </section>
     </main>
-
-    <footer
-      id="landing_footer"
-      class="flex flex-col md:flex-row md:justify-between py-10"
-    >
-      <div class="flex flex-col py-5 space-y-3 w-full">
-        <h1>Getting around</h1>
-        <a href="#">Lorem.</a>
-        <a href="#">Lorem.</a>
-        <a href="#">Lorem.</a>
-      </div>
-      <div class="flex flex-col py-5 space-y-3 w-full">
-        <h1>Other things</h1>
-        <a href="#">Lorem.</a>
-        <a href="#">Lorem.</a>
-        <a href="#">Lorem.</a>
-      </div>
-      <div class="flex flex-col py-5 space-y-3 w-full">
-        <h1>And more</h1>
-        <a href="#">Lorem.</a>
-        <a href="#">Lorem.</a>
-        <a href="#">Lorem.</a>
-      </div>
+    <footer id="landing_footer" class="mt-auto">
+        <nav id="footerPlaceholder" class="flex md:flex-row md:justify-between py-10"></nav>
     </footer>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
-    <!-- Link to scripts of your own -->
-    <!-- <script src="./scripts/script.js"></script> -->
-  </body>
+    <!-- Javascript -->
+    <script src="./scripts/firebaseAPI_TEAM09.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script>
+        logout();
+    </script>
+</body>
 </html>

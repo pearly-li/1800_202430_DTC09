@@ -7,34 +7,38 @@
 
 /*Zoey-Call To Action*/
 .login_btn {
-  height: 40px;
-  width: 110px;
+  height: auto;
+  width: auto;
   font-weight: bold;
   color: #2e394f;
   border: 2px solid;
   border-color: #eceaea;
+  font-size: 22px;
+  
 }
 .signup_btn {
-  height: 40px;
-  width: 110px;
+  height: auto;
+  width: auto;
   background-color: #2e394f;
   color: white;
   font-weight: bold;
+  font-size: 22px;
+  
 }
 .cta_btn {
   font-family: Helvetica;
   background-color: #e1ae17;
   color: white;
   font-weight: bold;
-  height: 55px;
-  width: 350px;
+  height: 60px;
+  width: 355px;
+  font-size: 22px;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .signup_btn:hover,
 .cta_btn:hover {
   background-color: #d0672d;
-  color: white;
 }
 .login_btn:hover {
   color: white;

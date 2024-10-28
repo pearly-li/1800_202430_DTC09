@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <header>
+        <nav id="navbarPlaceholder"></nav>
+    </header>
+    <main class="mt-auto">
+        <div id="firebaseui-auth-container" class=""></div>
+    </main>
+    <footer id="landing_footer" class="mt-auto">
+        <nav id="footerPlaceholder" class="flex md:flex-row md:justify-between py-10"></nav>
+    </footer>
+
+    <!-- Javascript -->
+    <script src="./scripts/firebaseAPI_Team09.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/authentication.js"></script>
+</body>
+
+</html>
