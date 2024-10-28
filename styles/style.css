@@ -50,6 +50,15 @@
   color: white;
   background-color: #aa5632;
 }
+.search {
+  width: auto;
+  height: 45px;
+  font-weight: bold;
+  color: #2e394f;
+  border: 2px solid;
+  border-color: #eceaea;
+  border-radius: 7%;
+}
 
 /*Kanon - Landing Page Footer*/
 #landing_footer {

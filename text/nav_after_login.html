@@ -1,5 +1,24 @@
 <nav class="flex justify-between items-center">
-    <img src="./images/social_scout.png" class="w-56 h-36">
-    <span id="name-goes-here"></span>
+    <section class="flex items-center">
+        <img src="./images/social_scout.png" class="w-56 h-36">
+        <section class="search hidden md:block">
+            <input placeholder="Search Events" size="35" class="pl-2 pt-2">
+            <button><img src="./images/search.png" class="w-5 h-5 mr-2 mt-2"></button>
+        </section>
+    </section>
+    <nav class="text-center flex items-center gap-12 mr-12">
+        <button class="flex items-center gap-1">
+            <h1 class="text-xl">Messages</h1>
+            <img src="./images/chat.png" class="w-8 h-8">
+        </button>
+        <button class="flex items-center gap-1">
+            <h1 class="text-xl">Notifications</h1>
+            <img src="./images/bell.png" class="w-8 h-8">
+        </button>
+        <button class="flex items-center">
+            <span id="name-goes-here" class="text-2xl mr-4 underline"></span>
+            <img src="./images/user.png" class="w-16 h-16">
+        </button>
+    </nav>
 </nav>
 <script src="./scripts/main.js"></script>
