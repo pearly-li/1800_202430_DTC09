@@ -1,6 +1,5 @@
 /*Pearly- Nav Bar*/
 #landingNav {
-  display: inline-block;
   padding-top: 10px;
   padding-left: 5px;
 }
@@ -16,7 +15,7 @@
   color: #2e394f;
   border: 2px solid;
   border-color: #eceaea;
-  font-size: 22px;
+  font-size: 17px;
   
 }
 .signup_btn {
@@ -25,7 +24,7 @@
   background-color: #2e394f;
   color: white;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 17px;
   
 }
 .cta_btn {

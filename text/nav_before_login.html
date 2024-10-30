@@ -1,6 +1,7 @@
-<nav class="flex justify-between items-center pr-12">
-    <img src="./images/social_scout.png" class="w-44 h-28">
-    <nav id="landingNav">
+<nav class="flex sm:justify-between justify-end items-center pr-3 sm:pr-7 pt-4 sm:pt-0">
+    <img src="./images/social_scout.png" class="w-44 h-28 hidden sm:block">
+    <img src="./images/logo_text.png" class="w-72 sm:hidden">
+    <nav id="landingNav" class="hidden sm:inline-block">
         <button class="login_btn rounded-full px-12 py-2 mr-2">
             <a href="login.html" alt="Login Button">Login</a>
         </button>
@@ -8,4 +9,5 @@
             <a href="login.html" alt="Sign Up Button">Sign Up</a>
         </button>
     </nav>
+    <button class="sm:hidden"><img src="./images/hamburger.png" class="w-10 h-10"></button>
 </nav>
