@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Social Scout</title>
+
+    <!--Import Tailwind-->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles/style.css">
+
+    <!--Import JQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!--Import Firebase-->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -14,10 +22,14 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 </head>
+
+
 <body class="flex flex-col min-h-screen">
     <header>
         <nav id="navbarPlaceholder"></nav>
     </header>
+
+    <!--Main Body-->
     <main class="mt-auto">
         <section class="pt-2 pb-4 font-serif">
             <div class="flex flex-col md:flex-row justify-center items-center mx-auto">
@@ -39,6 +51,7 @@
             </div>
         </section>
     </main>
+
     <footer class="mt-auto" id="landing_footer">
         <nav id="footerPlaceholder"></nav>
     </footer>
@@ -51,4 +64,5 @@
         logout();
     </script>
 </body>
+
 </html>
