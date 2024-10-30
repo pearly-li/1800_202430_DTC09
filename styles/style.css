@@ -63,7 +63,7 @@
   border-radius: 7px;
 }
 
-/*Kanon - Landing Page Footer*/
+/*Kanon - Footers*/
 #landing_footer {
   background-color: #2e394f;
   color: lightgray;
@@ -80,4 +80,14 @@
 #landing_footer div h1 {
   font-size: 16px;
   border: none;
+}
+
+#footer_navbar {
+  background-color: #2e394f;
+}
+#footer_navbar img {
+  filter: invert(1);
+  width: 10vw;
+  height: auto;
+  max-height: 50px;
 }
