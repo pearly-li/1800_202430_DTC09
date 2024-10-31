@@ -1,4 +1,4 @@
-<nav class="flex sm:justify-between justify-end items-center gap-6 pt-4 sm:pt-0">
+<!-- <nav class="flex sm:justify-between justify-end items-center gap-6 pt-4 sm:pt-0">
     <section class="flex items-center">
         <img src="./images/social_scout.png" class="w-44 h-28 hidden sm:block">
         <img src="./images/logo_text.png" class="w-72 sm:hidden">
@@ -8,18 +8,24 @@
         </section>
     </section>
     <nav class="text-center flex items-center gap-8 sm:mr-6">
-        <button class="md:flex items-center gap-1 hidden">
-            <h1 class="text-xl">Messages</h1>
-            <img src="./images/chat.png" class="w-7 h-7">
-        </button>
-        <button class="md:flex hidden items-center gap-1">
-            <h1 class="text-xl">Notifications</h1>
-            <img src="./images/bell.png" class="w-7 h-7">
-        </button>
         <button class="flex items-center">
             <span id="name-goes-here" class="text-2xl mr-4 underline hidden sm:block"></span>
             <img src="./images/user.png" class="w-12 h-12 mr-3 sm:mr-0">
         </button>
     </nav>
-</nav>
-<script src="./scripts/main.js"></script>
+</nav> -->
+
+
+<section class="flex justify-center h-[10vw] max-h-[50px]">
+    <nav class="relative flex flex-row w-full max-w-screen-sm">
+        <div class="absolute w-full flex justify-center items-center ">
+            <span id="page_label_goes_here"></span>
+        </div>
+        
+        <a href="./user_profile.html" class="absolute right-0 flex flex-row items-center pr-3">
+            <p id="name_goes_here" class="hidden md:flex pr-1"></p>
+            <img src="./images/user.png">
+        </a>
+    </nav>
+</section>
+<script src="./scripts/navbar.js"></script>
