@@ -59,7 +59,7 @@
   border-radius: 7px;
 }
 
-/*Kanon - Footers*/
+/*Kanon - Navbars*/
 #landing_footer {
   background-color: #2e394f;
   color: lightgray;
@@ -89,4 +89,16 @@
   width: 10vw;
   height: auto;
   max-height: 30px;
+}
+
+#header_navbar {
+  background-color: #2e394f;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+#header_navbar img {
+  width: auto;
+  height: 10vw;
+  max-height: 50px;
 }
