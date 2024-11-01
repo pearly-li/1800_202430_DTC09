@@ -1,0 +1,75 @@
+<!-- Page for creating new events -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Social Scout</title>
+
+    <!--Import Tailwind-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <!--Import JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!--Import Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <!--Page Name-->
+    <template id="page_label">Create Event</template>
+
+    <header id="header_navbar">
+        <nav id="headerPlaceholder"></nav>
+    </header>
+
+    <!--Main Body-->
+    <main class="mt-auto">
+
+        <body class="flex flex-col min-h-screen">
+            <div class="relative mx-10">
+                <div class="topnav p-5 m-2">
+                    <input type="search" id="default-search"
+                        class="block w-full p-4 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search Events" required />
+                </div>
+                <div
+                    class="border-solid border-gray-600 bg-white shadow-sm border-[1px] px-5 py-2 ml-7 ps-5 rounded cursor-pointer font-bold flex justify-between w-[200px] display-block">
+                    Filter
+                    <img src="/.dropdown.svg">
+                </div>
+                <div
+                    class="rounded border-[1px] border-gray-300 shadow bg-white py-4 absolute top-[50px] w-[400px] hidden">
+                    <div class="cursor-pointer hover:bg-gray-300 p-4">Option 1</div>
+                    <div class="cursor-pointer hover:bg-gray-300 p-4">Option 2</div>
+                    <div class="cursor-pointer hover:bg-gray-300 p-4">Option 3</div>
+                    <div class="cursor-pointer hover:bg-gray-300 p-4">Option 4</div>
+                    <div class="cursor-pointer hover:bg-gray-300 p-4">Option 5</div>
+                    <div class="cursor-pointer hover:bg-gray-300 p-4">Option 6</div>
+                </div>
+
+            </div>
+        </body>
+    </main>
+
+    <footer class="mt-auto" id="footer_navbar">
+        <nav id="footerPlaceholder"></nav>
+    </footer>
+
+    <!-- Javascript -->
+    <script src="./scripts/firebaseAPI_TEAM09.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/main.js"></script>
+</body>
+
+</html>
