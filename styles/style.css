@@ -94,8 +94,12 @@
 #header_navbar {
   background-color: #2e394f;
   color: white;
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: bold;
   text-align: center;
+}
+#name_goes_here {
+  text-decoration: underline;
 }
 
 #event_card {
