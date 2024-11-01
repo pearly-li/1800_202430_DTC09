@@ -35,11 +35,52 @@
     
     <!--Main Body-->
     <main class="mt-auto">
+        <div id="browsing_list" class="mx-auto flex flex-col space-x-2 max-w-screen-md">
+            <a id="event_card" class="flex justify-center" href="event_detail.html">
+                <div>
+                    <img src="https://picsum.photos/id/1/300/200">
+                    <div id="event_card_info" class="flex justify-between items-center content-end">
+                        <div class="flex flex-col">
+                            <p>Tomorrow</p>
+                            <p>00:00 Month/day</p>
+                        </div>
+                        <h1>Cafe Meet</h1>
+                    </div>
+                </div>
+            </a>
+        </div>
     </main>
     
     <footer class="mt-auto" id="footer_navbar">
         <nav id="footerPlaceholder"></nav>
     </footer>
+
+
+    <!--Template-->
+    <template id="event_card_template">
+        <div class="rounded-lg">
+            
+        </div>
+    </template>
+
+
+    <!-- Templates for general use, not displayed -->
+    <template id="hikeCardTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem">
+            <img class="card-image card-img-top" src=" ..." alt="..." />
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-length">placeholder</p>
+                <br />
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn-primary card-href">Read more ...</a>
+            </div>
+        </div>
+    </template>
+
 
     <!-- Javascript -->
     <script src="./scripts/firebaseAPI_TEAM09.js"></script>
