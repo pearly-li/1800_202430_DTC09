@@ -42,35 +42,35 @@
         <section class="flex flex-col justify-center mx-auto gap-y-8 w-[78%] my-9">
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Event Picture</h1>
-                <input type="file" name="photo" accept="image/*" class=" rounded text-[gray] pl-2">
+                <input type="file" id="image" accept="image/*" class=" rounded text-[gray] pl-2">
             </div>
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Title</h1>
-                <input type="text" name="title" placeholder="Event Title" class="border rounded pl-2">
+                <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2">
             </div>
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Description</h1>
-                <input type="text" name="description" placeholder="Event Description" class="border rounded pl-2">
+                <input type="text" id="description" placeholder="Event Description" class="border rounded pl-2">
             </div>
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Participation Number</h1>
-                <input type="number" name="scale" placeholder="Maximum Participation Number" class="border rounded pl-2">
+                <input type="number" id="scale" placeholder="Maximum Participation Number" class="border rounded pl-2">
             </div>
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Location</h1>
-                <input type="text" name="address" placeholder="Event Address" class="border rounded pl-2">
+                <input type="text" id="address" placeholder="Event Address" class="border rounded pl-2">
             </div>
             <section class="flex flex-row">
                 <div class="flex flex-col gap-y-2 mr-3">
                     <h1 class="font-judson text-xl">#Date</h1>
-                    <input type="date" name="date" placeholder="Event Date" class="border rounded pl-2">
+                    <input type="date" id="date" placeholder="Event Date" class="border rounded pl-2">
                 </div>
                 <div class="flex flex-col gap-y-2">
                     <h1 class="font-judson text-xl">#Time</h1>
-                    <input type="time" name="time" placeholder="Event Time" class="border rounded pl-2">
+                    <input type="time" id="time" placeholder="Event Time" class="border rounded pl-2">
                 </div>
             </section>
-            <button class="border py-1 border-black rounded text-lg">Create</button>
+            <button id="event_btn" class="border py-1 border-black rounded text-lg">Create</button>
         </section>
     </main>
     
@@ -83,6 +83,7 @@
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/main.js"></script>
     <script src="./scripts/font.js"></script>
+    <script src="./scripts/event.js" defer></script>
 </body>
 
 </html>
