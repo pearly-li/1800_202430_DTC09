@@ -106,8 +106,6 @@
   text-decoration: underline;
 }
 
-/* #event_card {
-} */
 #event_card_info {
   background-color: white;
 }
@@ -136,4 +134,20 @@
   max-width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.g_bg {
+  background-image: url("https://media.wired.com/photos/627da1085d49787abdf713b4/master/pass/Pakistani-Gamers-Want-a-Seat-at-the-Table-Culture-shutterstock_1949862841.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+}
+
+.h_bg {
+  background-image: url("https://i.natgeofe.com/n/7afda449-1780-4938-8342-2abe32326c86/Montblanchike.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
 }
