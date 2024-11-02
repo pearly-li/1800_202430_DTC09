@@ -13,7 +13,6 @@
   border: 2px solid;
   border-color: #eceaea;
   font-size: 17px;
-  
 }
 .signup_btn {
   height: auto;
@@ -22,7 +21,6 @@
   color: white;
   font-weight: bold;
   font-size: 17px;
-  
 }
 .cta_btn {
   font-family: Helvetica;
@@ -109,8 +107,6 @@
   background-color: white;
 }
 
-
-
 .gaming_bg {
   background-image: url(https://media.wired.com/photos/61f48f02d0e55ccbebd52d15/3:2/w_2400,h_1600,c_limit/Gear-Rant-Game-Family-Plans-1334436001.jpg);
   background-repeat: no-repeat;
@@ -120,4 +116,20 @@
 .event_card img {
   height: 170px;
   object-fit: cover;
+}
+
+/* Pearly's Stars for Event Review */
+#starContainer img {
+  width: 60px;
+}
+
+#reviewContainer {
+  max-width: 100%;
+}
+#reviewEvent p {
+  font-size: 16px;
+  max-width: 100%;
+}
+#eventImage {
+  max-width: 100%;
 }
