@@ -12,7 +12,6 @@
   color: #2e394f;
   border: 2px solid;
   border-color: #eceaea;
-  font-size: 17px;
 }
 .signup_btn {
   height: auto;
@@ -20,16 +19,12 @@
   background-color: #2e394f;
   color: white;
   font-weight: bold;
-  font-size: 17px;
 }
 .cta_btn {
   font-family: Helvetica;
   background-color: #e1ae17;
   color: white;
   font-weight: bold;
-  height: 60px;
-  width: 355px;
-  font-size: 22px;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
