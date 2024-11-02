@@ -96,8 +96,8 @@
   text-decoration: underline;
 }
 
-#event_card {
-}
+/* #event_card {
+} */
 #event_card_info {
   background-color: white;
 }
@@ -121,10 +121,10 @@
 #reviewContainer {
   max-width: 100%;
 }
+
 #reviewEvent p {
   font-size: 16px;
   max-width: 100%;
-}
-#eventImage {
-  max-width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
