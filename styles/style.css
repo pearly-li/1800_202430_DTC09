@@ -119,10 +119,9 @@
   background-size: cover;
 }
 .event_card img {
-  height: 170px;
+  height: 105px;
   object-fit: cover;
 }
-
 /* Pearly's Stars for Event Review */
 #starContainer img {
   width: 60px;

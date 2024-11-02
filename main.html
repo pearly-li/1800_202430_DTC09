@@ -23,6 +23,13 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <!-- Font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -34,49 +41,54 @@
     </header>
 
     <!--Main Body-->
-    <main class="flex flex-col justify-center mx-auto mt-auto container px-10 max-w-[640px] ">
-        <h1 class="font-bold ml-4 mb-3 text-xl mt-12">#Your Event Schedule</h1>
-        <section class="flex text-center mb-8 gap-8 overflow-x-scroll no-scrollbar">
-            <div class="card border border-black rounded-3xl px-5 py-8">
+    <main class="flex flex-col max-w-[87%] mx-auto">
+        <h1 class="font-bold ml-4 mb-1 text-lg mt-8 font-judson">#Your Event Schedule</h1>
+        <section class="flex mb-6 gap-4 h-[130px] mx-auto w-full overflow-x-scroll no-scrollbar">
+            <div class="card border border-black rounded-[16px] text-center pt-5 min-w-[90px] font-judson">
                 <h1 class="text-sm font-bold">Yesterday</h1>
                 <h1 class="text-sm font-bold">2:00 PM</h1>
                 <p class="text-sm ">Gaming</p>
             </div>
-            <div class="card border border-black rounded-3xl px-5 py-8">
+            <div class="card border border-black rounded-[16px] text-center pt-5 min-w-[90px] font-judson">
                 <h1 class="text-sm font-bold">Today</h1>
                 <h1 class="text-sm font-bold">9:00 AM</h1>
-                <p class="text-sm ">Hiking</p>
+                <p class="text-sm">Hiking</p>
             </div>
-            <div class="card border border-black rounded-3xl px-5 py-8">
+            <div class="card border border-black rounded-[16px] text-center pt-5 min-w-[90px] font-judson">
                 <h1 class="text-sm font-bold">Tomorrow</h1>
                 <h1 class="text-sm font-bold">9:00 AM</h1>
-                <p class="text-sm ">Hiking</p>
+                <p class="text-sm">Hiking</p>
+            </div>
+            <div class="card border border-black rounded-[16px] text-center pt-5 min-w-[90px] font-judson">
+                <h1 class="text-sm font-bold">Tomorrow</h1>
+                <h1 class="text-sm font-bold">9:00 AM</h1>
+                <p class="text-sm">Hiking</p>
             </div>
         </section>
-        <h1 class="font-bold ml-4 mb-3 text-xl">#Upcoming Events</h1>
-        <section class="event_card flex-col items-center">
-            <div class="card border border-black rounded-3xl w-[100%] mb-5">
+        <h1 class="font-bold ml-4 mb-1 text-lg font-judson">#Upcoming Events</h1>
+        <section class="flex event_card flex-col gap-y-3 font-judson mb-3">
+            <div class="card border bg-slate-100 border-slate-300 rounded-[16px] w-[100%]">
                 <img src="https://plus.unsplash.com/premium_photo-1666913667082-c1fecc45275d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGVubmlzfGVufDB8fDB8fHww"
-                    class="block w-full rounded-[20px_20px_0px_0px]" alt="">
-                <div class="my-2 ml-3">
-                    <h3>TOMORROW / 5:00 PM</h3>
-                    <h1 class="font-bold">Playing Tennis Together</h1>
+                    class="block w-full rounded-[14px_14px_0px_0px]" alt="">
+                <div class="my-[7px] ml-[17px]">
+                    <h3 class="text-[12.6px]">TOMORROW / 5:00 PM</h3>
+                    <h1 class="font-bold text-sm">Playing Tennis Together</h1>
                 </div>
             </div>
-            <div class="card border border-black rounded-3xl mb-5">
+            <div class="card border bg-slate-100 border-slate-300 rounded-[16px]">
                 <img src="https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w2208/mlb/crbela7xbocusesq8f8v.jpg"
-                    class="block w-full rounded-[20px_20px_0px_0px]" alt="">
-                <div class="my-2 ml-3">
-                    <h3>TOMORROW / 2:00 PM</h3>
-                    <h1 class="font-bold">Watching Baseball Game Together</h1>
+                    class="block w-full rounded-[14px_14px_0px_0px]" alt="">
+                <div class="my-[7px] ml-[17px]">
+                    <h3 class="text-[12.6px]">TOMORROW / 2:00 PM</h3>
+                    <h1 class="font-bold text-sm">Watching Baseball Game Together</h1>
                 </div>
             </div>
-            <div class="card border border-black rounded-3xl mb-5">
+            <div class="card border bg-slate-100 border-slate-300 rounded-[16px]">
                 <img src="https://cdn.outsideonline.com/wp-content/uploads/2023/04/guided-hike_h.jpg"
-                    class="block w-full rounded-[20px_20px_0px_0px]" alt="">
-                <div class="my-2 ml-3">
-                    <h3>TOMORROW / 8:00 AM</h3>
-                    <h1 class="font-bold">Go Hiking Together</h1>
+                    class="block w-full rounded-[14px_14px_0px_0px]" alt="">
+                <div class="my-[7px] ml-[17px]">
+                    <h3 class="text-[12.6px]">TOMORROW / 8:00 AM</h3>
+                    <h1 class="font-bold text-sm">Go Hiking Together</h1>
                 </div>
             </div>
         </section>
@@ -90,6 +102,7 @@
     <script src="./scripts/firebaseAPI_TEAM09.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/main.js"></script>
+    <script src="./scripts/font.js"></script>
 </body>
 
 </html>
