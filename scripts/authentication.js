@@ -2,7 +2,21 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
     callbacks: {
         signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-            return true;
+            var user = authResult.user;                           
+            if (authResult.additionalUserInfo.isNewUser) {         
+                db.collection("users").doc(user.uid).set({         
+                    name: user.displayName,                    
+                    email: user.email,                        
+                }).then(function () {
+                    console.log("New user added to firestore");
+                    window.location.assign("main.html");       
+                }).catch(function (error) {
+                    console.log("Error adding new user: " + error);
+                });
+            } else {
+                return true;
+            }
+            return false;
         },
         uiShown: function () {
             document.getElementById('loader').style.display = 'none';

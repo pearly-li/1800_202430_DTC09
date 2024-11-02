@@ -23,6 +23,10 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <!-- Font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -34,7 +38,40 @@
     </header>
     
     <!--Main Body-->
-    <main class="mt-auto">
+    <main>
+        <section class="flex flex-col justify-center mx-auto gap-y-8 w-[78%] my-9">
+            <div class="flex flex-col gap-y-2">
+                <h1 class="font-judson text-xl">#Event Picture</h1>
+                <input type="file" name="photo" accept="image/*" class=" rounded text-[gray] pl-2">
+            </div>
+            <div class="flex flex-col gap-y-2">
+                <h1 class="font-judson text-xl">#Title</h1>
+                <input type="text" name="title" placeholder="Event Title" class="border rounded pl-2">
+            </div>
+            <div class="flex flex-col gap-y-2">
+                <h1 class="font-judson text-xl">#Description</h1>
+                <input type="text" name="description" placeholder="Event Description" class="border rounded pl-2">
+            </div>
+            <div class="flex flex-col gap-y-2">
+                <h1 class="font-judson text-xl">#Participation Number</h1>
+                <input type="number" name="scale" placeholder="Maximum Participation Number" class="border rounded pl-2">
+            </div>
+            <div class="flex flex-col gap-y-2">
+                <h1 class="font-judson text-xl">#Location</h1>
+                <input type="text" name="address" placeholder="Event Address" class="border rounded pl-2">
+            </div>
+            <section class="flex flex-row">
+                <div class="flex flex-col gap-y-2 mr-3">
+                    <h1 class="font-judson text-xl">#Date</h1>
+                    <input type="date" name="date" placeholder="Event Date" class="border rounded pl-2">
+                </div>
+                <div class="flex flex-col gap-y-2">
+                    <h1 class="font-judson text-xl">#Time</h1>
+                    <input type="time" name="time" placeholder="Event Time" class="border rounded pl-2">
+                </div>
+            </section>
+            <button class="border py-1 border-black rounded text-lg">Create</button>
+        </section>
     </main>
     
     <footer class="sticky bottom-0 mt-auto" id="footer_navbar">
@@ -45,6 +82,7 @@
     <script src="./scripts/firebaseAPI_TEAM09.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/main.js"></script>
+    <script src="./scripts/font.js"></script>
 </body>
 
 </html>

@@ -51,6 +51,9 @@
   border-color: #eceaea;
   border-radius: 7px;
 }
+.no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
 
 /*Kanon - Navbars*/
 #landing_footer {
