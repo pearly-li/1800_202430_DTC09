@@ -26,7 +26,9 @@
     <!-- Font link -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -41,19 +43,19 @@
         <section class="flex flex-col justify-center mx-auto gap-y-8 w-[78%] my-9">
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Event Picture</h1>
-                <input type="file" id="image" accept="image/*" class=" rounded text-[gray] pl-2">
+                <input type="file" id="image" accept="image/*" class="font-libre_franklin rounded text-[gray] pl-2">
             </div>
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Title</h1>
-                <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2">
+                <input type="text" id="title" placeholder="Event Title" class="font-libre_franklin border rounded pl-2">
             </div>
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Description</h1>
-                <input type="text" id="description" placeholder="Event Description" class="border rounded pl-2">
+                <input type="text" id="description" placeholder="Event Description" class="font-libre_franklin border rounded pl-2">
             </div>
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Category</h1>
-                <select id="category" class="max-w-[200px] border rounded">
+                <select id="category" class="max-w-[200px] border rounded font-libre_franklin">
                     <option value="">Choose one</option>
                     <option value="Game">Game</option>
                     <option value="Sports">Sports</option>
@@ -61,23 +63,23 @@
             </div>
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Participation Number</h1>
-                <input type="number" id="scale" placeholder="Maximum Participation Number" class="border rounded pl-2 max-w-[255px]">
+                <input type="number" id="scale" placeholder="Maximum Participation Number" class="border font-libre_franklin rounded pl-2 max-w-[255px]">
             </div>
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Location</h1>
-                <input type="text" id="address" placeholder="Event Address" class="border rounded pl-2 max-w-[310px]">
+                <input type="text" id="address" placeholder="Event Address" class="border font-libre_franklin rounded pl-2 max-w-[310px]">
             </div>
             <section class="flex flex-row">
                 <div class="flex flex-col gap-y-2 mr-3">
                     <h1 class="font-judson text-xl">#Date</h1>
-                    <input type="date" id="date" placeholder="Event Date" class="border rounded pl-2">
+                    <input type="date" id="date" placeholder="Event Date" class="border font-libre_franklin rounded pl-2">
                 </div>
                 <div class="flex flex-col gap-y-2">
                     <h1 class="font-judson text-xl">#Time</h1>
-                    <input type="time" id="time" placeholder="Event Time" class="border rounded pl-2">
+                    <input type="time" id="time" placeholder="Event Time" class="border font-libre_franklin rounded pl-2">
                 </div>
             </section>
-            <button id="event_btn" class="border py-1 border-black rounded text-lg">Create</button>
+            <button id="event_btn" class="border font-libre_franklin py-1 border-black rounded text-lg">Create</button>
         </section>
     </main>
     
