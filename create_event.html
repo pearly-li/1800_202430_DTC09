@@ -30,10 +30,9 @@
 </head>
 
 <body class="flex flex-col min-h-screen">
-    <!--Page Name-->
-    <template id="page_label">Create Event</template>
+    <template id="page_label"><img src="images/logo_text.png" class="max-h-[30px]"></template>
     
-    <header class="sticky top-0" id="header_navbar">
+    <header id="header_navbar" class="sticky sm:static top-0">
         <nav id="headerPlaceholder"></nav>
     </header>
     
@@ -53,12 +52,20 @@
                 <input type="text" id="description" placeholder="Event Description" class="border rounded pl-2">
             </div>
             <div class="flex flex-col gap-y-2">
+                <h1 class="font-judson text-xl">#Category</h1>
+                <select id="category" class="max-w-[200px] border rounded">
+                    <option value="">Choose one</option>
+                    <option value="Game">Game</option>
+                    <option value="Sports">Sports</option>
+                </select>
+            </div>
+            <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Participation Number</h1>
-                <input type="number" id="scale" placeholder="Maximum Participation Number" class="border rounded pl-2">
+                <input type="number" id="scale" placeholder="Maximum Participation Number" class="border rounded pl-2 max-w-[255px]">
             </div>
             <div class="flex flex-col gap-y-2">
                 <h1 class="font-judson text-xl">#Location</h1>
-                <input type="text" id="address" placeholder="Event Address" class="border rounded pl-2">
+                <input type="text" id="address" placeholder="Event Address" class="border rounded pl-2 max-w-[310px]">
             </div>
             <section class="flex flex-row">
                 <div class="flex flex-col gap-y-2 mr-3">
