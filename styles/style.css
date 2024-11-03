@@ -120,6 +120,9 @@
   height: 105px;
   object-fit: cover;
 }
+.event_post .pic {
+  height: 260px;
+}
 /* Pearly's Stars for Event Review */
 #starContainer img {
   width: 60px;

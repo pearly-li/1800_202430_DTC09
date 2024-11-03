@@ -3,7 +3,7 @@ tailwind.config = {
         extend: {
             fontFamily: {
                 judson: ['Judson', 'ui-serif'],
-                libre_franklin : ['Archivo Black', 'ui-serif']
+                libre_franklin : ['Libre Franklin', 'ui-serif']
             }
         }
     }
