@@ -54,6 +54,10 @@
   color: white;
   font-size: 12px;
   text-align: center;
+
+  position: sticky;
+  z-index: 50;
+  bottom: 0;
 }
 
 #footer_navbar img {
