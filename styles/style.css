@@ -1,3 +1,4 @@
+/* Reusable Assets */
 /* Top Navbar - Before */
 #landingNav {
   padding-top: 10px;
@@ -97,6 +98,9 @@
 }
 
 
+
+
+/* Page Specific CSS */
 /* Login Page - Buttons */
 .login_btn {
   height: auto;
@@ -148,10 +152,10 @@
   background-color: #aa5632;
 }
 
-orginize
 
 
 
+/* Temp CSS Here */
 /* Unused?? */
 .search {
   width: auto;
