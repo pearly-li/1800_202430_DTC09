@@ -63,6 +63,40 @@
 }
 
 
+/* Event Cards */
+#event_card_info {
+  background-color: white;
+}
+
+.event_card img {
+  height: 105px;
+  object-fit: cover;
+}
+
+
+/* Event Details */
+.event_post .pic {
+  height: 260px;
+}
+
+
+/* Event Detail - Reviews */
+#starContainer img {
+  width: 60px;
+}
+
+#reviewContainer {
+  max-width: 100%;
+}
+
+#reviewEvent p {
+  font-size: 16px;
+  max-width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
 /* Login Page - Buttons */
 .login_btn {
   height: auto;
@@ -114,6 +148,9 @@
   background-color: #aa5632;
 }
 
+orginize
+
+
 
 /* Unused?? */
 .search {
@@ -130,12 +167,6 @@
   display: none;
 }
 
-
-
-#event_card_info {
-  background-color: white;
-}
-
 .gaming_bg {
   background-image: url(https://media.wired.com/photos/61f48f02d0e55ccbebd52d15/3:2/w_2400,h_1600,c_limit/Gear-Rant-Game-Family-Plans-1334436001.jpg);
   background-repeat: no-repeat;
@@ -143,31 +174,8 @@
   background-size: cover;
 }
 
-.event_card img {
-  height: 105px;
-  object-fit: cover;
-}
 
-.event_post .pic {
-  height: 260px;
-}
-
-/* Pearly's Stars for Event Review */
-#starContainer img {
-  width: 60px;
-}
-
-#reviewContainer {
-  max-width: 100%;
-}
-
-#reviewEvent p {
-  font-size: 16px;
-  max-width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
+/* Rename? */
 .g_bg {
   background-image: url("https://media.wired.com/photos/627da1085d49787abdf713b4/master/pass/Pakistani-Gamers-Want-a-Seat-at-the-Table-Culture-shutterstock_1949862841.jpg");
   background-repeat: no-repeat;
