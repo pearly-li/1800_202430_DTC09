@@ -51,7 +51,7 @@
 /* Bottom Navbar - After */
 #footer_navbar {
   background-color: #2e394f;
-  color: white;
+  color: black;
   font-size: 12px;
   text-align: center;
 
@@ -61,12 +61,18 @@
 }
 
 #footer_navbar img {
-  filter: invert(1);
   width: 10vw;
   height: auto;
   max-height: 25px;
 }
 
+#footer_navbar a {
+  filter: invert(1);
+}
+
+#footer_navbar a:hover {
+  filter: invert(83%) sepia(23%) saturate(266%) hue-rotate(176deg) brightness(96%) contrast(85%);
+}
 
 /* Event Cards */
 #event_card_info {
