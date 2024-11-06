@@ -1,4 +1,4 @@
-/*Pearly- Nav Bar*/
+/* Navbar */
 #landingNav {
   padding-top: 10px;
   padding-left: 5px;
@@ -101,6 +101,7 @@
   font-size: 16px;
   font-weight: bold;
   text-align: center;
+  transition: top 0.5s;
 }
 #name_goes_here {
   text-decoration: underline;
