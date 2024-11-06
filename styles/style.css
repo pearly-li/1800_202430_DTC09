@@ -1,10 +1,69 @@
-/* Navbar */
+/* Top Navbar - Before */
 #landingNav {
   padding-top: 10px;
   padding-left: 5px;
 }
 
-/*Zoey-Call To Action*/
+
+/* Top Navbar - After */
+#header_navbar {
+  background-color: white;
+  color: black;
+  box-shadow: 0px 5px 5px #0000002b;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+
+  position: sticky;
+  z-index: 50;
+  top: 0;
+  transition: top 0.5s;
+}
+
+#name_goes_here {
+  text-decoration: underline;
+}
+
+
+/* Bottom Navbar - Before */
+#landing_footer {
+  background-color: #2e394f;
+  color: lightgray;
+  font-family: Helvetica;
+  font-size: 14px;
+  text-align: center;
+}
+
+#landing_footer h1 {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: 1px solid white;
+}
+
+#landing_footer div h1 {
+  font-size: 16px;
+  border: none;
+}
+
+
+/* Bottom Navbar - After */
+#footer_navbar {
+  background-color: #2e394f;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+
+#footer_navbar img {
+  filter: invert(1);
+  width: 10vw;
+  height: auto;
+  max-height: 25px;
+}
+
+
+/* Login Page - Buttons */
 .login_btn {
   height: auto;
   width: auto;
@@ -17,6 +76,7 @@
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-right: 15px;
 }
+
 .signup_btn {
   height: auto;
   width: auto;
@@ -27,6 +87,7 @@
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-right: 15px;
 }
+
 .cta_btn {
   font-family: Helvetica;
   background-color: #e1ae17;
@@ -35,20 +96,26 @@
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .signup_btn:hover,
 .cta_btn:hover {
   background-color: #d0672d;
 }
+
 .login_btn:hover {
   color: white;
   background-color: #d0672d;
 }
+
 .login_btn:active,
 .cta_btn:active,
 .signup_btn:active {
   color: white;
   background-color: #aa5632;
 }
+
+
+/* Unused?? */
 .search {
   width: auto;
   height: 67px;
@@ -58,54 +125,12 @@
   border-color: #eceaea;
   border-radius: 7px;
 }
+
 .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-/*Kanon - Navbars*/
-#landing_footer {
-  background-color: #2e394f;
-  color: lightgray;
-  font-family: Helvetica;
-  font-size: 14px;
-  text-align: center;
-}
-#landing_footer h1 {
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  border-bottom: 1px solid white;
-}
-#landing_footer div h1 {
-  font-size: 16px;
-  border: none;
+  display: none;
 }
 
-#footer_navbar {
-  background-color: #2e394f;
-  color: white;
-  font-size: 12px;
-  text-align: center;
-}
-#footer_navbar img {
-  filter: invert(1);
-  width: 10vw;
-  height: auto;
-  max-height: 25px;
-}
 
-#header_navbar {
-  background-color: white;
-  color: black;
-  box-shadow: 0px 5px 5px #0000002b;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  transition: top 0.5s;
-}
-#name_goes_here {
-  text-decoration: underline;
-}
 
 #event_card_info {
   background-color: white;
@@ -117,13 +142,16 @@
   background-position: center;
   background-size: cover;
 }
+
 .event_card img {
   height: 105px;
   object-fit: cover;
 }
+
 .event_post .pic {
   height: 260px;
 }
+
 /* Pearly's Stars for Event Review */
 #starContainer img {
   width: 60px;
