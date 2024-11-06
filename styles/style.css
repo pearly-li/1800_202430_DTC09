@@ -73,9 +73,25 @@
   background-color: white;
 }
 
+.event_card {
+  border-radius: 16px;
+}
+
+.event_card h1 {
+  font-weight: bold;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+}
+
+.event_card h3 {
+  font-size: 12.6px;
+}
+
 .event_card img {
+  display: block;
   height: 105px;
   object-fit: cover;
+  border-radius: 14px 14px 0px 0px;
 }
 
 
