@@ -157,6 +157,31 @@
 }
 
 
+/* Main Page - User Event Schedule */
+.user_event_schedule {
+  background-image: url("https://media.wired.com/photos/627da1085d49787abdf713b4/master/pass/Pakistani-Gamers-Want-a-Seat-at-the-Table-Culture-shutterstock_1949862841.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+
+  text-align: center;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+  
+}
+
+.user_event_schedule h1 {
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user_event_schedule p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 
 
 /* Temp CSS Here */
