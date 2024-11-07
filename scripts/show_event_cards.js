@@ -5,7 +5,21 @@ function displayEventCards() {
         .then(allEvents => {
             allEvents.forEach(doc => {
                 var title = doc.data().title;
-                var date = new Date(doc.data().date);
+                var date = doc.data().date;
+                
+                var tomorrowDay = currentDay + 1;
+                var tomorrowMonth = currentMonth;
+                var tomorrowYear = currentYear;
+                if (tomorrowDay > maxDays) {
+                    tomorrowDay = 1;
+                    tomorrowMonth += 1;
+                }
+                if (tomorrowMonth > 11) {
+                    tomorrowMonth = 0;
+                    tomorrowYear += 1; 
+                }
+
+
                 var time = doc.data().time;
                 var docID = doc.id;
                 let newCard = cardTemplate.content.cloneNode(true);
