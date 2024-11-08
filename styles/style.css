@@ -307,7 +307,7 @@ body {
 .card {
   border-width: 2px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 4px 6px;
-  border-radius: 10px;
+  border-radius: 30px;
   font: 400 18px Roboto, Arial, sans-serif;
   position: relative;
   display: flex;
@@ -316,8 +316,11 @@ body {
 }
 
 .card-img-top {
-  border-radius: 10px;
-  padding-bottom: 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .card-body {
@@ -332,11 +335,15 @@ body {
   font-family: Helvetica;
   font-size: x-large;
   font-weight: 600;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .card-length {
   margin: 0;
   color: slategrey;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .card-text {
@@ -344,12 +351,14 @@ body {
   margin-top: 1rem;
   font-size: medium;
   padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .btn {
   background-color: #e1ae17;
   color: white;
-  border-radius: 8px;
+  border-radius: 20px;
   padding: 8px 12px;
   font-weight: bold;
   font-family: Helvetica;
