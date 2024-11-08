@@ -34,15 +34,17 @@
     </header>
 
     <!-- Main Body -->
-    <main class="flex flex-col mx-auto px-10 md:px-0 max-w-screen-md min-w-full md:min-w-[640px]">
-        <section>
+    <main class="flex flex-col space-y-3 mx-auto px-10 md:px-0 max-w-screen-md min-w-full md:min-w-[640px]">
+        <section class="mt-8">
             <div>
                 <input type="search" id="default-search"
                     class="block w-full p-4 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-700 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search Events" required />
             </div>
             
-            <div class="flex justify-evenly">
+
+            <!-- MAKE IT A POP OUT MENU THINGY LATER -->
+            <div class="">
                 <select>
                     <option value="">Size of Event</option>
                     <option value="2">One on One</option>
@@ -64,11 +66,11 @@
             </div>
         </section>
 
-        <div id="browsing_list" class="flex flex-col gap-y-3 mb-3">
+        <div id="browsing_list" class="flex flex-col gap-y-3">
         </div>
     </main>
 
-    <footer id="footer_navbar" class="mt-auto">
+    <footer id="footer_navbar" class="mt-8">
         <nav id="footerPlaceholder"></nav>
     </footer>
 
