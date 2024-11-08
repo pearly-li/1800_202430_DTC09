@@ -282,7 +282,7 @@ body {
 .custom-map-control-button {
   background-color: #fff;
   border: 0;
-  border-radius: 2px;
+  border-radius: 3px;
   box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
   margin: 10px;
   padding: 0 0.5em;
@@ -294,4 +294,72 @@ body {
 
 .custom-map-control-button:hover {
   background: rgb(235, 235, 235);
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.card {
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 4px 6px;
+  border-radius: 10px;
+  font: 400 18px Roboto, Arial, sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.card-img-top {
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card-title {
+  margin: 0;
+  font-family: Helvetica;
+  font-size: x-large;
+  font-weight: 600;
+}
+
+.card-length {
+  margin: 0;
+  color: slategrey;
+}
+
+.card-text {
+  flex-grow: 1;
+  margin-top: 1rem;
+  font-size: medium;
+  padding-bottom: 10px;
+}
+
+.btn {
+  background-color: #e1ae17;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: bold;
+  font-family: Helvetica;
+  position: relative;
+  align-self: flex-end;
+  margin-top: 1rem;
+  bottom: 10px;
+  right: 10px;
+}
+
+.btn:hover {
+  background-color: #d0672d;
 }
