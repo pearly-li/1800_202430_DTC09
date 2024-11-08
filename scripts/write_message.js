@@ -33,5 +33,4 @@ function writeMessage() {
     }
   });
 }
-writeMessage();
 // Note to self: Will add a separate function to edit messages later, which will update the last_updated field but NOT the message_created_at
