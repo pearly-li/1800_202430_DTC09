@@ -31,6 +31,5 @@ function searchEvent() {
     });
 }
 
-// Correcting the event listener
 const searchButton = document.getElementById("searchEvent");
 searchButton.addEventListener("click", searchEvent);
