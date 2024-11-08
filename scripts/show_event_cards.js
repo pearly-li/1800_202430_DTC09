@@ -1,5 +1,5 @@
 function displayEventCards() {
-   let cardTemplate = document.getElementById("event_card_template");
+    let cardTemplate = document.getElementById("event_card_template");
 
     db.collection("events").get()
         .then(allEvents => {
@@ -30,7 +30,7 @@ function displayEventCards() {
                 var currentYear = today.getFullYear();
                 var currentMonth = today.getMonth();
                 var currentDay = today.getDate();
-                
+
                 maxDays = 31
                 if (currentMonth in [4, 6, 9, 11]) {
                     maxDays = 30;
@@ -49,7 +49,7 @@ function displayEventCards() {
                 }
                 if (tomorrowMonth > 11) {
                     tomorrowMonth = 0;
-                    tomorrowYear += 1; 
+                    tomorrowYear += 1;
                 }
 
                 if (currentYear === year && currentMonth === month && currentDay === day) {
@@ -65,9 +65,9 @@ function displayEventCards() {
                     } else if (day in [3, 23]) {
                         ordinal = "rd"
                     }
-                        
+
                     monthNames = [
-                        "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"
+                        "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
                     ];
                     month = monthNames[month]
                     date = `${month} ${day}${ordinal}`;
@@ -77,7 +77,7 @@ function displayEventCards() {
                 newCard.querySelector(".event_card_title").innerHTML = title;
                 newCard.querySelector(".event_card_date").innerHTML = date;
                 newCard.querySelector(".event_card_time").innerHTML = time;
-                newCard.querySelector('a').href = "event_detail.html?docID="+docID;
+                newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
 
                 document.getElementById("browsing_list").appendChild(newCard);
             })
