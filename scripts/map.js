@@ -11,7 +11,7 @@ function initMap() {
 
     // Create a button to pan to the user's current location
     const locationButton = document.createElement("button");
-    locationButton.textContent = "Pan to Current Location";
+    locationButton.textContent = "Use Current Location";
     locationButton.classList.add("custom-map-control-button");
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
