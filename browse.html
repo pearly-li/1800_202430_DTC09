@@ -35,35 +35,28 @@
 
     <!-- Main Body -->
     <main class="flex flex-col space-y-3 px-10 md:px-0 min-w-full md:min-w-[640px]">
-        <section>
-            <div>
-                <input type="search" id="default-search"
+        <section class="relative mx-10">
+            <div class="topnav pt-2 mx-7 flex">
+                <input type="search" id="search"
                     class="block w-full p-4 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-700 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search Events" required />
             </div>
-            
-
-            <!-- MAKE IT A POP OUT MENU THINGY LATER -->
-            <div class="">
-                <select>
+            <div>
+                <select class="ml-7" id="size">
                     <option value="">Size of Event</option>
                     <option value="2">One on One</option>
                     <option value="sm">Small Event</option>
                     <option value="md">Medium Event</option>
                     <option value="lg">Large Event</option>
                 </select>
-                <select>
+                <select class="ml-7" id="type">
                     <option value="">Type of Event</option>
                     <option value="inperson">In-Person</option>
                     <option value="virtual">Virtual</option>
                 </select>
-                <select>
-                    <option value="">Category</option>
-                    <option value="">Game</option>
-                    <option value="">Sports</option>
-                </select>
-                <input type="date">
+                <input type="date" id="date" class="ml-8">
             </div>
+            <button class="btn float-right flex" id="searchEvent">Search</button>
         </section>
 
         <div id="browsing_list" class="flex flex-col gap-y-3">
@@ -83,6 +76,7 @@
     <script src="./scripts/firebaseAPI_TEAM09.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/show_event_cards.js"></script>
+    <script src="./scripts/filter_search.js"></script>
 </body>
 
 </html>
