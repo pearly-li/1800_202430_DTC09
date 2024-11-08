@@ -3,10 +3,15 @@
 main {
   padding-top: 2rem /* 32px */;
   padding-bottom: 2rem /* 32px */;
-  margin-left: auto;
-  margin-right: auto;
 
   max-width: 768px;
+}
+
+main h1 { 
+  font-size: 1.125rem /* 18px */;
+  line-height: 1.75rem /* 28px */;
+
+  font-weight: bold;
 }
 
 
@@ -197,29 +202,49 @@ main {
 
 /* Main Page - User Event Schedule */
 .user_event_schedule {
-  background-image: url("https://media.wired.com/photos/627da1085d49787abdf713b4/master/pass/Pakistani-Gamers-Want-a-Seat-at-the-Table-Culture-shutterstock_1949862841.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  filter: grayscale(100%);
-
+  width: 100px;
+  
   text-align: center;
-  font-size: 0.875rem
-    /* 14px */
-  ;
-  line-height: 1.25rem
-    /* 20px */
-  ;
+  font-size: 0.875rem  /* 14px */;
+  line-height: 1.25rem  /* 20px */;
 
+  
+  
+  font: 400 18px Roboto, Arial, sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.user_event_schedule img {
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.50) 0px 4px 6px;
+  filter: saturate(30%) contrast(30%) brightness(150%);
+}
+
+.user_event_schedule .inner_text {
+  padding-left: 0.5rem /* 8px */;
+  padding-right: 0.5rem /* 8px */;
+  
+  top: 20%;
+  z-index: 10;
+
+  width: 100%;
 }
 
 .user_event_schedule h1 {
-  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .user_event_schedule p {
+  font-size: 16px;
+  line-height: 24px;
+
   overflow: hidden;
   text-overflow: ellipsis;
 }
