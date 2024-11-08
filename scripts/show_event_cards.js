@@ -6,6 +6,7 @@ function displayEventCards() {
             allEvents.forEach(doc => {
                 var title = doc.data().title;
                 var date = new Date(`${doc.data().date}, ${doc.data().time}`);
+                var image = doc.data().image
                 var docID = doc.id;
                 let newCard = cardTemplate.content.cloneNode(true);
 
@@ -77,6 +78,7 @@ function displayEventCards() {
                 newCard.querySelector(".event_card_title").innerHTML = title;
                 newCard.querySelector(".event_card_date").innerHTML = date;
                 newCard.querySelector(".event_card_time").innerHTML = time;
+                newCard.querySelector('img').src = image;
                 newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
 
                 document.getElementById("browsing_list").appendChild(newCard);
