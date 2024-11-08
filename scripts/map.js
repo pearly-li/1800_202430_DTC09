@@ -3,8 +3,8 @@ let map, infoWindow;
 function initMap() {
     // Initialize map centered at a default location
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 49.28387101455877, lng: - 123.11542646137144 },
-        zoom: 6,
+        center: { lat: 49.292464046735944, lng: - 123.14540259572419 },
+        zoom: 15,
     });
 
     infoWindow = new google.maps.InfoWindow();

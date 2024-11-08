@@ -202,19 +202,11 @@ main h1 {
 
 /* Main Page - User Event Schedule */
 .user_event_schedule {
-  width: 100px;
+  width: 120px;
   
   text-align: center;
   font-size: 0.875rem  /* 14px */;
   line-height: 1.25rem  /* 20px */;
-
-  
-  
-  font: 400 18px Roboto, Arial, sans-serif;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: auto;
 }
 
 .user_event_schedule img {
