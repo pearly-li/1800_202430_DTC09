@@ -75,13 +75,17 @@
                     <img src="./images/location.png" class="w-[17px] h-[17px]">
                     <h5 class="w-[65%] font-bold">Stanley Park Tennis Courts, 8901 Stanley Park Dr</h5>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" x-bind:width="size" x-bind:height="size"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke"
-                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
-                    <path d="M5 12l14 0"></path>
-                    <path d="M13 18l6 -6"></path>
-                    <path d="M13 6l6 6"></path>
-                </svg>
+                <a href="./map.html" alt="Map Page">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" x-bind:width="size" x-bind:height="size"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke"
+                            stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                            <path d="M5 12l14 0"></path>
+                            <path d="M13 18l6 -6"></path>
+                            <path d="M13 6l6 6"></path>
+                        </svg>
+                    </button>
+                </a>
             </div>
         </section>
         <div class="flex mt-3 ml-[30px] gap-2">
@@ -156,7 +160,7 @@
         <section class="flex my-4 justify-center gap-5 items-center">
             <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]">Attend</button>
             <img src="./images/chat.png" class="w-[30px] h-[30px]">
-            <img src="./images/heart.png" class="w-[30px] h-[30px]">
+            <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
         </section>
     </footer>
 
@@ -169,6 +173,7 @@
     <script src="./scripts/main.js"></script>
     <script src="./scripts/font.js"></script>
     <script src="./scripts/write_message.js"></script>
+    <script src="./scripts/like.js"></script>
 
 </body>
 
