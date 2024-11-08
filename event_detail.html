@@ -65,12 +65,12 @@
             <img src="./images/info.png" class="w-[17px] h-[17px]">
             <h1 class="text-2xl font-bold ">Event Details</h1>
         </div>
-        <section class="font-libre_franklin mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px]">
+        <section class="font-libre_franklin mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px] ">
             <div class="flex gap-3 text-center ml-3 mt-3">
                 <img src="./images/person.png" class="w-[17px] h-[17px]">
                 <h5 class="font-bold">2/4</h5>
             </div>
-            <div class="flex ml-3 mt-3 mb-6">
+            <div class="flex ml-3 mt-3">
                 <div class="flex gap-3">
                     <img src="./images/location.png" class="w-[17px] h-[17px]">
                     <h5 class="w-[65%] font-bold">Stanley Park Tennis Courts, 8901 Stanley Park Dr</h5>
@@ -87,26 +87,21 @@
                     </button>
                 </a>
             </div>
-        </section>
-        <div class="flex mt-3 ml-[30px] gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" x-bind:stroke-width="stroke" stroke-linecap="round"
-                stroke-linejoin="round" width="24" height="24" stroke-width="2">
-                <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
-                <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                <path d="M15 3v4"></path>
-                <path d="M7 3v4"></path>
-                <path d="M3 11h16"></path>
-                <path d="M18 16.496v1.504l1 1"></path>
-            </svg>
-            <!--Should make a function border color must change to black when user chooses specific date-->
-            <div class="flex flex-col gap-1 text-center">
-                <button class="font-libre_franklin text-[13px] border border-gray-300 rounded-full px-4 mt-1">Friday,
-                    Nov 23th, 5:00 PM</button>
-                <button class="font-libre_franklin text-[13px] border border-gray-300 rounded-full px-4 mt-1">Saturday,
-                    Nov 24th, 5:00 PM</button>
+            <div class="flex ml-3 mt-3 mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 w-[17px] h-[17px]" x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24"
+                    height="24" stroke-width="2">
+                    <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
+                    <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                    <path d="M15 3v4"></path>
+                    <path d="M7 3v4"></path>
+                    <path d="M3 11h16"></path>
+                    <path d="M18 16.496v1.504l1 1"></path>
+                </svg>
+                <!--Should make a function border color must change to black when user chooses specific date-->
+                <p class="font-libre_franklin text-[13px] font-bold">Friday, Nov 23th, 5:00 PM</p>
             </div>
-        </div>
+        </section>
         <section id="messageBoard" class="">
             <div class="flex items-center ml-[30px] mt-6 gap-2">
                 <img src="./images/review.png" class="w-[17px] h-[17px]">
