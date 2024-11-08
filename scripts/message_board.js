@@ -1,5 +1,6 @@
-var currentUser; //points to the document of the user who is logged in
+// var currentUser; //points to the document of the user who is logged in
 
+// Technically the below code is more proper but what I already have is working
 // var eventDocID = localStorage.getItem("eventDocID"); //visible to all functions on this page
 // function getEventName(id) {
 //   db.collection("events")
@@ -10,49 +11,7 @@ var currentUser; //points to the document of the user who is logged in
 //       document.getElementById("eventName").innerHTML = eventName;
 //     });
 // }
-
 // getEventName(eventDocID);
-
-function saveEventDocumentIDAndRedirect() {
-  let params = new URL(window.location.href); //get the url from the search bar
-  let ID = params.searchParams.get("docID");
-  localStorage.setItem("eventDocID", ID);
-  window.location.href = "event_detail.html";
-}
-function populateMessages() {
-  console.log("test");
-  let messageCardTemplate = document.getElementById("messageCardTemplate");
-  let messageCardGroup = document.getElementById("messageCardGroup");
-
-  let params = new URL(window.location.href); // Get the URL from the search bar
-  let eventID = params.searchParams.get("docID");
-
-  db.collection("messages")
-    .where("eventDocID", "==", eventID)
-    .get()
-    .then((allMessages) => {
-      messages = allMessages.docs;
-      console.log(messages);
-      messages.forEach((doc) => {
-        var userName = userDoc.data().name;
-        var time = doc.data().timestamp.toDate();
-        var description = doc.data().message_description;
-
-        console.log(time);
-
-        let messageCard = messageCardTemplate.content.cloneNode(true);
-        messageCard.querySelector(".userName").innerHTML = userName;
-        messageCard.querySelector(".time").innerHTML = new Date(
-          time
-        ).toLocaleString();
-        messageCard.querySelector(
-          ".description"
-        ).innerHTML = `Description: ${description}`;
-        messageCardGroup.appendChild(messageCard);
-      });
-    });
-}
-populateMessages();
 
 function writeMessage() {
   firebase.auth().onAuthStateChanged((user) => {
@@ -66,13 +25,21 @@ function writeMessage() {
         let userName = userDoc.data().name;
         var messageRef = db.collection("messages");
 
-        messageRef.add({
-          reviewer_name: userName,
-          message_description:
-            document.getElementById("messageDescription").value,
-          message_created_at: firebase.firestore.FieldValue.serverTimestamp(),
-          last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-        });
+        messageRef
+          .add({
+            reviewer_name: userName,
+            message_description:
+              document.getElementById("messageDescription").value,
+            message_created_at: firebase.firestore.FieldValue.serverTimestamp(),
+            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+          })
+          .then(() => {
+            // Show alert when message is posted successfully
+            alert("Message posted");
+          })
+          .catch((error) => {
+            console.error("Error adding message: ", error);
+          });
       });
     } else {
       // No user is signed in.
@@ -82,3 +49,4 @@ function writeMessage() {
 }
 writeMessage();
 // Note to self: Will add a separate function to edit messages later, which will update the last_updated field but NOT the message_created_at
+// Also need to make a popup to signal a message has been successfully entered!
