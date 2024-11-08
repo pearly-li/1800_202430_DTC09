@@ -1,18 +1,3 @@
-// var currentUser; //points to the document of the user who is logged in
-
-// Technically the below code is more proper but what I already have is working
-// var eventDocID = localStorage.getItem("eventDocID"); //visible to all functions on this page
-// function getEventName(id) {
-//   db.collection("events")
-//     .doc(id)
-//     .get()
-//     .then((thisEvent) => {
-//       var eventName = thisEvent.data().name;
-//       document.getElementById("eventName").innerHTML = eventName;
-//     });
-// }
-// getEventName(eventDocID);
-
 function writeMessage() {
   firebase.auth().onAuthStateChanged((user) => {
     // Check if user is signed in:
