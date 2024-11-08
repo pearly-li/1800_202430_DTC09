@@ -18,10 +18,6 @@ function writeMessage() {
           message_created_at: firebase.firestore.FieldValue.serverTimestamp(),
           last_updated: firebase.firestore.FieldValue.serverTimestamp(),
         });
-
-        // //if the data fields are not empty, then write them in to the form.
-        // if (userName != null) {
-        //   document.getElementById("nameInput").value = userName;
       });
     } else {
       // No user is signed in.
@@ -29,4 +25,5 @@ function writeMessage() {
     }
   });
 }
+writeMessage();
 // Note to self: Will add a separate function to edit messages later, which will update the last_updated field but NOT the message_created_at
