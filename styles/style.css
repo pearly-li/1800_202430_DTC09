@@ -337,6 +337,9 @@ body {
   font-weight: 600;
   padding-left: 5px;
   padding-right: 5px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  color: #2e394f;
 }
 
 .card-length {
@@ -344,6 +347,7 @@ body {
   color: slategrey;
   padding-left: 5px;
   padding-right: 5px;
+  font-weight: bold;
 }
 
 .card-text {
@@ -353,6 +357,8 @@ body {
   padding-bottom: 10px;
   padding-left: 5px;
   padding-right: 5px;
+  font-weight: bold;
+  color: #2e394f;
 }
 
 .btn {
