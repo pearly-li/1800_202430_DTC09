@@ -44,9 +44,9 @@ function writeMessage() {
     } else {
       // No user is signed in.
       console.log("No user is signed in");
+      alert("You must be signed in to post a message.");
     }
   });
 }
 writeMessage();
 // Note to self: Will add a separate function to edit messages later, which will update the last_updated field but NOT the message_created_at
-// Also need to make a popup to signal a message has been successfully entered!
