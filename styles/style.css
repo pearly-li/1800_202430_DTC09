@@ -1,4 +1,15 @@
 /* Reusable Assets */
+/* Main - Shared Formatting */
+main {
+  padding-top: 2rem /* 32px */;
+  padding-bottom: 2rem /* 32px */;
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 768px;
+}
+
+
 /* Top Navbar - Before */
 #landingNav {
   padding-top: 10px;
