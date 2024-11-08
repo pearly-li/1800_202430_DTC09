@@ -5,31 +5,28 @@ function displayEventCards() {
         .then(allEvents => {
             allEvents.forEach(doc => {
                 var title = doc.data().title;
-                var date = doc.data().date;
-                
-                var tomorrowDay = currentDay + 1;
-                var tomorrowMonth = currentMonth;
-                var tomorrowYear = currentYear;
-                if (tomorrowDay > maxDays) {
-                    tomorrowDay = 1;
-                    tomorrowMonth += 1;
-                }
-                if (tomorrowMonth > 11) {
-                    tomorrowMonth = 0;
-                    tomorrowYear += 1; 
-                }
-
-
-                var time = doc.data().time;
+                var date = new Date(`${doc.data().date}, ${doc.data().time}`);
                 var docID = doc.id;
                 let newCard = cardTemplate.content.cloneNode(true);
 
+
+                // Code to display time
+                var event_hour = date.getHours()
+                var event_minute = date.getMinutes()
+                var timeSuffix = "AM"
+                if (event_hour > 12) {
+                    event_hour -= 12
+                    timeSuffix = "PM"
+                }
+                var time = `${event_hour}:${event_minute} ${timeSuffix}`
+
+
+                // Code to display date
                 var year = date.getFullYear();
                 var month = date.getMonth();
                 var day = date.getDate();
 
                 var today = new Date();
-                console.log(today)
                 var currentYear = today.getFullYear();
                 var currentMonth = today.getMonth();
                 var currentDay = today.getDate();
@@ -54,7 +51,6 @@ function displayEventCards() {
                     tomorrowMonth = 0;
                     tomorrowYear += 1; 
                 }
-
 
                 if (currentYear === year && currentMonth === month && currentDay === day) {
                     date = "Today";
