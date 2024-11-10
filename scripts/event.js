@@ -12,7 +12,6 @@ function listenFileSelect() {
 listenFileSelect();
 
 function createEvent() {
-    alert("SAVE POST is triggered");
     var eventInfo = db.collection("events");
     var cv = document.getElementById("category");
 
@@ -42,7 +41,6 @@ function createEvent() {
 
 event_info = document.getElementById("event_btn")
 event_info.addEventListener("click", () => {
-    listenFileSelect();
     createEvent()
 })
 
@@ -82,7 +80,14 @@ function savePostIDforUser(postDocID) {
         })
             .then(() => {
                 console.log("5. Saved to user's document!");
-                alert("Post is complete!");
+                var eventList = db.collection("users").doc(user.uid).collection("event");
+                eventList.add({
+                    postID: eventID,
+                    title: title,
+                    time: time,
+                    date: date
+                })
+                window.location.href = "event_detail.html?docID=" + postDocID
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);

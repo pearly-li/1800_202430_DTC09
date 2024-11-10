@@ -1,3 +1,30 @@
+var params = new URL(window.location.href);
+var eventID = params.searchParams.get("docID")
+var title;
+var time;
+var date;
+
+function attendEvent() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            var eventList = db.collection("users").doc(user.uid).collection("event");
+            if (pressAttend === 0){
+                eventList.add({
+                    postID: eventID,
+                    title: title,
+                    time: time,
+                    date: date
+                })
+            } else {
+                var findInfo = db.collection('users').doc(user.uid).collection("event").where('postID', '==', eventID);
+                findInfo.get().then(doc => doc.forEach(all => {all.ref.delete()}))
+            }
+        } else {
+            console.log("Error, no user signed in");
+        }
+    });
+}
+
 function structureDate(month, day) {
     var ordinal = "th"
     if (day in [1, 21, 31]) {
@@ -9,7 +36,7 @@ function structureDate(month, day) {
     }
 
     monthNames = [
-        "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
     month = monthNames[month]
     date = `${month} ${day}${ordinal}`;
@@ -19,19 +46,17 @@ function structureDate(month, day) {
 
 
 function createEventDetail() {
-    let params = new URL(window.location.href);
-    let eventID = params.searchParams.get("docID")
     
     db.collection("events")
     .doc(eventID)
     .get()
     .then(eventInfo => {
-        var title = eventInfo.data().title;
+        title = eventInfo.data().title;
         var location = eventInfo.data().location;
         var description = eventInfo.data().description;
         var scale = eventInfo.data().scale;
         var image = eventInfo.data().image;
-        var date = new Date(`${eventInfo.data().date}, ${eventInfo.data().time}`);
+        date = new Date(`${eventInfo.data().date}, ${eventInfo.data().time}`);
 
         // Code to display time
         var event_hour = date.getHours()
@@ -43,7 +68,7 @@ function createEventDetail() {
             event_hour -= 12
             timeSuffix = "PM"
         }
-        var time = `${event_hour}:${event_minute} ${timeSuffix}`
+        time = `${event_hour}:${event_minute} ${timeSuffix}`
 
         // Code to display date
         var month = date.getMonth();
@@ -87,7 +112,7 @@ function fillLike() {
 }
 
 pressAttend = 1
-function attendEvent(userID) {
+function attendBtn() {
     if (pressAttend == 1) {
         document.getElementById('attendBtn').innerText = "Cancle"
         pressAttend--;
@@ -96,6 +121,7 @@ function attendEvent(userID) {
         document.getElementById('attendBtn').innerText = "Attend"
         pressAttend++;
     }
+    attendEvent();
 }
 
 like_btn = document.getElementById("likeBtn")
@@ -105,5 +131,5 @@ like_btn.addEventListener("click", () => {
 
 attend_btn = document.getElementById("attendBtn")
 attend_btn.addEventListener("click", () => {
-    attendEvent(userID);
+    attendBtn();
 })
