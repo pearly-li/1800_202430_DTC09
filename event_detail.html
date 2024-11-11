@@ -53,14 +53,14 @@
     <main class="flex flex-col mx-auto justify-center max-w-[390px]">
         <section class="ml-[22px]">
             <h1 class="text-3xl font-bold" id="eventTitle"></h1>
-            <h5 class="font-libre_franklin w-[85%] text-[15px] ml-2 mt-2" id="eventDescription">
+            <h5 class="w-[85%] text-[15px] ml-2 mt-2" id="eventDescription">
             </h5>
         </section>
         <div class="flex items-center ml-[30px] mt-4 gap-2">
             <img src="./images/info.png" class="w-[17px] h-[17px]">
             <h1 class="text-2xl font-bold">Event Details</h1>
         </div>
-        <section class="font-libre_franklin mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px] mt-2">
+        <section class="mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px] mt-2">
             <div class="flex gap-3 text-center ml-3 mt-3">
                 <img src="./images/person.png" class="w-[17px] h-[17px]">
                 <h5 class="font-bold" id="eventParticipation"></h5>
@@ -94,7 +94,7 @@
                     <path d="M18 16.496v1.504l1 1"></path>
                 </svg>
                 <!--Should make a function border color must change to black when user chooses specific date-->
-                <p class="font-libre_franklin text-[13px] font-bold" id="eventTime"></p>
+                <p class="text-[13px] font-bold" id="eventTime"></p>
             </div>
         </section>
         <section id="messageBoard" class="">
@@ -127,7 +127,7 @@
             <textarea class="form-control ml-[30px] w-5/6" id="messageDescription" rows="3"
                 placeholder="Message Description"></textarea>
             <button type="button"
-                class="ml-[250px] border font-libre_franklin py-1 border-gray-300 rounded-full text-lg px-4"
+                class="ml-[250px] border py-1 border-gray-300 rounded-full text-lg px-4"
                 onclick="writeMessage()">Submit</button>
         </section>
         <div class="flex items-center ml-[30px] mt-6 gap-2">
@@ -155,7 +155,6 @@
     <script src="./scripts/firebaseAPI_TEAM09.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/main.js"></script>
-    <script src="./scripts/font.js"></script>
     <script src="./scripts/write_message.js"></script>
     <script src="./scripts/event_detail.js"></script>
 </body>
