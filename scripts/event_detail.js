@@ -48,11 +48,12 @@ function createEventDetail() {
         image = eventInfo.data().image;
         date = eventInfo.data().date;
         time = eventInfo.data().time;
+        var participant = eventInfo.data().participants.length;
         
         document.getElementById('eventImg').src = image;
         document.getElementById('eventTitle').innerText = title;
         document.getElementById('eventDescription').innerText = description;
-        document.getElementById('eventParticipation').innerText = scale;
+        document.getElementById('eventParticipation').innerText = participant + "/" + scale;
         document.getElementById('eventAddress').innerText = location;
         document.getElementById('eventTime').innerText = date + ", " + time;
     })  
