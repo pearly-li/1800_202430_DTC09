@@ -2,6 +2,7 @@ var ImageFile;
 var date;
 var title;
 var time;
+var image;
 function listenFileSelect() {
     var fileInput = document.getElementById("image");
     const image = document.getElementById("user_pic");
@@ -116,7 +117,7 @@ function uploadPic(postDocID) {
 
                 .then(function (url) {
                     console.log("3. Got the download URL.");
-
+                    image = url;
                     db.collection("events").doc(postDocID).update({
                         "image": url
                     })
@@ -146,7 +147,8 @@ function savePostIDforUser(postDocID) {
             postID: postDocID,
             title: title,
             time: time,
-            date: date
+            date: date,
+            image: image
         })
             .then(() => {
                 console.log("5. Saved to user's document!");

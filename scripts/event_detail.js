@@ -5,6 +5,7 @@ var time;
 var date;
 var userEvent = db.collection("users");
 var footerNavDesign = document.getElementById('footerNav');
+var image
 
 function attendEvent() {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -15,7 +16,8 @@ function attendEvent() {
                     postID: eventID,
                     title: title,
                     time: time,
-                    date: date
+                    date: date,
+                    image: image
                 })
                 chatImg.classList.remove(
                     `hidden`,
@@ -43,7 +45,7 @@ function createEventDetail() {
         var location = eventInfo.data().location;
         var description = eventInfo.data().description;
         var scale = eventInfo.data().scale;
-        var image = eventInfo.data().image;
+        image = eventInfo.data().image;
         date = eventInfo.data().date;
         time = eventInfo.data().time;
         
