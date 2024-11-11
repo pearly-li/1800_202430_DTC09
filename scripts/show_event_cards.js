@@ -1,23 +1,3 @@
-function structureDate(month, day) {
-    var ordinal = "th"
-    if (day in [1, 21, 31]) {
-        ordinal = "st"
-    } else if (day in [2, 22]) {
-        ordinal = "nd"
-    } else if (day in [3, 23]) {
-        ordinal = "rd"
-    }
-
-    monthNames = [
-        "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-    ];
-    month = monthNames[month]
-    date = `${month} ${day}${ordinal}`;
-
-    return date
-}
-
-
 function displayEventCards() {
     let cardTemplate = document.getElementById("event_card_template");
 
@@ -26,24 +6,11 @@ function displayEventCards() {
             
             allEvents.forEach(doc => {
                 var title = doc.data().title;
-                var date = new Date(`${doc.data().date}, ${doc.data().time}`);
+                var date = new Date(`${doc.data().dateForUpcomingEvent}`);
+                var time = doc.data().time;
                 var image = doc.data().image
                 var docID = doc.id;
                 let newCard = cardTemplate.content.cloneNode(true);
-
-
-                // Code to display time
-                var event_hour = date.getHours()
-                var event_minute = date.getMinutes()
-                var timeSuffix = "AM"
-                if (event_hour == 0) {
-                    event_hour = 12
-                } else if (event_hour > 12) {
-                    event_hour -= 12
-                    timeSuffix = "PM"
-                }
-                var time = `${event_hour}:${event_minute} ${timeSuffix}`
-
 
                 // Code to display date
                 var year = date.getFullYear();
@@ -81,7 +48,7 @@ function displayEventCards() {
                 } else if (tomorrowYear === year && tomorrowMonth === month && tomorrowDay === day) {
                     date = "Tomorrow";
                 } else {
-                    date = structureDate(month, day);
+                    date = doc.data().date;
                 }
 
 
@@ -106,25 +73,12 @@ function displayUpcomingEventCards() {
             
             allEvents.forEach(doc => {
                 var title = doc.data().title;
-                var date = new Date(`${doc.data().date}, ${doc.data().time}`);
-                var image = doc.data().image
+                var date = new Date(`${doc.data().dateForUpcomingEvent}`);
+                var image = doc.data().image;
+                var time = doc.data().time;
                 var docID = doc.id;
                 var withinThreeDays = false;
                 let newCard = cardTemplate.content.cloneNode(true);
-
-
-                // Code to display time
-                var event_hour = date.getHours()
-                var event_minute = date.getMinutes()
-                var timeSuffix = "AM"
-                if (event_hour == 0) {
-                    event_hour = 12
-                } else if (event_hour > 12) {
-                    event_hour -= 12
-                    timeSuffix = "PM"
-                }
-                var time = `${event_hour}:${event_minute} ${timeSuffix}`
-
 
                 // Code to display date
                 var year = date.getFullYear();
@@ -181,10 +135,10 @@ function displayUpcomingEventCards() {
                     date = "Tomorrow";
                     withinThreeDays = true;
                 } else if (afterTomorrowYear === year && afterTomorrowMonth === month && afterTomorrowDay === day) {
-                    date = structureDate(month, day);
+                    date = doc.data().date;
                     withinThreeDays = true;
                 } else {
-                    date = structureDate(month, day);
+                    date = doc.data().date;
                 }
 
 

@@ -33,25 +33,6 @@ function attendEvent() {
     });
 }
 
-function structureDate(month, day) {
-    var ordinal = "th"
-    if (day in [1, 21, 31]) {
-        ordinal = "st"
-    } else if (day in [2, 22]) {
-        ordinal = "nd"
-    } else if (day in [3, 23]) {
-        ordinal = "rd"
-    }
-
-    monthNames = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    ];
-    month = monthNames[month]
-    date = `${month} ${day}${ordinal}`;
-
-    return date
-}
-
 function createEventDetail() {
     
     db.collection("events")
@@ -63,38 +44,8 @@ function createEventDetail() {
         var description = eventInfo.data().description;
         var scale = eventInfo.data().scale;
         var image = eventInfo.data().image;
-        date = new Date(`${eventInfo.data().date}, ${eventInfo.data().time}`);
-
-        // Code to display time
-        var event_hour = date.getHours()
-        var event_minute = date.getMinutes()
-        var timeSuffix = "AM"
-        if (event_hour == 0) {
-            event_hour = 12
-        } else if (event_hour > 12) {
-            event_hour -= 12
-            timeSuffix = "PM"
-        }
-        time = `${event_hour}:${event_minute} ${timeSuffix}`
-
-        // Code to display date
-        var month = date.getMonth();
-        var day = date.getDate();
-
-        var today = new Date();
-        var currentYear = today.getFullYear();
-        var currentMonth = today.getMonth();
-
-        maxDays = 31
-        if (currentMonth in [4, 6, 9, 11]) {
-            maxDays = 30;
-        } else if (currentYear % 4 == 0) {
-            maxDays = 29
-        } else if (currentMonth == 2) {
-            maxDays = 28
-        }
-
-        date = structureDate(month, day);
+        date = eventInfo.data().date;
+        time = eventInfo.data().time;
         
         document.getElementById('eventImg').src = image;
         document.getElementById('eventTitle').innerText = title;
