@@ -17,9 +17,15 @@ function attendEvent() {
                     time: time,
                     date: date
                 })
+                chatImg.classList.remove(
+                    `hidden`,
+                )
             } else {
                 var findInfo = db.collection('users').doc(user.uid).collection("event").where('postID', '==', eventID);
                 findInfo.get().then(doc => doc.forEach(all => {all.ref.delete()}))
+                chatImg.classList.add(
+                    `hidden`,
+                )
             }
         } else {
             console.log("Error, no user signed in");
@@ -96,24 +102,6 @@ function createEventDetail() {
         document.getElementById('eventParticipation').innerText = scale;
         document.getElementById('eventAddress').innerText = location;
         document.getElementById('eventTime').innerText = date + ", " + time;
-
-        firebase.auth().onAuthStateChanged(function (user) {
-            userEvent.doc(user.uid)
-                .get()
-                .then(userInfo => {
-                    if (userInfo.data().hasOwnProperty("myposts")) {
-                        if (userInfo.data()["myposts"].includes(eventID)) {
-                            var eventList = db.collection("users").doc(user.uid).collection("event");
-                            eventList.add({
-                                postID: eventID,
-                                title: title,
-                                time: time,
-                                date: date
-                            })
-                        }
-                    }
-                })
-        })
     })  
 }
 createEventDetail()
@@ -146,7 +134,7 @@ function attendBtn() {
 function notHostFooter(){
     footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
             <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
-            <img src="./images/chat.png" class="w-[30px] h-[30px]">
+            <img id="chatImg" src="./images/chat.png" class="w-[30px] h-[30px] hidden">
                 <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
         </section>`
     like_btn = document.getElementById("likeBtn")
