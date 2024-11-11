@@ -44,7 +44,6 @@ function structureDate(month, day) {
     return date
 }
 
-
 function createEventDetail() {
     
     db.collection("events")
@@ -124,12 +123,29 @@ function attendBtn() {
     attendEvent();
 }
 
-like_btn = document.getElementById("likeBtn")
-like_btn.addEventListener("click", () => {
-    fillLike();
-})
+function hostOrNot() {
+    var userEvent = db.collection("users");
+    var footerNavDesign = document.getElementById('footerNav')
+    if (userEvent.where('myposts', '==', eventID)) {
+        footerNavDesign.innerHTML = `<section class="flex gap-5 my-4 justify-center">
+        <h1 class="text-white font-bold text-[20px]">You're the host of the event</h1>
+        <img src="./images/chat.png" class="w-[30px] h-[30px]"></section>`
 
-attend_btn = document.getElementById("attendBtn")
-attend_btn.addEventListener("click", () => {
-    attendBtn();
-})
+    } else {
+        footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
+            <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
+            <img src="./images/chat.png" class="w-[30px] h-[30px]">
+                <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
+        </section>`
+        like_btn = document.getElementById("likeBtn")
+        like_btn.addEventListener("click", () => {
+            fillLike();
+        })
+
+        attend_btn = document.getElementById("attendBtn")
+        attend_btn.addEventListener("click", () => {
+            attendBtn();
+        })
+    }
+}
+hostOrNot()

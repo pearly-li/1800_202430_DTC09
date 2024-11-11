@@ -78,15 +78,11 @@ function savePostIDforUser(postDocID) {
         db.collection("users").doc(user.uid).update({
             myposts: firebase.firestore.FieldValue.arrayUnion(postDocID)
         })
+        db.collection("events").doc(postDocID).update({
+            participants: firebase.firestore.FieldValue.arrayUnion(user.uid)
+        })
             .then(() => {
                 console.log("5. Saved to user's document!");
-                var eventList = db.collection("users").doc(user.uid).collection("event");
-                eventList.add({
-                    postID: eventID,
-                    title: title,
-                    time: time,
-                    date: date
-                })
                 window.location.href = "event_detail.html?docID=" + postDocID
             })
             .catch((error) => {
