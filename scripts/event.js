@@ -3,14 +3,17 @@ var date;
 var title;
 var time;
 var image;
+
 function listenFileSelect() {
+    //listen for file selection
     var fileInput = document.getElementById("image");
     const image = document.getElementById("user_pic");
 
+    //when a change happens to the File Chooser Input
     fileInput.addEventListener('change', function (e) {
         ImageFile = e.target.files[0]; 
         var blob = URL.createObjectURL(ImageFile);
-        image.src = blob; 
+        image.src = blob; //Display this image
     })
 }
 listenFileSelect();
@@ -123,7 +126,7 @@ function uploadPic(postDocID) {
                     })
                     .then(function () {
                         console.log('4. Added pic URL to Firestore.');
-                        savePostIDforUser(postDocID);
+                        savePostInfoforUser(postDocID);
                     })
                 })
         })
@@ -132,7 +135,8 @@ function uploadPic(postDocID) {
         })
 }
 
-function savePostIDforUser(postDocID) {
+//saves the post information for the user, in an array
+function savePostInfoforUser(postDocID) {
     firebase.auth().onAuthStateChanged(user => {
         console.log("user id is: " + user.uid);
         console.log("postdoc id is: " + postDocID);

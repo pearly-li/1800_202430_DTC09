@@ -7,6 +7,8 @@ var userEvent = db.collection("users");
 var footerNavDesign = document.getElementById('footerNav');
 var image
 
+//Add information about the event user press attend button on a "event"collection under the currently signed-in user and show chat button
+//Remove the information when user press cancle button and the chat button
 function attendEvent() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -35,8 +37,8 @@ function attendEvent() {
     });
 }
 
+//fill the information about the event
 function createEventDetail() {
-    
     db.collection("events")
     .doc(eventID)
     .get()
@@ -60,6 +62,8 @@ function createEventDetail() {
 }
 createEventDetail()
 
+//When a user presses the like button, it changes to a red like button
+//When a user presses the red like button, it changes to a white like button
 pressLike = 1
 function fillLike() {
     if (pressLike == 1) {
@@ -82,6 +86,8 @@ function fillLike() {
     }
 }
 
+//When a user presses the attend button, it changes to a cancle button
+//When a user presses the cancle button, it changes to a attend button
 pressAttend = 1
 function attendBtn() {
     if (pressAttend == 1) {
@@ -95,10 +101,11 @@ function attendBtn() {
     attendEvent();
 }
 
+//when user is not a host for the event the user is browsing, display a footer that is different from the host's footer
 function notHostFooter(){
     footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
             <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
-            <img id="chatImg" src="./images/chat.png" class="w-[30px] h-[30px] hidden">
+            <button><img id="chatImg" src="./images/chat.png" class="w-[30px] h-[30px] hidden"></button>
                 <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
         </section>`
     like_btn = document.getElementById("likeBtn")
@@ -112,6 +119,8 @@ function notHostFooter(){
     })
 }
 
+//check if the user is a host for the event the user is browsing
+//if the user is a host for the event, display specific footer for the host
 function hostOrNot() {
     firebase.auth().onAuthStateChanged(function (user){
         userEvent.doc(user.uid)
@@ -121,7 +130,7 @@ function hostOrNot() {
                 if(userInfo.data()["myposts"].includes(eventID)){
                     footerNavDesign.innerHTML = `<section class="flex gap-5 my-4 justify-center">
                     <h1 class="text-white font-bold text-[20px]">You're the host of the event</h1>
-                    <img src="./images/chat.png" class="w-[30px] h-[30px]"></section>`
+                    <button><img src="./images/chat.png" class="w-[30px] h-[30px]"></button></section>`
                 }else{
                     notHostFooter();
                 }
