@@ -37,20 +37,32 @@
     <main class="flex justify-center flex-col space-y-3 px-10 md:px-0 min-w-full md:min-w-[768px] mx-0 md:mx-auto">
         <section class="flex flex-col gap-y-7">
             <div class="flex flex-col gap-y-2">
-                <h1 class="text-xl">Event Picture</h1>
+                <div class="flex gap-1">
+                    <h1 class="text-xl">Event Picture</h1>
+                    <h1 class="text-red-600">*</h1>
+                </div>
                 <input type="file" id="image" accept="image/*" class= rounded text-[gray] pl-2">
                 <img id="user_pic">
             </div>
             <div class="flex flex-col gap-y-2">
-                <h1 class="text-xl">Title</h1>
+                <div class="flex gap-1">
+                    <h1 class="text-xl">Title</h1>
+                    <h1 class="text-red-600">*</h1>
+                </div>
                 <input type="text" id="title" placeholder="Event Title" class= border rounded pl-2">
             </div>
             <div class="flex flex-col gap-y-2">
-                <h1 class="text-xl">Description</h1>
+                <div class="flex gap-1">
+                    <h1 class="text-xl">Description</h1>
+                    <h1 class="text-red-600">*</h1>
+                </div>
                 <input type="text" id="description" placeholder="Event Description" class= border rounded pl-2">
             </div>
             <div class="flex flex-col gap-y-2">
-                <h1 class="text-xl">Category</h1>
+                <div class="flex gap-1">
+                    <h1 class="text-xl">Category</h1>
+                    <h1 class="text-red-600">*</h1>
+                </div>
                 <select id="category" class="max-w-[200px] border rounded">
                     <option value="">Choose one</option>
                     <option value="Game">Game</option>
@@ -58,20 +70,32 @@
                 </select>
             </div>
             <div class="flex flex-col gap-y-2">
-                <h1 class="text-xl">Participation Number</h1>
+                <div class="flex gap-1">
+                    <h1 class="text-xl">Participation Number</h1>
+                    <h1 class="text-red-600">*</h1>
+                </div>
                 <input type="number" id="scale" placeholder="Maximum Participation Number" class="border rounded pl-2 max-w-[255px]">
             </div>
             <div class="flex flex-col gap-y-2">
-                <h1 class="text-xl">Location</h1>
+                <div class="flex gap-1">
+                    <h1 class="text-xl">Location</h1>
+                    <h1 class="text-red-600">*</h1>
+                </div>
                 <input type="text" id="address" placeholder="Event Address" class="border rounded pl-2 max-w-[310px]">
             </div>
             <section class="flex flex-row">
                 <div class="flex flex-col gap-y-2 mr-3">
-                    <h1 class="text-xl">Date</h1>
+                    <div class="flex gap-1">
+                        <h1 class="text-xl">Date</h1>
+                        <h1 class="text-red-600">*</h1>
+                    </div>
                     <input type="date" id="date" placeholder="Event Date" class="border rounded pl-2">
                 </div>
                 <div class="flex flex-col gap-y-2">
-                    <h1 class="text-xl">Time</h1>
+                    <div class="flex gap-1">
+                        <h1 class="text-xl">Time</h1>
+                        <h1 class="text-red-600">*</h1>
+                    </div>
                     <input type="time" id="time" placeholder="Event Time" class="border rounded pl-2">
                 </div>
             </section>

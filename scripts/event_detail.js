@@ -86,12 +86,12 @@ function fillLike() {
     }
 }
 
-//When a user presses the attend button, it changes to a cancle button
-//When a user presses the cancle button, it changes to a attend button
+//When a user presses the attend button, it changes to a cancel button
+//When a user presses the cancel button, it changes to a attend button
 pressAttend = 1
 function attendBtn() {
     if (pressAttend == 1) {
-        document.getElementById('attendBtn').innerText = "Cancle"
+        document.getElementById('attendBtn').innerText = "Cancel"
         pressAttend--;
     }
     else {
