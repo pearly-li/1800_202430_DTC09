@@ -65,10 +65,20 @@ function fillLike() {
     if (pressLike == 1) {
         document.getElementById('like').src = "./images/f_heart.png"
         pressLike--;
+        firebase.auth().onAuthStateChanged(function (user){
+                db.collection("users").doc(user.uid).update({
+                likePosts: firebase.firestore.FieldValue.arrayUnion(eventID)
+            })
+        })
     }
     else {
         document.getElementById('like').src = "./images/heart.png"
         pressLike++;
+        firebase.auth().onAuthStateChanged(function (user) {
+            db.collection("users").doc(user.uid).update({
+                likePosts: firebase.firestore.FieldValue.arrayRemove(eventID)
+            })
+        })
     }
 }
 

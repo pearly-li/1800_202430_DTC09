@@ -159,21 +159,3 @@ function savePostIDforUser(postDocID) {
             });
     })
 }
-
-// firebase.auth().onAuthStateChanged(function (user) {
-//     userEvent.doc(user.uid)
-//         .get()
-//         .then(userInfo => {
-//             if (userInfo.data().hasOwnProperty("myposts")) {
-//                 if (userInfo.data()["myposts"].includes(eventID)) {
-//                     var eventList = db.collection("users").doc(user.uid).collection("event");
-                    // eventList.add({
-                    //     postID: eventID,
-                    //     title: title,
-                    //     time: time,
-                    //     date: date
-                    // })
-//                 }
-//             }
-//         })
-// })
