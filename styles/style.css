@@ -402,3 +402,8 @@ body {
 .btn:hover {
   background-color: #d0672d;
 }
+
+/* login form */
+#firebaseui-auth-container .mdl-button--colored{
+  background-color: #2e394f;
+}
