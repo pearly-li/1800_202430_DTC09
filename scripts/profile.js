@@ -60,3 +60,7 @@ function saveUserInfo() {
   //c) disable edit
   document.getElementById("personalInfoFields").disabled = true;
 }
+
+document.getElementById("likePost").addEventListener("click", () => {
+  window.location.href = 'likePosts.html';
+})

@@ -1,0 +1,70 @@
+<!-- Home page -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Social Scout</title>
+
+    <!-- Import Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <!-- Import JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Import Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <!-- Font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <header>
+        <section class="bg-[#2e394f] pl-2 py-2 flex items-center py-3">
+            <a href="user_profile.html">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px] text-white" x-bind:width="size"
+                    x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke"
+                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                    <path d="M5 12l14 0"></path>
+                    <path d="M5 12l6 6"></path>
+                    <path d="M5 12l6 -6"></path>
+                </svg>
+            </a>
+            <h1 class="text-white text-[22px] ml-3">Liked Events</h1>
+        </section>
+    </header>
+
+    <!-- Main Body -->
+    <main id="likePosts" class="flex flex-col gap-y-3 mx-5">
+          
+    </main>
+
+    <footer id="footer_navbar" class="mt-auto">
+        <nav id="footerPlaceholder"></nav>
+    </footer>
+
+    <template id="event_card_template">
+    </template>
+
+    <!-- Javascript -->
+    <script src="./scripts/firebaseAPI_TEAM09.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/show_event_cards.js"></script>
+</body>
+
+</html>
