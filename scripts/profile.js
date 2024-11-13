@@ -61,6 +61,6 @@ function saveUserInfo() {
   document.getElementById("personalInfoFields").disabled = true;
 }
 
-document.getElementById("likePost").addEventListener("click", () => {
-  window.location.href = 'likePosts.html';
+document.getElementById("likedEvent").addEventListener("click", () => {
+  window.location.href = 'likedEvents.html';
 })
