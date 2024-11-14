@@ -17,9 +17,10 @@ function populateUserInfo() {
         if (userName != null) {
           document.getElementById("nameInput").value = userName;
         }
-        if (userSchool != null) {
-          document.getElementById("profilePictureInput").value = profilePicture;
-        }
+        // if (userPicture != null) {
+        //   document.getElementById("profilePictureInput").value = profilePicture;
+        // }
+        // Removed this because of Firebase storage limitations. Implementing a choice of avatar from a select pool of options.
         if (userCity != null) {
           document.getElementById("cityInput").value = userCity;
         }
@@ -44,10 +45,11 @@ function saveUserInfo() {
     // (a) get user values
     let userName = document.getElementById("nameInput").value;
     //get the value of the field with id="nameInput"
-    let userProfilePicture = document.getElementById(
-      "profilePictureInput"
-    ).value;
-    //get the value of the field with id="schoolInput"
+
+    // Removed the following because of Firebase storage limitations.
+    // let userProfilePicture = document.getElementById(
+    //   "profilePictureInput"
+    // ).value;
     let userCity = document.getElementById("cityInput").value;
     //get the value of the field with id="cityInput"
 
@@ -55,14 +57,13 @@ function saveUserInfo() {
     currentUser
       .update({
         name: userName,
-        profilePic: "localstorage", // Save the URL into users collection
+        profilePicture: "localstorage", // Save the URL into users collection
         city: userCity,
       })
       .then(() => {
         console.log("Document successfully updated!");
+        document.getElementById("personalInfoFields").disabled = true;
       });
-    //c) disable edit
-    document.getElementById("personalInfoFields").disabled = true;
   });
 }
 
@@ -73,7 +74,7 @@ function saveProfilePicture() {
   ).value;
 
   // Display the selected image immediately
-  document.getElementById("selected-picture").src = `images/${selectedAvatar}`;
+  document.getElementById("selectedPicture").src = `images/${selectedAvatar}`;
 
   // Save the avatar choice in localStorage
   localStorage.setItem("profilePicture", selectedAvatar);
@@ -83,7 +84,7 @@ function loadProfilePicture() {
   // Load the saved profile picture from localStorage, if available
   const savedPicture = localStorage.getItem("profilePicture");
   if (savedPicture) {
-    document.getElementById("selected-picture").src = `images/${savedPicture}`;
+    document.getElementById("selectedPicture").src = `images/${savedPicture}`;
   }
 }
 // Call loadProfilePicture() when the page loads
