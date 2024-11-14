@@ -39,28 +39,52 @@ function editUserInfo() {
 }
 
 function saveUserInfo() {
-  // (a) get user values
-  let userName = document.getElementById("nameInput").value;
-  //get the value of the field with id="nameInput"
-  let userProfilePicture = document.getElementById("profilePictureInput").value;
-  //get the value of the field with id="schoolInput"
-  let userCity = document.getElementById("cityInput").value;
-  //get the value of the field with id="cityInput"
+  firebase.auth().onAuthStateChanged(function (user) {
+    saveProfilePicture();
+    // (a) get user values
+    let userName = document.getElementById("nameInput").value;
+    //get the value of the field with id="nameInput"
+    let userProfilePicture = document.getElementById(
+      "profilePictureInput"
+    ).value;
+    //get the value of the field with id="schoolInput"
+    let userCity = document.getElementById("cityInput").value;
+    //get the value of the field with id="cityInput"
 
-  //b) update user's document in Firestore
-  currentUser
-    .update({
-      name: userName,
-      profile_picture: profilePicture,
-      city: userCity,
-    })
-    .then(() => {
-      console.log("Document successfully updated!");
-    });
-  //c) disable edit
-  document.getElementById("personalInfoFields").disabled = true;
+    //b) update user's document in Firestore
+    currentUser
+      .update({
+        name: userName,
+        profilePic: "localstorage", // Save the URL into users collection
+        city: userCity,
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+      });
+    //c) disable edit
+    document.getElementById("personalInfoFields").disabled = true;
+  });
 }
 
-document.getElementById("likedEvent").addEventListener("click", () => {
-  window.location.href = 'likedEvents.html';
-})
+function saveProfilePicture() {
+  // Get the selected avatar
+  const selectedAvatar = document.querySelector(
+    'input[name="profilePicture"]:checked'
+  ).value;
+
+  // Display the selected image immediately
+  document.getElementById("selected-picture").src = `images/${selectedAvatar}`;
+
+  // Save the avatar choice in localStorage
+  localStorage.setItem("profilePicture", selectedAvatar);
+}
+
+function loadProfilePicture() {
+  // Load the saved profile picture from localStorage, if available
+  const savedPicture = localStorage.getItem("profilePicture");
+  if (savedPicture) {
+    document.getElementById("selected-picture").src = `images/${savedPicture}`;
+  }
+}
+// Call loadProfilePicture() when the page loads
+window.onload = loadProfilePicture;
