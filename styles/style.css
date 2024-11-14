@@ -95,10 +95,6 @@ main h1 {
   background-color: white;
 }
 
-.event_card {
-  border-radius: 16px;
-}
-
 .event_card h1 {
   font-weight: bold;
   font-size: 0.875rem
@@ -118,7 +114,7 @@ main h1 {
   width: 100%;
   height: 100px;
   object-fit: cover;
-  border-radius: 14px 14px 0px 0px;
+  border-radius: 28px 28px 0px 0px;
 }
 
 
@@ -202,19 +198,11 @@ main h1 {
 
 /* Main Page - User Event Schedule */
 .user_event_schedule {
-  width: 100px;
+  width: 120px;
   
   text-align: center;
   font-size: 0.875rem  /* 14px */;
   line-height: 1.25rem  /* 20px */;
-
-  
-  
-  font: 400 18px Roboto, Arial, sans-serif;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: auto;
 }
 
 .user_event_schedule img {
@@ -413,4 +401,9 @@ body {
 
 .btn:hover {
   background-color: #d0672d;
+}
+
+/* login form */
+#firebaseui-auth-container .mdl-button--colored{
+  background-color: #2e394f;
 }
