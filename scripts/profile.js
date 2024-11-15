@@ -103,3 +103,7 @@ function loadProfilePicture() {
 }
 // Call loadProfilePicture() when the page loads
 window.onload = loadProfilePicture;
+
+document.getElementById("likedEvent").addEventListener("click", () => {
+  window.location.href = 'likedEvents.html';
+})
