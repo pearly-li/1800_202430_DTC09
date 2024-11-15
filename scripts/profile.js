@@ -67,6 +67,20 @@ function saveUserInfo() {
   });
 }
 
+var userName;
+function deleteUserInfo() {
+  // let userName = userDoc.data().name;
+  // let userProfilePicture = userDoc.data().profilePicture;
+  // let userCity = userDoc.data().city;
+  // Example from firebase documentation
+  // var cityRef = db.collection("cities").doc("BJ");
+  // // Remove the 'capital' field from the document
+  // var removeCapital = cityRef.update({
+  //   capital: firebase.firestore.FieldValue.delete(),
+  // });
+}
+
+function selectProfilePicture() {}
 function saveProfilePicture() {
   // Get the selected avatar
   const selectedAvatar = document.querySelector(
