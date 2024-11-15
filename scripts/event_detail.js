@@ -1,11 +1,10 @@
 var params = new URL(window.location.href);
 var eventID = params.searchParams.get("docID");
-var title;
-var time;
-var date;
+//var title;
+//var dateTime;
 var userEvent = db.collection("users");
 var footerNavDesign = document.getElementById('footerNav');
-var image;
+//var image;
 var pressLike;
 var pressAttend;
 
@@ -15,24 +14,27 @@ function createEventDetail() {
         .doc(eventID)
         .get()
         .then(eventInfo => {
-            title = eventInfo.data().title;
+            var title = eventInfo.data().title;
+            var image = eventInfo.data().image;
             var location = eventInfo.data().location;
             var description = eventInfo.data().description;
             var scale = eventInfo.data().scale;
-            image = eventInfo.data().image;
-            date = eventInfo.data().date;
-            time = eventInfo.data().time;
             var participant = eventInfo.data().participants.length;
 
+            var dateTime = new Date(eventInfo.data().dateTime);
+            var dateEachComponent = getDateList(dateTime);
+            
+            
             document.getElementById('eventImg').src = image;
             document.getElementById('eventTitle').innerText = title;
             document.getElementById('eventDescription').innerText = description;
             document.getElementById('eventParticipation').innerText = participant + "/" + scale;
             document.getElementById('eventAddress').innerText = location;
-            document.getElementById('eventTime').innerText = date + ", " + time;
+            document.getElementById('eventTime').innerText = formatDate(dateEachComponent) + ", " + formatTime(dateEachComponent);
         })
 }
 createEventDetail()
+
 
 //Check whether the user pressed attend button or not
 function checkUserLiked() {
@@ -112,7 +114,7 @@ function pressAttendBtn() {
 }
 
 //Add information about the event user press attend button on a "event"collection under the currently signed-in user and show chat button
-//Remove the information when user press cancle button and the chat button
+//Remove the information when user press cancel button and the chat button
 function attendEvent() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {

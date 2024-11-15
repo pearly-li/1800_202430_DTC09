@@ -103,39 +103,42 @@ function formatTime(eventDate) {
 }
 
 function displayEventCards() {
-    let cardTemplate = document.getElementById("event_card_template");
+    if (document.getElementById("event_card_template")) {
+        var cardTemplate = document.getElementById("event_card_template");
 
-    db.collection("events")
-        .get()
-        .then(allEvents => {
-            allEvents.forEach(doc => {
-                var dateTime = new Date(doc.data().dateTime);
-                var dateEachComponent = getDateList(dateTime)
-                var today = new Date();
-                var todayEachComponent = getDateList(today)
+        db.collection("events")
+            .get()
+            .then(allEvents => {
+                allEvents.forEach(doc => {
+                    var dateTime = new Date(doc.data().dateTime);
+                    var dateEachComponent = getDateList(dateTime)
+                    var today = new Date();
+                    var todayEachComponent = getDateList(today)
 
-                if (compareDates(todayEachComponent, dateEachComponent)) {
-                    var title = doc.data().title;
-                    var image = doc.data().image
-                    var docID = doc.id;
-                    let newCard = cardTemplate.content.cloneNode(true);
+                    if (compareDates(todayEachComponent, dateEachComponent)) {
+                        var title = doc.data().title;
+                        var image = doc.data().image
+                        var docID = doc.id;
+                        let newCard = cardTemplate.content.cloneNode(true);
 
-                    newCard.querySelector(".event_card_title").innerHTML = title;
-                    newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
-                    newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
-                    newCard.querySelector('img').src = image;
-                    newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
+                        newCard.querySelector(".event_card_title").innerHTML = title;
+                        newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
+                        newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
+                        newCard.querySelector('img').src = image;
+                        newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
 
-                    if (document.getElementById("browsing_list"))
-                        document.getElementById("browsing_list").appendChild(newCard);
-                }
+                        if (document.getElementById("browsing_list"))
+                            document.getElementById("browsing_list").appendChild(newCard);
+                    }
+                })
             })
-        })
-}
+        }
+    }
 displayEventCards()
 
 function displayUpcomingEventCards() {
-    let cardTemplate = document.getElementById("event_card_template");
+    if (document.getElementById("event_card_template"))
+        var cardTemplate = document.getElementById("event_card_template");
 
     db.collection("events")
         .orderBy("dateTime")
@@ -172,40 +175,43 @@ function showLikedPosts(user) {
     db.collection("users").doc(user.uid)
         .get()
         .then(userDoc => {
-            // Get the Array of likePosts
-            var likes = userDoc.data().likePosts;
-            console.log(likes);
-
             // Get pointer the new card template
-            let cardTemplate = document.getElementById("event_card_template");
+            if (document.getElementById("event_card_template"))
+                var cardTemplate = document.getElementById("event_card_template");
 
-            // Iterate through the ARRAY of liked events (document ID's)
-            likes.forEach(thisEventID => {
-                console.log(thisEventID);
-                db.collection("events").doc(thisEventID).get().then(doc => {
-                    var dateTime = new Date(doc.data().dateTime); 
-                    var dateEachComponent = getDateList(dateTime)
-                    var today = new Date();
-                    var todayEachComponent = getDateList(today)
+            if (userDoc.data().likePost) {
+                // Get the Array of likePosts
+                var likes = userDoc.data().likePosts
+                console.log(likes)
+                
+                // Iterate through the ARRAY of liked events (document ID's)
+                likes.forEach(thisEventID => {
+                    console.log(thisEventID);
+                    db.collection("events").doc(thisEventID).get().then(doc => {
+                        var dateTime = new Date(doc.data().dateTime); 
+                        var dateEachComponent = getDateList(dateTime)
+                        var today = new Date();
+                        var todayEachComponent = getDateList(today)
 
-                    var title = doc.data().title; 
-                    var image = doc.data().image; 
-                    var docID = doc.id;
-                    let newCard = cardTemplate.content.cloneNode(true);
+                        var title = doc.data().title; 
+                        var image = doc.data().image; 
+                        var docID = doc.id;
+                        let newCard = cardTemplate.content.cloneNode(true);
 
-                    //update title and some pertinent information
-                    newCard.querySelector(".event_card_title").innerHTML = title;
-                    newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
-                    newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
-                    newCard.querySelector('img').src = image;
-                    newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
+                        //update title and some pertinent information
+                        newCard.querySelector(".event_card_title").innerHTML = title;
+                        newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
+                        newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
+                        newCard.querySelector('img').src = image;
+                        newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
 
-                    //Finally, attach this new card to the gallery
-                    if (document.getElementById('likePosts')) {
-                        document.getElementById('likePosts').appendChild(newCard);
-                    }
-                    
-                })
-            });
+                        //Finally, attach this new card to the gallery
+                        if (document.getElementById('likePosts')) {
+                            document.getElementById('likePosts').appendChild(newCard);
+                        }
+                        
+                    })
+                });
+            }
         })
 }
