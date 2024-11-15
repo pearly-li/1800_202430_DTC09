@@ -107,3 +107,6 @@ window.onload = loadProfilePicture;
 document.getElementById("likedEvent").addEventListener("click", () => {
   window.location.href = 'likedEvents.html';
 })
+document.getElementById("logOut").addEventListener("click", () => {
+  window.location.href = 'index.html';
+})
