@@ -1,166 +1,7 @@
-function displayEventCards() {
-    let cardTemplate = document.getElementById("event_card_template");
-
-    db.collection("events").get()
-        .then(allEvents => {
-            
-            allEvents.forEach(doc => {
-                var title = doc.data().title;
-                var date = new Date(`${doc.data().dateForUpcomingEvent}`);
-                var time = doc.data().time;
-                var image = doc.data().image
-                var docID = doc.id;
-                let newCard = cardTemplate.content.cloneNode(true);
-
-                // Code to display date
-                var year = date.getFullYear();
-                var month = date.getMonth();
-                var day = date.getDate();
-
-                var today = new Date();
-                var currentYear = today.getFullYear();
-                var currentMonth = today.getMonth();
-                var currentDay = today.getDate();
-
-                maxDays = 31
-                if (currentMonth in [4, 6, 9, 11]) {
-                    maxDays = 30;
-                } else if (currentYear % 4 == 0) {
-                    maxDays = 29
-                } else if (currentMonth == 2) {
-                    maxDays = 28
-                }
-
-                var tomorrowDay = currentDay + 1;
-                var tomorrowMonth = currentMonth;
-                var tomorrowYear = currentYear;
-                if (tomorrowDay > maxDays) {
-                    tomorrowDay = 1;
-                    tomorrowMonth += 1;
-                }
-                if (tomorrowMonth > 11) {
-                    tomorrowMonth = 0;
-                    tomorrowYear += 1;
-                }
-
-                if (currentYear === year && currentMonth === month && currentDay === day) {
-                    date = "Today";
-                } else if (tomorrowYear === year && tomorrowMonth === month && tomorrowDay === day) {
-                    date = "Tomorrow";
-                } else {
-                    date = doc.data().date;
-                }
-
-
-                newCard.querySelector(".event_card_title").innerHTML = title;
-                newCard.querySelector(".event_card_date").innerHTML = date;
-                newCard.querySelector(".event_card_time").innerHTML = time;
-                newCard.querySelector('img').src = image;
-                newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
-
-                document.getElementById("browsing_list").appendChild(newCard);
-            })
-        })
-}
-
-displayEventCards()
-
-function displayUpcomingEventCards() {
-    let cardTemplate = document.getElementById("event_card_template");
-
-    db.collection("events").get()
-        .then(allEvents => {
-            
-            allEvents.forEach(doc => {
-                var title = doc.data().title;
-                var date = new Date(`${doc.data().dateForUpcomingEvent}`);
-                var image = doc.data().image;
-                var time = doc.data().time;
-                var docID = doc.id;
-                var withinThreeDays = false;
-                let newCard = cardTemplate.content.cloneNode(true);
-
-                // Code to display date
-                var year = date.getFullYear();
-                var month = date.getMonth();
-                var day = date.getDate();
-
-                var today = new Date();
-                var currentYear = today.getFullYear();
-                var currentMonth = today.getMonth();
-                var currentDay = today.getDate();
-
-                maxDays = 31
-                if (currentMonth in [4, 6, 9, 11]) {
-                    maxDays = 30;
-                } else if (currentYear % 4 == 0) {
-                    maxDays = 29
-                } else if (currentMonth == 2) {
-                    maxDays = 28
-                }
-
-                var tomorrowDay = currentDay + 1;
-                var tomorrowMonth = currentMonth;
-                var tomorrowYear = currentYear;
-                if (tomorrowDay > maxDays) {
-                    tomorrowDay = 1;
-                    tomorrowMonth += 1;
-                }
-                if (tomorrowMonth > 11) {
-                    tomorrowMonth = 0;
-                    tomorrowYear += 1;
-                }
-
-                var afterTomorrowDay = currentDay + 2;
-                var afterTomorrowMonth = currentMonth;
-                var afterTomorrowYear = currentYear;
-                if (tomorrowDay == maxDays + 1) {
-                    tomorrowDay = 1;
-                    tomorrowMonth += 1;
-                } else if (tomorrowDay == maxDays + 2) {
-                    tomorrowDay = 2;
-                    tomorrowMonth += 1;
-                }
-
-                if (tomorrowMonth > 11) {
-                    tomorrowMonth = 0;
-                    tomorrowYear += 1;
-                }
-
-
-                if (currentYear === year && currentMonth === month && currentDay === day) {
-                    date = "Today";
-                    withinThreeDays = true;
-                } else if (tomorrowYear === year && tomorrowMonth === month && tomorrowDay === day) {
-                    date = "Tomorrow";
-                    withinThreeDays = true;
-                } else if (afterTomorrowYear === year && afterTomorrowMonth === month && afterTomorrowDay === day) {
-                    date = doc.data().date;
-                    withinThreeDays = true;
-                } else {
-                    date = doc.data().date;
-                }
-
-
-                if (withinThreeDays == true) {
-                    newCard.querySelector(".event_card_title").innerHTML = title;
-                    newCard.querySelector(".event_card_date").innerHTML = date;
-                    newCard.querySelector(".event_card_time").innerHTML = time;
-                    newCard.querySelector('img').src = image;
-                    newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
-    
-                    document.getElementById("upcoming_browsing_list").appendChild(newCard);
-                }
-            })
-        })
-}
-
-displayUpcomingEventCards()
-
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            ShowLikePosts(user)
+            showLikedPosts(user)
         } else {
             console.log("No user is signed in");
         }
@@ -168,39 +9,202 @@ function doAll() {
 }
 doAll();
 
-function ShowLikePosts(user) {
-    db.collection("users").doc(user.uid).get()
-        .then(userDoc => {
+function getDateList(date) {
+    return {
+        year: date.getFullYear(),
+        month: date.getMonth(),
+        day: date.getDate(),
+        hour: date.getHours(),
+        minute: date.getMinutes()
+    }
+}
 
+function compareDates(today, eventDate) {
+    if (eventDate.year > today.year) {
+        return true;
+    } else if (eventDate.year == today.year && eventDate.month > today.month) {
+        return true;
+    } else if (eventDate.month == today.month && eventDate.day > today.day) {
+        return true;
+    } else if (eventDate.day == today.day && eventDate.hour > today.hour) {
+        return true;
+    } else if (eventDate.hour == today.hour && eventDate.minute > today.minute) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkIfTodayOrTomorrow(today, eventDate) {
+    maxDays = 31
+    if (today.month in [4, 6, 9, 11]) {
+        maxDays = 30;
+    } else if (today.year % 4 == 0) {
+        maxDays = 29
+    } else if (today.month == 2) {
+        maxDays = 28
+    }
+
+    var tomorrowDay = today.day + 1;
+    var tomorrowMonth = today.month;
+    var tomorrowYear = today.year;
+    if (tomorrowDay > maxDays) {
+        tomorrowDay = 1;
+        tomorrowMonth += 1;
+    }
+    if (tomorrowMonth > 11) {
+        tomorrowMonth = 0;
+        tomorrowYear += 1;
+    }
+
+    if (today.year === eventDate.year && today.month === eventDate.month && today.day === eventDate.day) {
+        return "Today";
+    } else if (tomorrowYear === eventDate.year && tomorrowMonth === eventDate.month && tomorrowDay === eventDate.day) {
+        return "Tomorrow";
+    } else {
+        return formatDate(eventDate)
+    }
+}
+
+function formatDate(eventDate) {
+    var ordinal = "th"
+    if (eventDate.day in [1, 21, 31]) {
+        ordinal = "st"
+    } else if (eventDate.day in [2, 22]) {
+        ordinal = "nd"
+    } else if (eventDate.day in [3, 23]) {
+        ordinal = "rd"
+    }
+
+    monthNames = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    month = monthNames[eventDate.month]
+    date = `${month} ${eventDate.day}${ordinal}`;
+
+    return date
+}
+
+function formatTime(eventDate) {
+    var timeSuffix = "AM"
+
+    if (eventDate.hour == 0) {
+        eventDate.hour = 12
+    } else if (eventDate.hour > 12) {
+        eventDate.hour -= 12
+        timeSuffix = "PM"
+    }
+
+    if (eventDate.minute < 10) {
+        eventDate.minute = "0" + eventDate.minute
+    }
+
+    return `${eventDate.hour}:${eventDate.minute} ${timeSuffix}`
+}
+
+function displayEventCards() {
+    let cardTemplate = document.getElementById("event_card_template");
+
+    db.collection("events")
+        .get()
+        .then(allEvents => {
+            allEvents.forEach(doc => {
+                var dateTime = new Date(doc.data().dateTime);
+                var dateEachComponent = getDateList(dateTime)
+                var today = new Date();
+                var todayEachComponent = getDateList(today)
+
+                if (compareDates(todayEachComponent, dateEachComponent)) {
+                    var title = doc.data().title;
+                    var image = doc.data().image
+                    var docID = doc.id;
+                    let newCard = cardTemplate.content.cloneNode(true);
+
+                    newCard.querySelector(".event_card_title").innerHTML = title;
+                    newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
+                    newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
+                    newCard.querySelector('img').src = image;
+                    newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
+
+                    if (document.getElementById("browsing_list"))
+                        document.getElementById("browsing_list").appendChild(newCard);
+                }
+            })
+        })
+}
+displayEventCards()
+
+function displayUpcomingEventCards() {
+    let cardTemplate = document.getElementById("event_card_template");
+
+    db.collection("events")
+        .orderBy("dateTime")
+        .get()
+        .then(allEvents => {
+            allEvents.forEach(doc => {
+                var dateTime = new Date(doc.data().dateTime);
+                var dateEachComponent = getDateList(dateTime)
+                var today = new Date();
+                var todayEachComponent = getDateList(today)
+
+                dateTime = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent)
+                if (compareDates(todayEachComponent, dateEachComponent) && (dateTime == "Today" || dateTime == "Tomorrow")) {
+                    var title = doc.data().title;
+                    var image = doc.data().image
+                    var docID = doc.id;
+                    let newCard = cardTemplate.content.cloneNode(true);
+
+                    newCard.querySelector(".event_card_title").innerHTML = title;
+                    newCard.querySelector(".event_card_date").innerHTML = dateTime;
+                    newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
+                    newCard.querySelector('img').src = image;
+                    newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
+
+                    if (document.getElementById("upcoming_browsing_list"))
+                        document.getElementById("upcoming_browsing_list").appendChild(newCard);
+                }
+            })
+        })
+}
+displayUpcomingEventCards()
+
+function showLikedPosts(user) {
+    db.collection("users").doc(user.uid)
+        .get()
+        .then(userDoc => {
             // Get the Array of likePosts
             var likes = userDoc.data().likePosts;
             console.log(likes);
 
             // Get pointer the new card template
-            let newcardTemplate = document.getElementById("event_card_template");
+            let cardTemplate = document.getElementById("event_card_template");
 
             // Iterate through the ARRAY of liked events (document ID's)
             likes.forEach(thisEventID => {
                 console.log(thisEventID);
                 db.collection("events").doc(thisEventID).get().then(doc => {
-                    var title = doc.data().title; // get value of the "name" key
-                    var image = doc.data().image; //get unique ID to each hike to be used for fetching right image
-                    var time = doc.data().time; //gets the length field
-                    var date = doc.data().date;  //this is the autogenerated ID of the document
+                    var dateTime = new Date(doc.data().dateTime); 
+                    var dateEachComponent = getDateList(dateTime)
+                    var today = new Date();
+                    var todayEachComponent = getDateList(today)
+
+                    var title = doc.data().title; 
+                    var image = doc.data().image; 
                     var docID = doc.id;
+                    let newCard = cardTemplate.content.cloneNode(true);
 
-                    //clone the new card
-                    let newcard = newcardTemplate.content.cloneNode(true);
-
-                    //update title and some pertinant information
-                    newcard.querySelector(".event_card_title").innerHTML = title;
-                    newcard.querySelector(".event_card_date").innerHTML = date;
-                    newcard.querySelector(".event_card_time").innerHTML = time;
-                    newcard.querySelector('img').src = image;
-                    newcard.querySelector('a').href = "event_detail.html?docID=" + docID;
+                    //update title and some pertinent information
+                    newCard.querySelector(".event_card_title").innerHTML = title;
+                    newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
+                    newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
+                    newCard.querySelector('img').src = image;
+                    newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
 
                     //Finally, attach this new card to the gallery
-                    document.getElementById('likePosts').appendChild(newcard);
+                    if (document.getElementById('likePosts')) {
+                        document.getElementById('likePosts').appendChild(newCard);
+                    }
+                    
                 })
             });
         })

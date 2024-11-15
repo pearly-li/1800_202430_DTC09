@@ -1,8 +1,8 @@
 var ImageFile;
-var date;
-var title;
-var time;
 var image;
+var title;
+var dateTime;
+
 
 function listenFileSelect() {
     //listen for file selection
@@ -11,88 +11,31 @@ function listenFileSelect() {
 
     //when a change happens to the File Chooser Input
     fileInput.addEventListener('change', function (e) {
-        ImageFile = e.target.files[0]; 
+        ImageFile = e.target.files[0];
         var blob = URL.createObjectURL(ImageFile);
         image.src = blob; //Display this image
     })
 }
 listenFileSelect();
 
-function structureDate(month, day) {
-    var ordinal = "th"
-    if (day in [1, 21, 31]) {
-        ordinal = "st"
-    } else if (day in [2, 22]) {
-        ordinal = "nd"
-    } else if (day in [3, 23]) {
-        ordinal = "rd"
-    }
-
-    monthNames = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    ];
-    month = monthNames[month]
-    date = `${month} ${day}${ordinal}`;
-
-    return date
-}
-
-function changeDateTime(){
-    date = new Date(`${document.getElementById("date").value}, ${document.getElementById("time").value}`);
-    // Code to display time
-    var event_hour = date.getHours()
-    var event_minute = date.getMinutes()
-    var timeSuffix = "AM"
-    if (event_hour == 0) {
-        event_hour = 12
-    } else if (event_hour > 12) {
-        event_hour -= 12
-        timeSuffix = "PM"
-    }
-    time = `${event_hour}:${event_minute} ${timeSuffix}`
-
-    // Code to display date
-    var month = date.getMonth();
-    var day = date.getDate();
-
-    var today = new Date();
-    var currentYear = today.getFullYear();
-    var currentMonth = today.getMonth();
-
-    maxDays = 31
-    if (currentMonth in [4, 6, 9, 11]) {
-        maxDays = 30;
-    } else if (currentYear % 4 == 0) {
-        maxDays = 29
-    } else if (currentMonth == 2) {
-        maxDays = 28
-    }
-
-    date = structureDate(month, day);
-    createEvent()
-}
-
 function createEvent() {
     var eventInfo = db.collection("events");
-    var cv = document.getElementById("category");
+    var category = document.getElementById("category");
     title = document.getElementById("title").value;
+    dateTime = document.getElementById("dateTime").value,
 
-
-    firebase.auth().onAuthStateChanged(function (user){
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             eventInfo.add({
                 host: user.uid,
                 title: title,
                 description: document.getElementById("description").value,
-                category: cv.options[cv.selectedIndex].value,
+                category: category.options[category.selectedIndex].value,
                 scale: parseInt(document.getElementById("scale").value),
                 location: document.getElementById("address").value,
-                date: date,
-                time: time,
-                dateForUpcomingEvent: document.getElementById("date").value,
-                last_updated: firebase.firestore.FieldValue
-                    .serverTimestamp()
-            }).then(doc => {
+                dateTime: dateTime,
+                last_updated: firebase.firestore.FieldValue.serverTimestamp()
+            }) .then (doc => {
                 console.log("1. Post document added!");
                 console.log(doc.id);
                 uploadPic(doc.id);
@@ -103,9 +46,9 @@ function createEvent() {
     });
 }
 
-event_info = document.getElementById("event_btn")
-event_info.addEventListener("click", () => {
-    changeDateTime()
+create_event_btn = document.getElementById("create_event_btn")
+create_event_btn.addEventListener("click", () => {
+    createEvent()
 })
 
 function uploadPic(postDocID) {
@@ -124,10 +67,10 @@ function uploadPic(postDocID) {
                     db.collection("events").doc(postDocID).update({
                         "image": url
                     })
-                    .then(function () {
-                        console.log('4. Added pic URL to Firestore.');
-                        savePostInfoforUser(postDocID);
-                    })
+                        .then(function () {
+                            console.log('4. Added pic URL to Firestore.');
+                            savePostInfoforUser(postDocID);
+                        })
                 })
         })
         .catch((error) => {
@@ -150,8 +93,7 @@ function savePostInfoforUser(postDocID) {
         eventList.add({
             postID: postDocID,
             title: title,
-            time: time,
-            date: date,
+            dateTime: dateTime,
             image: image
         })
             .then(() => {

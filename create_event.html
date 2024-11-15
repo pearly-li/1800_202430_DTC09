@@ -87,20 +87,13 @@
             <section class="flex flex-row">
                 <div class="flex flex-col gap-y-2 mr-3">
                     <div class="flex gap-1">
-                        <h1 class="text-xl">Date</h1>
+                        <h1 class="text-xl">Date and Time</h1>
                         <h1 class="text-red-600">*</h1>
                     </div>
-                    <input type="date" id="date" placeholder="Event Date" class="border rounded pl-2">
-                </div>
-                <div class="flex flex-col gap-y-2">
-                    <div class="flex gap-1">
-                        <h1 class="text-xl">Time</h1>
-                        <h1 class="text-red-600">*</h1>
-                    </div>
-                    <input type="time" id="time" placeholder="Event Time" class="border rounded pl-2">
+                    <input type="datetime-local" id="dateTime" placeholder="Event Date and Time" class="border rounded pl-2">
                 </div>
             </section>
-            <button id="event_btn" class="border py-1 border-black rounded text-lg">Create</button>
+            <button id="create_event_btn" class="border py-1 border-black rounded text-lg">Create</button>
         </section>
     </main>
 
@@ -115,7 +108,7 @@
     <script src="./scripts/firebaseAPI_TEAM09.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/main.js"></script>
-    <script src="./scripts/event.js" defer></script>
+    <script src="./scripts/create_event.js" defer></script>
 </body>
 
 </html>
