@@ -95,6 +95,9 @@ function checkUserAttendance() {
                     if (eventInfo.data()["participants"].includes(user.uid)) {
                         text = "Cancel"
                         pressAttend = 1;
+                        chatImg.classList.remove(
+                            `hidden`,
+                        )
                     }
                 }
                 document.getElementById('attendBtn').innerText = text
