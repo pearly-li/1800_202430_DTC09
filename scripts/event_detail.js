@@ -44,11 +44,11 @@ function checkUserLiked() {
             .then(userInfo => {
                 if (userInfo.data().hasOwnProperty("likePosts")) {
                     if (userInfo.data()["likePosts"].includes(eventID)) {
-                        ImageFile = "./images/f_heart.png";
+                        imgFile = "./images/f_heart.png";
                         pressLike = 1
                     }
                 }
-                document.getElementById('like').src = ImageFile;
+                document.getElementById('like').src = imgFile;
             })
     })
 }
