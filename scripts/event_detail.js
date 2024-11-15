@@ -12,25 +12,25 @@ var pressAttend;
 //fill the information about the event
 function createEventDetail() {
     db.collection("events")
-    .doc(eventID)
-    .get()
-    .then(eventInfo => {
-        title = eventInfo.data().title;
-        var location = eventInfo.data().location;
-        var description = eventInfo.data().description;
-        var scale = eventInfo.data().scale;
-        image = eventInfo.data().image;
-        date = eventInfo.data().date;
-        time = eventInfo.data().time;
-        var participant = eventInfo.data().participants.length;
-        
-        document.getElementById('eventImg').src = image;
-        document.getElementById('eventTitle').innerText = title;
-        document.getElementById('eventDescription').innerText = description;
-        document.getElementById('eventParticipation').innerText = participant + "/" + scale;
-        document.getElementById('eventAddress').innerText = location;
-        document.getElementById('eventTime').innerText = date + ", " + time;
-    })  
+        .doc(eventID)
+        .get()
+        .then(eventInfo => {
+            title = eventInfo.data().title;
+            var location = eventInfo.data().location;
+            var description = eventInfo.data().description;
+            var scale = eventInfo.data().scale;
+            image = eventInfo.data().image;
+            date = eventInfo.data().date;
+            time = eventInfo.data().time;
+            var participant = eventInfo.data().participants.length;
+
+            document.getElementById('eventImg').src = image;
+            document.getElementById('eventTitle').innerText = title;
+            document.getElementById('eventDescription').innerText = description;
+            document.getElementById('eventParticipation').innerText = participant + "/" + scale;
+            document.getElementById('eventAddress').innerText = location;
+            document.getElementById('eventTime').innerText = date + ", " + time;
+        })
 }
 createEventDetail()
 
@@ -42,8 +42,8 @@ function checkUserLiked() {
         userEvent.doc(user.uid)
             .get()
             .then(userInfo => {
-                if (userInfo.data().hasOwnProperty("likePosts")){
-                    if (userInfo.data()["likePosts"].includes(eventID)){
+                if (userInfo.data().hasOwnProperty("likePosts")) {
+                    if (userInfo.data()["likePosts"].includes(eventID)) {
                         ImageFile = "./images/f_heart.png";
                         pressLike = 1
                     }
@@ -54,25 +54,25 @@ function checkUserLiked() {
 }
 
 //if the user pressed like button, it is changed
-function pressLikeBtn(){
-    if(pressLike === 1){
+function pressLikeBtn() {
+    if (pressLike === 1) {
         document.getElementById('like').src = "./images/heart.png"
         pressLike--;
-    }else{
+    } else {
         document.getElementById('like').src = "./images/f_heart.png"
         pressLike++;
     }
 }
 
 //If the user pressed like button, add it to the likePosts array
-function likedEventCollection(){
-    if(pressLike === 1){
+function likedEventCollection() {
+    if (pressLike === 1) {
         firebase.auth().onAuthStateChanged(function (user) {
             db.collection("users").doc(user.uid).update({
                 likePosts: firebase.firestore.FieldValue.arrayUnion(eventID)
             })
         })
-    }else{
+    } else {
         firebase.auth().onAuthStateChanged(function (user) {
             db.collection("users").doc(user.uid).update({
                 likePosts: firebase.firestore.FieldValue.arrayRemove(eventID)
@@ -100,7 +100,7 @@ function checkUserAttendance() {
     })
 }
 
-function pressAttendBtn(){
+function pressAttendBtn() {
     if (pressAttend === 1) {
         document.getElementById('attendBtn').innerText = "Attend"
         pressAttend--;
@@ -148,7 +148,7 @@ function attendEvent() {
 }
 
 //when user is not a host for the event the user is browsing, display a footer that is different from the host's footer
-function notHostFooter(){
+function notHostFooter() {
     footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
             <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
             <button><img id="chatImg" src="./images/chat.png" class="w-[30px] h-[30px] hidden"></button>
@@ -172,22 +172,22 @@ function notHostFooter(){
 //check if the user is a host for the event the user is browsing
 //if the user is a host for the event, display specific footer for the host
 function hostOrNot() {
-    firebase.auth().onAuthStateChanged(function (user){
+    firebase.auth().onAuthStateChanged(function (user) {
         userEvent.doc(user.uid)
-        .get()
-        .then(userInfo => {
-            if(userInfo.data().hasOwnProperty("myposts")){//check if the user has "myposts" field
-                if(userInfo.data()["myposts"].includes(eventID)){//check if the user has the eventID in the "myposts" field
-                    footerNavDesign.innerHTML = `<section class="flex gap-5 my-4 justify-center">
+            .get()
+            .then(userInfo => {
+                if (userInfo.data().hasOwnProperty("myposts")) {//check if the user has "myposts" field
+                    if (userInfo.data()["myposts"].includes(eventID)) {//check if the user has the eventID in the "myposts" field
+                        footerNavDesign.innerHTML = `<section class="flex gap-5 my-4 justify-center">
                     <h1 class="text-white font-bold text-[20px]">You're the host of the event</h1>
                     <button><img src="./images/chat.png" class="w-[30px] h-[30px]"></button></section>`
-                }else{
+                    } else {
+                        notHostFooter();
+                    }
+                } else {
                     notHostFooter();
                 }
-            }else{
-                notHostFooter();
-            }
-        })
+            })
     })
 }
 hostOrNot()
