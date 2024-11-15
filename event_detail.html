@@ -34,67 +34,53 @@
 
 <body class="flex flex-col min-h-screen">
     <header class="flex justify-center flex-col mx-auto max-w-[430px]">
-        <section class="bg-[#2e394f] pl-2 py-2">
-            <a href="main.html">
+        <section class="relative event_post">
+            <img src="https://plus.unsplash.com/premium_photo-1666913667082-c1fecc45275d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGVubmlzfGVufDB8fDB8fHww"
+                class="block">
+            <a href="main.html" class="absolute top-[5%] left-[2%]">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px] text-white" x-bind:width="size"
-                    x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke"
-                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                    x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
+                    stroke-width="2">
                     <path d="M5 12l14 0"></path>
                     <path d="M5 12l6 6"></path>
                     <path d="M5 12l6 -6"></path>
                 </svg>
             </a>
-        </section>
-        <section class="event_post">
-            <img id="eventImg" class="block">
+            <img src="./images/share.png" class="h-[25px] w-[30px] absolute top-[5%] right-[3%]">
         </section>
     </header>
 
     <!-- Main Body -->
     <main class="flex flex-col mx-auto justify-center max-w-[390px]">
-        <section class="mx-[22px]">
-            <h1 class="text-3xl font-bold" id="eventTitle"></h1>
-            <h5 class="w-[85%] text-[15px] ml-2 mt-2" id="eventDescription">
+        <section class="mt-6 ml-[22px]">
+            <h1 class="text-3xl font-bold">Playing Tennis Together</h1>
+            <h5 class="font-libre_franklin w-[85%] text-[15px] ml-2 mt-1">
+                <!--If use other img, should check the img's maximum width size-->
+                Lorem ipsum dolor sit amet consectetur.
+                Orci morbi massa ornare sollicitudin nunc mauris enim eget.
             </h5>
         </section>
-        <div class="flex items-center ml-[30px] mt-4 gap-2">
+        <div class="flex items-center ml-[30px] mt-3 gap-2">
             <img src="./images/info.png" class="w-[17px] h-[17px]">
-            <h1 class="text-2xl font-bold">Event Details</h1>
+            <h1 class="text-2xl font-bold ">Event Details</h1>
         </div>
-        <section class="mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px] mt-2">
+        <section class="font-libre_franklin mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px] ">
             <div class="flex gap-3 text-center ml-3 mt-3">
                 <img src="./images/person.png" class="w-[17px] h-[17px]">
-                <h5 class="font-bold" id="eventParticipation"></h5>
+                <h5 class="font-bold">2/4</h5>
             </div>
-            <div class="flex ml-3 mt-3 justify-between">
+            <div class="flex ml-3 mt-3">
                 <div class="flex gap-3">
                     <img src="./images/location.png" class="w-[17px] h-[17px]">
-                    <h5 class="font-bold w-[80%]" id="eventAddress"></h5>
+                    <h5 class="w-[65%] font-bold">Stanley Park Tennis Courts, 8901 Stanley Park Dr</h5>
                 </div>
-                <a href="https://maps.app.goo.gl/zzzr54Krvp1v67Bx9" alt="Map Page">
-                    <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" x-bind:width="size" x-bind:height="size"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke"
-                            stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
-                            <path d="M5 12l14 0"></path>
-                            <path d="M13 18l6 -6"></path>
-                            <path d="M13 6l6 6"></path>
-                        </svg>
-                    </button>
-                </a>
             </div>
-<<<<<<< HEAD
             <div class="flex ml-3 mt-3 mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 w-[17px] h-[17px]" x-bind:width="size"
                     x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
                     stroke-width="2">
-=======
-            <div class="flex ml-3 mb-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 w-[17px] h-[17px]" x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24"
-                    height="24" stroke-width="2">
->>>>>>> 5d33da00d6b7e9e95124fee3c04f7b30b5e30bd6
                     <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
                     <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
                     <path d="M15 3v4"></path>
@@ -103,7 +89,27 @@
                     <path d="M18 16.496v1.504l1 1"></path>
                 </svg>
                 <!--Should make a function border color must change to black when user chooses specific date-->
-                <p class="text-[13px] font-bold" id="eventTime"></p>
+                <p class="font-libre_franklin text-[13px] font-bold">Friday, Nov 23th, 5:00 PM</p>
+            </div>
+        </section>
+        <section class="font-libre_franklin mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px] mt-4">
+            <div class="flex ml-3 my-1">
+                <div class="flex gap-3 mt-2">
+                    <img src="./images/location.png" class="w-[17px] h-[17px]">
+                    <h5 class="font-bold" style="align-items:center">Get Directions</h5>
+                </div>
+                <a href="https://maps.app.goo.gl/zzzr54Krvp1v67Bx9" alt="Map Page" class="float-right">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 mt-1.5 ml-40" x-bind:width="size"
+                            x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24"
+                            height="24" stroke-width="2">
+                            <path d="M5 12l14 0"></path>
+                            <path d="M13 18l6 -6"></path>
+                            <path d="M13 6l6 6"></path>
+                        </svg>
+                    </button>
+                </a>
             </div>
         </section>
         <section id="messageBoard" class="">
@@ -136,10 +142,10 @@
             <textarea class="form-control ml-[30px] w-5/6" id="messageDescription" rows="3"
                 placeholder="Message Description"></textarea>
             <button type="button"
-                class="ml-[250px] border py-1 border-gray-300 rounded-full text-lg px-4"
+                class="ml-[250px] border font-libre_franklin py-1 border-gray-300 rounded-full text-lg px-4"
                 onclick="writeMessage()">Submit</button>
         </section>
-        <!-- <div class="flex items-center ml-[30px] mt-6 gap-2">
+        <div class="flex items-center ml-[30px] mt-6 gap-2">
             <img src="./images/review.png" class="w-[17px] h-[17px]">
             <h1 class="text-2xl font-bold ">Reviews</h1>
         </div>
@@ -152,9 +158,15 @@
                 <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
                 <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
             </svg>
-        </a> -->
+        </a>
     </main>
-    <footer class="sticky bottom-0 mt-auto bg-[#2e394f]" id="footerNav">
+    <!--Should make function for like(it turns to filled heart) and attend button(it turns to cancle button)-->
+    <footer class="sticky bottom-0 mt-auto bg-[#2e394f]">
+        <section class="flex my-4 justify-center gap-5 items-center">
+            <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]">Attend</button>
+            <img src="./images/chat.png" class="w-[30px] h-[30px]">
+            <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
+        </section>
     </footer>
 
     <!-- Templates -->
@@ -164,8 +176,10 @@
     <script src="./scripts/firebaseAPI_TEAM09.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/main.js"></script>
+    <script src="./scripts/font.js"></script>
     <script src="./scripts/write_message.js"></script>
-    <script src="./scripts/event_detail.js"></script>
+    <script src="./scripts/like.js"></script>
+
 </body>
 
 </html>
