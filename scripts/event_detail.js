@@ -116,14 +116,9 @@ function pressAttendBtn() {
 function attendEvent() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            var eventList = db.collection("users").doc(user.uid).collection("event");
             if (pressAttend === 1) {
-                eventList.add({
-                    postID: eventID,
-                    title: title,
-                    time: time,
-                    date: date,
-                    image: image
+                db.collection("users").doc(user.uid).update({
+                    eventAttend: firebase.firestore.FieldValue.arrayUnion(eventID)
                 })
                 chatImg.classList.remove(
                     `hidden`,
@@ -132,8 +127,9 @@ function attendEvent() {
                     participants: firebase.firestore.FieldValue.arrayUnion(user.uid)
                 })
             } else {
-                var findInfo = db.collection('users').doc(user.uid).collection("event").where('postID', '==', eventID);
-                findInfo.get().then(doc => doc.forEach(all => { all.ref.delete() }))
+                db.collection("users").doc(user.uid).update({
+                    eventAttend: firebase.firestore.FieldValue.arrayRemove(eventID)
+                })
                 chatImg.classList.add(
                     `hidden`,
                 )

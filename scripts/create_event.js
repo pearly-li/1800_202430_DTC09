@@ -89,12 +89,8 @@ function savePostInfoforUser(postDocID) {
         db.collection("events").doc(postDocID).update({
             participants: firebase.firestore.FieldValue.arrayUnion(user.uid)
         })
-        var eventList = db.collection("users").doc(user.uid).collection("event");
-        eventList.add({
-            postID: postDocID,
-            title: title,
-            dateTime: dateTime,
-            image: image
+        db.collection("users").doc(user.uid).update({
+            eventAttend: firebase.firestore.FieldValue.arrayUnion(postDocID)
         })
             .then(() => {
                 console.log("5. Saved to user's document!");
