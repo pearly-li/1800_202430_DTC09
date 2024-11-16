@@ -1,12 +1,6 @@
 var currentUser; //points to the document of the user who is logged in
 var savedPicture = localStorage.getItem("profilePicture");
 
-function getSavedPicture() {
-  if (savedPicture) {
-    document.getElementById("selectedPicture").src = `images/${savedPicture}`;
-  }
-}
-
 function populateUserInfo() {
   firebase.auth().onAuthStateChanged((user) => {
     // Check if user is signed in:
@@ -23,7 +17,8 @@ function populateUserInfo() {
         if (userCity) {
           document.getElementById("cityInput").value = userCity;
         }
-        getSavedPicture();
+        loadProfilePicturePicture();
+        // Put the profile picture in the header
         if (savedPicture) {
           document.querySelector(
             "#pictureGoesHere"
@@ -53,9 +48,7 @@ function saveUserInfo() {
 
     let userCity = document.getElementById("cityInput").value;
     //get the value of the field with id="cityInput"
-    if (savedPicture) {
-      document.getElementById("selectedPicture").src = `images/${savedPicture}`;
-    }
+    loadProfilePicture();
     //b) update user's document in Firestore
     currentUser
       .update({
