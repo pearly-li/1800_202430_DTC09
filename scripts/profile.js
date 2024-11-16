@@ -1,4 +1,11 @@
 var currentUser; //points to the document of the user who is logged in
+var savedPicture = localStorage.getItem("profilePicture");
+
+function getSavedPicture() {
+  if (savedPicture) {
+    document.getElementById("selectedPicture").src = `images/${savedPicture}`;
+  }
+}
 
 function populateUserInfo() {
   firebase.auth().onAuthStateChanged((user) => {
@@ -13,16 +20,14 @@ function populateUserInfo() {
         // let userProfilePicture = userDoc.data().profilePicture;
         let userCity = userDoc.data().city;
 
-        //if the data fields are not empty, then write them in to the form.
-        if (userName != null) {
-          document.getElementById("nameInput").value = userName;
-        }
-        // if (userPicture != null) {
-        //   document.getElementById("profilePictureInput").value = profilePicture;
-        // }
-        // Removed this because of Firebase storage limitations. Implementing a choice of avatar from a select pool of options.
-        if (userCity != null) {
+        if (userCity) {
           document.getElementById("cityInput").value = userCity;
+        }
+        getSavedPicture();
+        if (savedPicture) {
+          document.querySelector(
+            "#pictureGoesHere"
+          ).src = `images/${savedPicture}`;
         }
       });
     } else {
@@ -38,7 +43,7 @@ function editUserInfo() {
   //Enable the form fields
   document.getElementById("personalInfoFields").disabled = false;
 }
-
+//
 function saveUserInfo() {
   firebase.auth().onAuthStateChanged(function (user) {
     saveProfilePicture();
@@ -46,19 +51,18 @@ function saveUserInfo() {
     let userName = document.getElementById("nameInput").value;
     //get the value of the field with id="nameInput"
 
-    // Removed the following because of Firebase storage limitations.
-    // let userProfilePicture = document.getElementById(
-    //   "profilePictureInput"
-    // ).value;
     let userCity = document.getElementById("cityInput").value;
     //get the value of the field with id="cityInput"
-
+    if (savedPicture) {
+      document.getElementById("selectedPicture").src = `images/${savedPicture}`;
+    }
     //b) update user's document in Firestore
     currentUser
       .update({
         name: userName,
         // profilePicture: "localstorage", // Save the URL into users collection
         city: userCity,
+        profile_picture: savedPicture,
       })
       .then(() => {
         console.log("Document successfully updated!");
@@ -84,7 +88,6 @@ function saveProfilePicture() {
 
 function loadProfilePicture() {
   // Load the saved profile picture from localStorage, if available
-  const savedPicture = localStorage.getItem("profilePicture");
   if (savedPicture) {
     document.getElementById("selectedPicture").src = `images/${savedPicture}`;
   }
@@ -96,12 +99,10 @@ function loadProfilePicture() {
     radio.addEventListener("click", saveProfilePicture);
   }
 }
-// Call loadProfilePicture() when the page loads
-window.onload = loadProfilePicture;
 
 document.getElementById("likedEvent").addEventListener("click", () => {
-  window.location.href = 'likedEvents.html';
-})
+  window.location.href = "likedEvents.html";
+});
 document.getElementById("logOut").addEventListener("click", () => {
-  window.location.href = 'index.html';
-})
+  window.location.href = "index.html";
+});
