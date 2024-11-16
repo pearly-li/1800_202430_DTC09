@@ -17,7 +17,7 @@ function populateUserInfo() {
         if (userCity) {
           document.getElementById("cityInput").value = userCity;
         }
-        loadProfilePicturePicture();
+        loadProfilePicture();
         // Put the profile picture in the header
         if (savedPicture) {
           document.querySelector(
