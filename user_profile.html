@@ -34,27 +34,28 @@
     </header>
 
     <!-- Main Body -->
-    <main class="container">
+    <main class="container mx-auto padding p-5">
         <h1>User Profile </h1>
-        <form>
+        <form id="userForm">
             <div id="profilePictureOptions" class="container py-2 flex flex-row my-2 justify-center">
-                <label class="text-xl">Profile Picture Options:</label>
-                <div class="avatarContainer flex flex-col"><input type="radio" id="avatar1" name="avatarSelect"> <img
-                        src=" ./images/avatar1.png"></div>
-                <div class="avatarContainer flex flex-col"><input type="radio" id="avatar2" name="avatarSelect"> <img
-                        src=" ./images/avatar2.png"></div>
-                <div class="avatarContainer flex flex-col"><input type="radio" id="avatar3" name="avatarSelect"> <img
-                        src=" ./images/avatar3.png"></div>
-                <div class="avatarContainer flex flex-col"><input type="radio" id="avatar4" name="avatarSelect"> <img
-                        src=" ./images/avatar4.png"></div>
-                <div class="avatarContainer flex flex-col"><input type="radio" id="avatar5" name="avatarSelect"> <img
-                        src=" ./images/avatar5.png"></div>
-                <div class="avatarContainer flex flex-col"><input type="radio" id="avatar6" name="avatarSelect"> <img
-                        src=" ./images/avatar6.png"></div>
+                <h2 class="text-xl">Profile Picture Options:</h2>
+                <!-- Data attributes: JS will change how it's written. HTML expects kebab case with hyphens, but JS expects camelCase -->
+                <label class="avatarContainer flex flex-col"><img src=" ./images/avatar1.png"> <input type="radio"
+                        data-url="avatar1.png" id="avatar1" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col"><img src=" ./images/avatar2.png"><input type="radio"
+                        data-url="avatar2.png" id="avatar2" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col"> <img src=" ./images/avatar3.png"> <input type="radio"
+                        data-url="avatar3.png" id="avatar3" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col"><img src=" ./images/avatar4.png"> <input type="radio"
+                        data-url="avatar4.png" id="avatar4" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col"><img src=" ./images/avatar5.png"> <input type="radio"
+                        data-url="avatar5.png" id="avatar5" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col"><img src="./images/avatar6.png"> <input type="radio"
+                        data-url="avatar6.png" id="avatar6" name="profilePicture"></label>
             </div>
             <div id="seletedPictureContainer" class="container flex flex-row my-2"></div>
             <label class="text-xl">Selected Picture:</label> <img class="flex flex-col" id="selectedPicture"
-                style="width: 50px; height: 50px;" alt="Selected profile picture">
+                style="width: 100px; height: 100px;" alt="Selected profile picture">
             </div>
             <fieldset class="flex flex-col gap-y-2 my-2" id="personalInfoFields" disabled>
                 <div class="form-group flex gap-1 my-2">
