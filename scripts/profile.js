@@ -10,7 +10,7 @@ function populateUserInfo() {
       currentUser.get().then((userDoc) => {
         //get the data fields of the user
         let userName = userDoc.data().name;
-        let userProfilePicture = userDoc.data().profilePicture;
+        // let userProfilePicture = userDoc.data().profilePicture;
         let userCity = userDoc.data().city;
 
         //if the data fields are not empty, then write them in to the form.
@@ -57,7 +57,7 @@ function saveUserInfo() {
     currentUser
       .update({
         name: userName,
-        profilePicture: "localstorage", // Save the URL into users collection
+        // profilePicture: "localstorage", // Save the URL into users collection
         city: userCity,
       })
       .then(() => {
@@ -67,25 +67,13 @@ function saveUserInfo() {
   });
 }
 
-var userName;
-function deleteUserInfo() {
-  // let userName = userDoc.data().name;
-  // let userProfilePicture = userDoc.data().profilePicture;
-  // let userCity = userDoc.data().city;
-  // Example from firebase documentation
-  // var cityRef = db.collection("cities").doc("BJ");
-  // // Remove the 'capital' field from the document
-  // var removeCapital = cityRef.update({
-  //   capital: firebase.firestore.FieldValue.delete(),
-  // });
-}
-
-function selectProfilePicture() {}
+// function selectProfilePicture() {}
+// selectedAvatar is the variable for what's checked
+// selectedPicture is the ID of the image in HTML
+// profilePicture is
 function saveProfilePicture() {
   // Get the selected avatar
-  const selectedAvatar = document.querySelector(
-    'input[name="profilePicture"]:checked'
-  ).value;
+  const selectedAvatar = document.querySelector("input:checked").dataset.url;
 
   // Display the selected image immediately
   document.getElementById("selectedPicture").src = `images/${selectedAvatar}`;
@@ -99,6 +87,13 @@ function loadProfilePicture() {
   const savedPicture = localStorage.getItem("profilePicture");
   if (savedPicture) {
     document.getElementById("selectedPicture").src = `images/${savedPicture}`;
+  }
+
+  // Needed to find radio buttons, within the form, and then add event listeners. We went with addEventListener over buttononlick since that seems like the plan we're used to.
+
+  var radios = document.querySelectorAll(".avatarContainer");
+  for (const radio of radios) {
+    radio.addEventListener("click", saveProfilePicture);
   }
 }
 // Call loadProfilePicture() when the page loads
