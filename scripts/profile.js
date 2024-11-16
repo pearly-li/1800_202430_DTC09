@@ -74,7 +74,7 @@ function saveUserInfo() {
 // function selectProfilePicture() {}
 // selectedAvatar is the variable for what's checked
 // selectedPicture is the ID of the image in HTML
-// profilePicture is
+// profilePicture is name of radio buttons to check if it's checked
 function saveProfilePicture() {
   // Get the selected avatar
   const selectedAvatar = document.querySelector("input:checked").dataset.url;
