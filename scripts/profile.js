@@ -13,7 +13,9 @@ function populateUserInfo() {
         let userName = userDoc.data().name;
         // let userProfilePicture = userDoc.data().profilePicture;
         let userCity = userDoc.data().city;
-
+        if (userName) {
+          document.getElementById("nameInput").value = userName;
+        }
         if (userCity) {
           document.getElementById("cityInput").value = userCity;
         }
@@ -45,7 +47,6 @@ function saveUserInfo() {
     // (a) get user values
     let userName = document.getElementById("nameInput").value;
     //get the value of the field with id="nameInput"
-
     let userCity = document.getElementById("cityInput").value;
     //get the value of the field with id="cityInput"
     loadProfilePicture();
