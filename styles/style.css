@@ -7,20 +7,18 @@ main {
   max-width: 768px;
 }
 
-main h1 { 
+main h1 {
   font-size: 1.125rem /* 18px */;
   line-height: 1.75rem /* 28px */;
 
   font-weight: bold;
 }
 
-
 /* Top Navbar - Before */
 #landingNav {
   padding-top: 10px;
   padding-left: 5px;
 }
-
 
 /* Top Navbar - After */
 #header_navbar {
@@ -40,7 +38,6 @@ main h1 {
 #name_goes_here {
   text-decoration: underline;
 }
-
 
 /* Bottom Navbar - Before */
 #landing_footer {
@@ -62,7 +59,6 @@ main h1 {
   font-size: 16px;
   border: none;
 }
-
 
 /* Bottom Navbar - After */
 #footer_navbar {
@@ -87,7 +83,8 @@ main h1 {
 }
 
 #footer_navbar a:hover {
-  filter: invert(83%) sepia(23%) saturate(266%) hue-rotate(176deg) brightness(96%) contrast(85%);
+  filter: invert(83%) sepia(23%) saturate(266%) hue-rotate(176deg)
+    brightness(96%) contrast(85%);
 }
 
 /* Event Cards */
@@ -97,12 +94,8 @@ main h1 {
 
 .event_card h1 {
   font-weight: bold;
-  font-size: 0.875rem
-    /* 14px */
-  ;
-  line-height: 1.25rem
-    /* 20px */
-  ;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
 }
 
 .event_card h3 {
@@ -117,12 +110,10 @@ main h1 {
   border-radius: 28px 28px 0px 0px;
 }
 
-
 /* Event Details */
 .event_post .pic {
   height: 260px;
 }
-
 
 /* Event Detail - Reviews */
 #starContainer img {
@@ -139,9 +130,6 @@ main h1 {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-
-
-
 
 /* Page Specific CSS */
 /* Login Page - Buttons */
@@ -195,26 +183,25 @@ main h1 {
   background-color: #aa5632;
 }
 
-
 /* Main Page - User Event Schedule */
 .user_event_schedule {
   width: 120px;
-  
+
   text-align: center;
-  font-size: 0.875rem  /* 14px */;
-  line-height: 1.25rem  /* 20px */;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
 }
 
 .user_event_schedule img {
   border-radius: 16px;
-  box-shadow: rgba(0, 0, 0, 0.50) 0px 4px 6px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
   filter: saturate(30%) contrast(30%) brightness(150%);
 }
 
 .user_event_schedule .inner_text {
   padding-left: 0.5rem /* 8px */;
   padding-right: 0.5rem /* 8px */;
-  
+
   top: 20%;
   z-index: 10;
 
@@ -224,7 +211,7 @@ main h1 {
 .user_event_schedule h1 {
   font-size: 16px;
   line-height: 20px;
-  
+
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -237,7 +224,20 @@ main h1 {
   text-overflow: ellipsis;
 }
 
+/* Event Detail Page */
 
+/* Add CSS styles for the card container with vertical scrolling */
+/* Adjust the maximum height as needed */
+/* max-height: 450px;
+  overflow-y: auto */
+/* .messageCardContainer {
+} */
+
+/* Style the individual cards as needed */
+/* Add margin between cards */
+/* Adjust the width as per your design, leaving a little space for margins */
+/* .messageCard {
+} */
 
 /* Temp CSS Here */
 /* Unused?? */
@@ -261,7 +261,6 @@ main h1 {
   background-position: center;
   background-size: cover;
 }
-
 
 /* Rename? */
 .g_bg {
@@ -404,6 +403,6 @@ body {
 }
 
 /* login form */
-#firebaseui-auth-container .mdl-button--colored{
+#firebaseui-auth-container .mdl-button--colored {
   background-color: #2e394f;
 }

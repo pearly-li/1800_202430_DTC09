@@ -52,7 +52,8 @@
     </header>
 
     <!-- Main Body -->
-    <main class="flex flex-col mx-auto justify-center max-w-[390px]">
+    <!-- <main class="flex flex-col mx-auto justify-center max-w-[390px]"> -->
+    <main class="flex justify-center flex-col md:min-w-[768px]  md:mx-auto">
         <section class="mx-[22px]">
             <h1 class="text-3xl font-bold" id="eventTitle"></h1>
             <h5 class="w-[85%] text-[15px] ml-2 mt-2" id="eventDescription">
@@ -100,18 +101,18 @@
                 <p class="text-[13px] font-bold" id="eventTime"></p>
             </div>
         </section>
-        <section class="font-libre_franklin mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px] mt-4">
-            <div class="flex ml-3 my-1">
-                <div class="flex gap-3 mt-2">
+        <section class="font-libre_franklin mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px] mt-4 py-2">
+            <div class="flex ml-3 my-1 flex-row justify-between">
+                <div class="flex flex-row gap-3 mt-2">
                     <img src="./images/location.png" class="w-[17px] h-[17px]">
-                    <h5 class="font-bold" style="align-items:center">Get Directions</h5>
+                    <h5 class="font-bold" class="">Get Directions</h5>
                 </div>
-                <a href="https://maps.app.goo.gl/zzzr54Krvp1v67Bx9" alt="Map Page" class="float-right">
+                <a href="https://maps.app.goo.gl/zzzr54Krvp1v67Bx9" alt="Map Page" class="items-center">
                     <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 mt-1.5 ml-40" x-bind:width="size"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 mt-1" x-bind:width="size"
                             x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
-                            stroke-width="2">
+                            x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24"
+                            height="24" stroke-width="2">
                             <path d="M5 12l14 0"></path>
                             <path d="M13 18l6 -6"></path>
                             <path d="M13 6l6 6"></path>
@@ -120,38 +121,45 @@
                 </a>
             </div>
         </section>
-        <section id="messageBoard" class="">
-            <div class="flex items-center ml-[30px] mt-6 gap-2">
-                <img src="./images/review.png" class="w-[17px] h-[17px]">
-                <h1 class="text-2xl font-bold pl-2">Message Board</h1>
+        <div id="messageBoard" class="flex flex-col justify-items-end">
+            <div class="ml-[30px] mt-6 gap-2">
+                <div id="messageBoardHeader" class="flex flex-row items-center">
+                    <img src="./images/review.png" class="w-[17px] h-[17px] flex-col">
+                    <h1 class="text-2xl font-bold pl-2 flex-col">Message Board:</h1>
+                </div>
                 <div id="details-go-here"></div>
                 <!-- Here is the container for cards with vertical scrolling -->
-                <div class="card-container">
-                    <div id="messageCardGroup" class="col col-rows-auto">
+                <div id="messageCardContainer" class="">
+                    <div id="messageCardGroup" class="">
                         <!-- Add your card templates here -->
+                        <template id="messageCardTemplate" class="">
+                            <div id="messageCard"
+                                class="bg-success border-2 rounded-[16px] border-gray-300 mr-[30px] px-4 pb-4">
+                                <img class="card-img-top">
+                                <div class="card-body bg-light">
+                                    <div id="messageHeader" class="flex flex-row justify-between">
+                                        <p id="reviewer_name" class="">placeholder</p>
+                                        <p id="message_created_at" class="">placeholder</p>
+                                        <!-- Removed last_updated until I can make an edit function -->
+                                        <!-- <p class="last_updated">placeholder</p> -->
+                                    </div>
+                                    <br>
+                                    <p id="message_description" class="pt-4">This card has supporting text below as a
+                                        natural
+                                        lead-in to
+                                        additional
+                                        content.
+                                    </p>
+                                </div>
+                            </div>
+                        </template>
                     </div>
                 </div>
             </div>
-
-            <template id="messageCardTemplate">
-                <div class="card bg-success">
-                    <img class="card-img-top">
-                    <div class="card-body bg-light">
-                        <p class="time">placeholder</p>
-                        <p class="userName">placeholder</p>
-                        <p class="lastUpdated">placeholder</p>
-                        <br>
-                        <p class="description">This card has supporting text below as a natural lead-in to additional
-                            content.
-                        </p>
-                    </div>
-                </div>
-            </template>
-            <textarea class="form-control ml-[30px] w-5/6" id="messageDescription" rows="3"
-                placeholder="Message Description"></textarea>
-            <button type="button" class="ml-[250px] border py-1 border-gray-300 rounded-full text-lg px-4"
-                onclick="writeMessage()">Submit</button>
-        </section>
+            <textarea class="flex form-control mx-[30px] border-2 rounded-[16px] p-4 my-2 border-gray-300"
+                id="messageDescription" rows="3" placeholder="Type your message here"></textarea>
+            <button type="button" class="btn py-1 text-lg mr-5" onclick="writeMessage()">Submit</button>
+        </div>
     </main>
     <footer class="sticky bottom-0 mt-auto bg-[#2e394f]" id="footerNav">
     </footer>
@@ -166,6 +174,7 @@
     <script src="./scripts/write_message.js"></script>
     <script src="./scripts/show_event_cards.js"></script>
     <script src="./scripts/event_detail.js"></script>
+    <script src="./scripts/message_list.js"></script>
 </body>
 
 </html>
