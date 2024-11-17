@@ -1,12 +1,4 @@
 var currentUser; //points to the document of the user who is logged in
-var savedPicture = localStorage.getItem("profilePicture");
-
-function loadProfilePicture() {
-  // Load the saved profile picture from localStorage, if available
-  if (savedPicture) {
-    document.getElementById("selectedPicture").src = `images/${savedPicture}`;
-  }
-}
 
 function populateUserInfo() {
   firebase.auth().onAuthStateChanged((user) => {
@@ -16,12 +8,12 @@ function populateUserInfo() {
       currentUser = db.collection("users").doc(user.uid);
       //get the document for current user.
       currentUser.get().then((userDoc) => {
-        loadProfilePicture();
+        let userProfilePicture = userDoc.data().profile_picture;
         // Put the profile picture in the header
-        if (savedPicture) {
+        if (userProfilePicture) {
           document.querySelector(
             "#pictureGoesHere"
-          ).src = `images/${savedPicture}`;
+          ).src = `images/${userProfilePicture}`;
         }
       });
     } else {
