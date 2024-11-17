@@ -93,7 +93,7 @@ function loadProfilePicture() {
   }
 }
 
-document.getElementById("likedEvent").addEventListener("click", () => {
+document.getElementById("likedEvents").addEventListener("click", () => {
   window.location.href = "likedEvents.html";
 });
 document.getElementById("logOut").addEventListener("click", () => {
