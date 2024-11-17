@@ -43,6 +43,7 @@ function writeMessage() {
           .then(() => {
             // Show alert when message is posted successfully
             alert("Message posted");
+            window.location.href = "event_detail.html?docID=" + docID;
           })
           .catch((error) => {
             console.error("Error adding message: ", error);
@@ -56,6 +57,3 @@ function writeMessage() {
   });
 }
 // Note to self: Will add a separate function to edit messages later, which will update the last_updated field but NOT the message_created_at
-function addMessageToMessageList() {
-  window.location.href = "message_list.html";
-}
