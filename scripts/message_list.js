@@ -36,7 +36,7 @@ function populateMessages() {
     .get()
     .then((allMessages) => {
       messages = allMessages.docs;
-      console.log(messages);
+      // console.log(messages);
       messages.forEach((doc) => {
         var reviewer_name = doc.data().reviewer_name;
         // var last_updated = doc.data().last_updated;
@@ -50,9 +50,16 @@ function populateMessages() {
         //   .data()
         //   .last_updated.toDate()
         //   .toLocaleString();
+        messageCard.querySelector("#reviewer_name").innerHTML = reviewer_name;
         messageCard.querySelector("#message_description").innerHTML =
           message_description;
-        messageCard.querySelector("#reviewer_name").innerHTML = reviewer_name;
+        if (reviewerProfilePicture) {
+          document.querySelector(
+            "#reviewer_picture"
+          ).src = `images/${reviewerProfilePicture}`;
+        } else {
+          console.log("No reviewer profile picture saved.");
+        }
         messageCardGroup.appendChild(messageCard);
       });
     });
