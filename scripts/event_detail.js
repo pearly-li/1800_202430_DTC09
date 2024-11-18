@@ -1,10 +1,10 @@
 var params = new URL(window.location.href);
 var eventID = params.searchParams.get("docID");
-//var title;
-//var dateTime;
+var title;
+var dateTime;
 var userEvent = db.collection("users");
 var footerNavDesign = document.getElementById("footerNav");
-//var image;
+var image;
 var pressLike;
 var pressAttend;
 
