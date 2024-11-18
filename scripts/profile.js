@@ -76,12 +76,13 @@ function saveProfilePicture() {
   // Display the selected image immediately
   document.getElementById("selectedPicture").src = `images/${selectedAvatar}`;
 
-  // Save the avatar choice in localStorage
+  // Save the event image choice in localStorage
   localStorage.setItem("profilePicture", selectedAvatar);
 }
 
 function loadProfilePicture() {
   // Load the saved profile picture from localStorage, if available
+
   if (savedPicture) {
     document.getElementById("selectedPicture").src = `images/${savedPicture}`;
   }
