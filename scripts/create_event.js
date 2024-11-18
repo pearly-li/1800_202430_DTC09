@@ -15,7 +15,7 @@ function listenFileSelect() {
     image.src = blob; //Display this image
   });
 }
-// listenFileSelect();
+listenFileSelect();
 
 function createEvent() {
   var eventInfo = db.collection("events");
