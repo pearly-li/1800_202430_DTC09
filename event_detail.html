@@ -33,11 +33,11 @@
 </head>
 
 <body class="flex flex-col min-h-screen">
-    <header class="flex justify-center flex-col mx-auto max-w-[430px]">
-        <section class="bg-[#2e394f] pl-2 py-2">
+    <header class="flex justify-center items-center flex-col mx-auto w-full">
+        <section class="bg-[#2e394f] pl-2 py-2 flex flex-row w-full items-center justify-between">
             <a href="main.html">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px] text-white" x-bind:width="size"
-                    x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px] text-white flex flex-col"
+                    x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
                     stroke-width="2">
                     <path d="M5 12l14 0"></path>
@@ -45,15 +45,20 @@
                     <path d="M5 12l6 -6"></path>
                 </svg>
             </a>
+            <h1 class="text-white flex flex-col"> Event </h1>
+            <a href="./user_profile.html" class="mr-2">
+                <img src="./images/user.png" class="w-[10vw] h-[10vw] max-h-[30px] max-w-[30px]" id="pictureGoesHere">
+            </a>
         </section>
         <section class="event_post">
-            <img id="eventImg" class="block">
+            <img id="eventImg" class="block" alt="Event Display Photo">
         </section>
     </header>
 
     <!-- Main Body -->
     <!-- <main class="flex flex-col mx-auto justify-center max-w-[390px]"> -->
     <main class="flex justify-center flex-col md:min-w-[768px]  md:mx-auto">
+
         <section class="mx-[22px]">
             <h1 class="text-3xl font-bold" id="eventTitle"></h1>
             <h5 class="w-[85%] text-[15px] ml-2 mt-2" id="eventDescription">
@@ -159,7 +164,6 @@
             <textarea class="flex form-control mx-[30px] border-2 rounded-[16px] p-4 my-2 border-gray-300"
                 id="messageDescription" rows="3" placeholder="Type your message here"></textarea>
             <button type="button" class="btn py-1 text-lg mr-5" onclick="writeMessage()">Submit</button>
-        </div>
     </main>
     <footer class="sticky bottom-0 mt-auto bg-[#2e394f]" id="footerNav">
     </footer>
@@ -170,11 +174,13 @@
     <!-- Javascript -->
     <script src="./scripts/firebaseAPI_TEAM09.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/main.js"></script>
+    <!-- <script src="./scripts/main.js"></script> -->
+    <!-- Currently we've used show_event_cards for the main display so main.js doesn't do anything. -->
     <script src="./scripts/write_message.js"></script>
     <script src="./scripts/show_event_cards.js"></script>
     <script src="./scripts/event_detail.js"></script>
     <script src="./scripts/message_list.js"></script>
+    <script src="./scripts/profile_picture_only.js"></script>
 </body>
 
 </html>
