@@ -224,21 +224,12 @@ main h1 {
   text-overflow: ellipsis;
 }
 
-/* Event Detail Page */
-
-/* Add CSS styles for the card container with vertical scrolling */
-/* Adjust the maximum height as needed */
-/* max-height: 450px;
-  overflow-y: auto */
-/* .messageCardContainer {
-} */
-
-/* Style the individual cards as needed */
-/* Add margin between cards */
-/* Adjust the width as per your design, leaving a little space for margins */
-/* .messageCard {
-} */
-
+/* Create Event Page */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
 /* Temp CSS Here */
 /* Unused?? */
 .search {
