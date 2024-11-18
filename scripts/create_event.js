@@ -1,21 +1,52 @@
 var ImageFile;
-var image;
+// var eventImage;
 var title;
 var dateTime;
+// const eventImage = document.getElementById("eventImage");
+// function listenFileSelect() {
+//   //listen for file selection
+//   var fileInput = document.getElementById("image");
+//   const eventImage = document.getElementById("eventImage");
 
-function listenFileSelect() {
-  //listen for file selection
-  var fileInput = document.getElementById("image");
-  const image = document.getElementById("user_pic");
+//   //when a change happens to the File Chooser Input
+//   fileInput.addEventListener("change", function (e) {
+//     ImageFile = e.target.files[0];
+//     var blob = URL.createObjectURL(ImageFile);
+//     image.src = blob; //Display this image
+//   });
+// }
+// listenFileSelect();
 
-  //when a change happens to the File Chooser Input
-  fileInput.addEventListener("change", function (e) {
-    ImageFile = e.target.files[0];
-    var blob = URL.createObjectURL(ImageFile);
-    image.src = blob; //Display this image
-  });
+function saveEventPicture() {
+  // Get the selected avatar
+  const selectedEventPicture =
+    document.querySelector("input:checked").dataset.url;
+
+  // Display the selected image immediately
+  document.getElementById(
+    "selectedPicture"
+  ).src = `images/${selectedEventPicture}`;
+
+  // Save the event image choice in localStorage
+  localStorage.setItem("eventPicture", selectedEventPicture);
 }
-listenFileSelect();
+var savedEventPicture = localStorage.getItem("eventPicture");
+
+function loadEventPicture() {
+  if (savedEventPicture) {
+    document.getElementById(
+      "selectedPicture"
+    ).src = `images/${savedEventPicture}`;
+  }
+  var radios = document.querySelectorAll(".eventPictureContainer");
+  for (const radio of radios) {
+    radio.addEventListener("click", saveEventPicture);
+  }
+}
+function populateSelectedEventPicture() {
+  loadEventPicture();
+}
+populateSelectedEventPicture();
 
 function createEvent() {
   var eventInfo = db.collection("events");
@@ -27,6 +58,7 @@ function createEvent() {
         eventInfo
           .add({
             host: user.uid,
+            eventPicture: selectedEventPicture,
             title: title,
             description: document.getElementById("description").value,
             category: category.options[category.selectedIndex].value,
@@ -48,36 +80,37 @@ function createEvent() {
     });
 }
 
-function uploadPic(postDocID) {
-  console.log("inside uploadPic " + postDocID);
-  var storageRef = storage.ref("images/" + postDocID + ".jpg");
+// Disabled the following due to Firebase's storage limitations. Offer options of images instead as a work around as per Carly's suggestions in Tech Tips in Slack. - Pearly
+// function uploadPic(postDocID) {
+//   console.log("inside uploadPic " + postDocID);
+//   var storageRef = storage.ref("images/" + postDocID + ".jpg");
 
-  storageRef
-    .put(ImageFile)
+//   storageRef
+//     .put(ImageFile)
 
-    .then(function () {
-      console.log("2. Uploaded to Cloud Storage.");
-      storageRef
-        .getDownloadURL()
+//     .then(function () {
+//       console.log("2. Uploaded to Cloud Storage.");
+//       storageRef
+//         .getDownloadURL()
 
-        .then(function (url) {
-          console.log("3. Got the download URL.");
-          image = url;
-          db.collection("events")
-            .doc(postDocID)
-            .update({
-              image: url,
-            })
-            .then(function () {
-              console.log("4. Added pic URL to Firestore.");
-              savePostInfoforUser(postDocID);
-            });
-        });
-    })
-    .catch((error) => {
-      console.log("error uploading to cloud storage");
-    });
-}
+//         .then(function (url) {
+//           console.log("3. Got the download URL.");
+//           image = url;
+//           db.collection("events")
+//             .doc(postDocID)
+//             .update({
+//               image: url,
+//             })
+//             .then(function () {
+//               console.log("4. Added pic URL to Firestore.");
+//               savePostInfoforUser(postDocID);
+//             });
+//         });
+//     })
+//     .catch((error) => {
+//       console.log("error uploading to cloud storage");
+//     });
+// }
 
 //saves the post information for the user, in an array
 function savePostInfoforUser(postDocID) {
