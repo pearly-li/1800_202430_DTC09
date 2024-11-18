@@ -1,11 +1,19 @@
-<section class="flex justify-center h-[10vw] max-h-[30px] my-3">
-    <nav class="reletive flex flex-row justify-center w-full max-w-screen-sm">
+<section class="flex items-center flex-col mx-auto w-full py-2 bg-[#2e394f]">
+    <nav class="reletive flex flex-row justify-between w-full max-w-screen-sm ">
+        <a href="javascript:history.go(-1)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px] text-white flex flex-col"
+                x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
+                stroke-width="2">
+                <path d="M5 12l14 0"></path>
+                <path d="M5 12l6 6"></path>
+                <path d="M5 12l6 -6"></path>
+            </svg>
+        </a>
         <div class="flex items-center">
-            <span id="page_label_goes_here"></span>
+            <span class="text-[20px] font-bold tracking-wide  text-white" id="page_label_goes_here"></span>
         </div>
-
-        <a href="./user_profile.html" class="absolute right-0 flex flex-row items-center pr-3">
-            <p id="name_goes_here" class="hidden md:flex pr-3"></p>
+        <a href="./user_profile.html" class="mr-2">
             <img src="./images/user.png" class="w-[10vw] h-[10vw] max-h-[30px] max-w-[30px]" id="pictureGoesHere">
         </a>
     </nav>
