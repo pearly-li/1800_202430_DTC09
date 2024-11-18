@@ -228,7 +228,7 @@ function showLikedPosts(user) {
             if (document.getElementById("event_card_template"))
                 var cardTemplate = document.getElementById("event_card_template");
 
-            if (userDoc.data().likePost) {
+            if (userDoc.data().likePosts) {
                 // Get the Array of likePosts
                 var likes = userDoc.data().likePosts
                 console.log(likes)
