@@ -15,7 +15,7 @@ function listenFileSelect() {
     image.src = blob; //Display this image
   });
 }
-listenFileSelect();
+// listenFileSelect();
 
 function createEvent() {
   var eventInfo = db.collection("events");
@@ -30,8 +30,10 @@ function createEvent() {
             title: title,
             description: document.getElementById("description").value,
             category: category.options[category.selectedIndex].value,
-            scale: parseInt(document.getElementById("scale").value),
-            location: document.getElementById("address").value,
+            activtyLevel: parseInt(
+              document.getElementById("activityLevel").value
+            ),
+            location: document.getElementById("location").value,
             dateTime: dateTime,
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
           })
@@ -45,11 +47,6 @@ function createEvent() {
       }
     });
 }
-
-create_event_btn = document.getElementById("create_event_btn");
-create_event_btn.addEventListener("click", () => {
-  createEvent();
-});
 
 function uploadPic(postDocID) {
   console.log("inside uploadPic " + postDocID);
