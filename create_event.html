@@ -35,54 +35,93 @@
 
     <!-- Main Body -->
     <main class="flex justify-center flex-col space-y-3 px-10 md:px-0 min-w-full md:min-w-[768px] mx-0 md:mx-auto">
-        <form class="flex flex-col gap-y-7">
-            <div class="flex flex-col gap-y-2">
+        <form novalidate id="form" class="flex flex-col gap-y-7 group">
+            <!-- <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
                     <h1 class="text-xl">Event Picture</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
-                <input type="file" id="image" accept="image/*" class="rounded text-[gray] pl-2">
-                <img id="user_pic">
+                <input required type="file" id="image" accept="image/*" class="rounded text-[gray] pl-2 p-1">
+                <span id="eventPictureError" class="error-message"></span> -->
+
+            <!-- <img id="user_pic"> -->
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
                     <h1 class="text-xl">Title</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
-                <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2">
+                <input required type="text" id="title" placeholder="Event Title" class="border rounded pl-2 p-1
+                    invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer">
+                <span id="titleError"
+                    class="error-message mt-2 invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                    Please enter an event
+                    title.</span>
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
                     <h1 class="text-xl">Description</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
-                <input type="text" id="description" placeholder="Event Description" class="border rounded pl-2">
+                <input required type="text" id="description" placeholder="Event Description"
+                    class="peer border rounded pl-2 p-1 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 ">
+                <span id="descriptionError"
+                    class="error-message mt-2 invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                    Please enter an
+                    event description.</span>
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
                     <h1 class="text-xl">Category</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
-                <select id="category" class="max-w-[200px] border rounded">
+                <select id="category" class="max-w-[200px] border rounded p-1 peer">
                     <option value="">Choose one</option>
                     <option value="Game">Game</option>
                     <option value="Sports">Sports</option>
+                    <option value="Food/Drink">Food/Drink</option>
                 </select>
+                <span id="categoryInput requiredError"
+                    class="error-message mt-2 invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                    Please select a
+                    category.</span>
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
-                    <h1 class="text-xl">Participation Number</h1>
+                    <h1 class="text-xl">Activity Level</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
-                <input type="number" id="scale" placeholder="Maximum Participation Number"
-                    class="border rounded pl-2 max-w-[255px]">
+                <input required type="text" id="activityLevel" placeholder="Activity Level"
+                    class="border rounded pl-2 p-1 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
+                    min="1" max="10">
+                <span id="activityLevelError"
+                    class="error-message mt-2 invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                    Please enter an
+                    activity level between 1-10. 1 being low energy, 10 being high energy.</span>
+            </div>
+            <div class="flex flex-col gap-y-2">
+                <div class="flex gap-1">
+                    <h1 class="text-xl">Maximum Number of Participants</h1>
+                    <h1 class="text-red-600">*</h1>
+                </div>
+                <input required type="number" id="capacity" placeholder="Maximum Number of Participants"
+                    class="border rounded pl-2 p-1 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 max-w-[300px] peer">
+                <span id="capacityError"
+                    class="error-message mt-2 invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                    Please enter the
+                    maximum number of participants allowed.</span>
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
                     <h1 class="text-xl">Location</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
-                <input type="text" id="address" placeholder="Event Address" class="border rounded pl-2 max-w-[310px]">
+                <input required type="text" id="location" placeholder="Event Address"
+                    class="border rounded pl-2 p-1 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer">
+                <span id="locationError"
+                    class="error-message mt-2 invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block ">
+                    Please enter a
+                    location address.</span>
             </div>
             <section class="flex flex-row">
                 <div class="flex flex-col gap-y-2 mr-3">
@@ -90,12 +129,19 @@
                         <h1 class="text-xl">Date and Time</h1>
                         <h1 class="text-red-600">*</h1>
                     </div>
-                    <input type="datetime-local" id="dateTime" placeholder="Event Date and Time"
-                        class="border rounded pl-2">
+                    <input required type="datetime-local" id="dateTime" placeholder="Event Date and Time"
+                        class="border rounded pl-2 p-1 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer">
+                    <span id="dateTimeError"
+                        class="error-message mt-2 invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                        Please enter
+                        the date and time of the event.</span>
                 </div>
             </section>
-            <button id="create_event_btn" class=" ml-10 self-center btn border py-1 rounded-full text-lg">Create
-                Event</button>
+            <button id="create_event_btn"
+                class=" ml-10 self-center btn border py-1 rounded-full text-lg group-invalid:pointer-events-none group-invalid:opacity-30"><input
+                    name="Submit" type="submit" value="Create Event"></button>
+
+
         </form>
     </main>
 
