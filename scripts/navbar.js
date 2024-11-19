@@ -1,3 +1,4 @@
+// Disabled the following since they're not being used. -Pearly
 // function getNameFromAuth() {
 //   firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
@@ -13,11 +14,11 @@
 // }
 // getNameFromAuth();
 
-function getPageName() {
-  document.getElementById("page_label_goes_here").innerHTML =
-    document.getElementById("page_label").innerHTML;
-}
-getPageName();
+// function getPageName() {
+//   document.getElementById("page_label_goes_here").innerHTML =
+//     document.getElementById("page_label").innerHTML;
+// }
+// getPageName();
 
 var originalPagePosition = window.scrollY;
 
