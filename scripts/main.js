@@ -57,58 +57,59 @@ function displayUpcomingEventCards() {
                         newCard.querySelector('img').src = image;
                         newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
 
-                        if (document.getElementById("upcoming_browsing_list"))
-                            document.getElementById("upcoming_browsing_list").appendChild(newCard);
+                        document.getElementById("upcoming_browsing_list").appendChild(newCard);
+                    }
+
+                    if (document.getElementById("upcoming_browsing_list").innerHTML == "") {
+                        document.getElementById("upcoming_browsing_list").innerHTML = `<p class="mx-auto my-20">No Events Found.</p>`
                     }
                 })
             })
     }
 }
 displayUpcomingEventCards()
-    
+
 function displayUserSchedule(user) {
-    if (document.getElementById("user_event_schedule_template")) {
-        var cardTemplate = document.getElementById("user_event_schedule_template");
-        var eventIDs = []
+    var cardTemplate = document.getElementById("user_event_schedule_template");
+    var eventIDs = []
 
-        db.collection("users").doc(user.uid)
-            .get()
-            .then(userDoc => {
-                if (userDoc.data().eventAttend) {
-                    eventIDs = userDoc.data().eventAttend
-                    console.log(eventIDs)
-                    
-                    db.collection("events")
-                        .orderBy("dateTime")
-                        .get()
-                        .then(allEvents => {
-                            allEvents.forEach(doc => {
-                                if (eventIDs.includes(doc.id)) {
-                                    var dateTime = new Date(doc.data().dateTime);
-                                    var dateEachComponent = getDateList(dateTime)
-                                    var today = new Date();
-                                    var todayEachComponent = getDateList(today)
-            
-                                    if (compareDates(todayEachComponent, dateEachComponent)) {
-                                        var title = doc.data().title;
-                                        var image = doc.data().image
-                                        var docID = doc.id;
-                                        let newCard = cardTemplate.content.cloneNode(true);
-            
-                                        newCard.querySelector(".schedule_card_title").innerHTML = title;
-                                        newCard.querySelector(".schedule_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
-                                        newCard.querySelector(".schedule_card_time").innerHTML = formatTime(dateEachComponent);
-                                        newCard.querySelector('img').src = image;
-                                        newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
-            
-                                        if (document.getElementById("user_event_schedule"))
-                                            document.getElementById("user_event_schedule").appendChild(newCard);
-                                    }
+    db.collection("users").doc(user.uid)
+        .get()
+        .then(userDoc => {
+            if (userDoc.data().eventAttend) {
+                document.getElementById("user_event_schedule").innerHTML = ""
+                eventIDs = userDoc.data().eventAttend
+                console.log(eventIDs)
+
+                db.collection("events")
+                    .orderBy("dateTime")
+                    .get()
+                    .then(allEvents => {
+                        allEvents.forEach(doc => {
+                            if (eventIDs.includes(doc.id)) {
+                                var dateTime = new Date(doc.data().dateTime);
+                                var dateEachComponent = getDateList(dateTime)
+                                var today = new Date();
+                                var todayEachComponent = getDateList(today)
+
+                                if (compareDates(todayEachComponent, dateEachComponent)) {
+                                    var title = doc.data().title;
+                                    var image = doc.data().image
+                                    var docID = doc.id;
+                                    let newCard = cardTemplate.content.cloneNode(true);
+
+                                    newCard.querySelector(".schedule_card_title").innerHTML = title;
+                                    newCard.querySelector(".schedule_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
+                                    newCard.querySelector(".schedule_card_time").innerHTML = formatTime(dateEachComponent);
+                                    newCard.querySelector('img').src = image;
+                                    newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
+
+                                    document.getElementById("user_event_schedule").appendChild(newCard);
                                 }
-                            })
+                            }
                         })
-                }
-            })
+                    })
+            } 
+        })
 
-    }           
-}
+}           
