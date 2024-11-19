@@ -27,58 +27,62 @@ function saveEventPicture() {
     "selectedPicture"
   ).src = `images/${selectedEventPicture}`;
 
-  // Save the event image choice in localStorage
+  // // Save the event image choice in localStorage
   localStorage.setItem("eventPicture", selectedEventPicture);
 }
-var savedEventPicture = localStorage.getItem("eventPicture");
 
-function loadEventPicture() {
-  if (savedEventPicture) {
-    document.getElementById(
-      "selectedPicture"
-    ).src = `images/${savedEventPicture}`;
-  }
+function eventPictureListener() {
   var radios = document.querySelectorAll(".eventPictureContainer");
   for (const radio of radios) {
     radio.addEventListener("click", saveEventPicture);
   }
 }
-function populateSelectedEventPicture() {
-  loadEventPicture();
-}
-populateSelectedEventPicture();
+window.onload = eventPictureListener;
 
 function createEvent() {
   var eventInfo = db.collection("events");
   var category = document.getElementById("category");
-  title = document.getElementById("title").value;
-  (dateTime = document.getElementById("dateTime").value),
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        eventInfo
-          .add({
-            host: user.uid,
-            eventPicture: selectedEventPicture,
-            title: title,
-            description: document.getElementById("description").value,
-            category: category.options[category.selectedIndex].value,
-            activtyLevel: parseInt(
-              document.getElementById("activityLevel").value
-            ),
-            location: document.getElementById("location").value,
-            dateTime: dateTime,
-            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-          })
-          .then((doc) => {
-            console.log("1. Post document added!");
-            console.log(doc.id);
-            uploadPic(doc.id);
-          });
-      } else {
-        console.log("Error, no user signed in");
-      }
-    });
+  var title = document.getElementById("title").value;
+  var dateTime = document.getElementById("dateTime").value;
+  var savedEventPicture = localStorage.getItem("eventPicture");
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      eventInfo
+        .add({
+          host: user.uid,
+          eventPicture: savedEventPicture,
+          title: title,
+          description: document.getElementById("description").value,
+          category: category.options[category.selectedIndex].value,
+          activtyLevel: parseInt(
+            document.getElementById("activityLevel").value
+          ),
+          location: document.getElementById("location").value,
+          dateTime: dateTime,
+          last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .then((doc) => {
+          alert("Event posted.");
+          console.log("1. Post document added!");
+          console.log(doc.id);
+          // uploadPic(doc.id);
+        });
+    } else {
+      console.log("Error, no user signed in");
+    }
+  });
 }
+create_event_btn = document.getElementById("create_event_btn");
+// Apologies for the long code. TLDR; If the selected img src is "" (the default) or the form required fields are not inputted, then we tell the user what error they made and how to fix it. These are the two scenarios which are not caught by our input required fields because they use radio boxes or are date/time selectors.
+create_event_btn.addEventListener("click", function (event) {
+  if (document.getElementById("selectedPicture").getAttribute("src") == "") {
+    document.getElementById("pictureError").classList.remove("invisible");
+  } else if (!document.getElementById("form").reportValidity()) {
+    document.getElementById("dateTimeError").classList.remove("invisible");
+  } else {
+    createEvent();
+  }
+});
 
 // Disabled the following due to Firebase's storage limitations. Offer options of images instead as a work around as per Carly's suggestions in Tech Tips in Slack. - Pearly
 // function uploadPic(postDocID) {
