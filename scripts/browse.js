@@ -92,7 +92,7 @@ function filterResults() {
             })
 
     });
-    
+
     console.log(eventBrowsingList)
     console.log("len")
     console.log(eventBrowsingList.length)
@@ -140,10 +140,10 @@ function displayResults() {
 
 // Arrays of the navbar buttons 
 firstNavButtons = [
-    {"id": "prevBtn", "text": "<", "class": "navBtn"}
+    { "id": "prevBtn", "text": "<", "class": "navBtn" }
 ]
 lastNavButtons = [
-    {"id": "nextBtn", "text": ">", "class": "navBtn"}
+    { "id": "nextBtn", "text": ">", "class": "navBtn" }
 ]
 
 function createAndAppendBtn(id, text, className) {
@@ -173,7 +173,7 @@ function createPageBtn() {
     } else {
         maxIndex += 4
     }
-        
+
 
 
     for (index; index <= maxIndex; index++) {
@@ -195,11 +195,11 @@ function createPageBtn() {
 function updateNavbarButtons() {
     // Resets the navbar
     document.getElementById("pagination_navbar").innerHTML = ""
-    
+
     firstNavButtons.forEach(button => createAndAppendBtn(button.id, button.text, button.class))
-    
+
     createPageBtn()
-    
+
     lastNavButtons.forEach(button => createAndAppendBtn(button.id, button.text, button.class))
 
     var currentPageBtn = document.getElementById(`navBtn${currentPage}`)

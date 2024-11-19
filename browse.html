@@ -40,28 +40,28 @@
                 <input type="search" id="default-search"
                     class="block w-full p-4 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-700 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search Events" required />
+                <button class="btn float-right flex" id="searchEvent">Search</button>
             </div>
-            <div>
-                <select class="ml-7" id="size">
+            <div class="flex-auto">
+                <select class="" id="size">
                     <option value="">Size of Event</option>
                     <option value="one on one">1</option>
                     <option value="small">2-6</option>
                     <option value="medium">7-12</option>
                     <option value="large">13+</option>
                 </select>
-                <select class="ml-7" id="type">
+                <select class="" id="type">
                     <option value="">Type of Event</option>
                     <option value="in person">In-Person</option>
                     <option value="virtual">Virtual</option>
                 </select>
-                <input type="date" id="date" class="ml-8">
+                <input type="date" id="date" class="pl-1">
             </div>
-            <button class="btn float-right flex" id="searchEvent">Search</button>
         </section>
 
         <div id="browsing_list" class="flex flex-col gap-y-3">
         </div>
-        
+
         <div id="pagination_navbar" class="flex flex-row gap-x-1 mx-auto">
         </div>
     </main>
