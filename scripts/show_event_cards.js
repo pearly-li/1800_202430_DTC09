@@ -103,40 +103,6 @@ function formatTime(eventDate) {
     return `${eventDate.hour}:${eventDate.minute} ${timeSuffix}`
 }
 
-function displayEventCards() {
-    if (document.getElementById("event_card_template")) {
-        var cardTemplate = document.getElementById("event_card_template");
-
-        db.collection("events")
-            .get()
-            .then(allEvents => {
-                allEvents.forEach(doc => {
-                    var dateTime = new Date(doc.data().dateTime);
-                    var dateEachComponent = getDateList(dateTime)
-                    var today = new Date();
-                    var todayEachComponent = getDateList(today)
-
-                    if (compareDates(todayEachComponent, dateEachComponent)) {
-                        var title = doc.data().title;
-                        var image = doc.data().image
-                        var docID = doc.id;
-                        let newCard = cardTemplate.content.cloneNode(true);
-
-                        newCard.querySelector(".event_card_title").innerHTML = title;
-                        newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
-                        newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
-                        newCard.querySelector('img').src = image;
-                        newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
-
-                        if (document.getElementById("browsing_list"))
-                            document.getElementById("browsing_list").appendChild(newCard);
-                    }
-                })
-            })
-        }
-    }
-displayEventCards()
-
 function displayUpcomingEventCards() {
     if (document.getElementById("event_card_template")) {
         var cardTemplate = document.getElementById("event_card_template");
