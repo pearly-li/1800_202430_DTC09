@@ -82,13 +82,11 @@ function saveProfilePicture() {
 
 function loadProfilePicture() {
   // Load the saved profile picture from localStorage, if available
-  let savedPicture = localStorage.getItem("profilePicture");
+
   if (savedPicture) {
     document.getElementById("selectedPicture").src = `images/${savedPicture}`;
-  } else {
-    console.log("No picture saved");
   }
-  window.onload = loadProfilePicture;
+
   // Needed to find radio buttons, within the form, and then add event listeners. We went with addEventListener over buttononlick since that seems like the plan we're used to.
 
   var radios = document.querySelectorAll(".avatarContainer");
