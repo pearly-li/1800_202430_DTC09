@@ -50,7 +50,7 @@ function clickRemoveFiltersButton() {
 
 
 function loadAllEvents() {
-    db.collection("events")
+    return db.collection("events")
         .orderBy("dateTime")
         .get()
         .then(allEvents =>
@@ -293,19 +293,20 @@ function displayResults() {
 
 function setup() {
     console.log("Setup")
-    loadAllEvents()
+    loadAllEvents().then(() => {
+        eventBrowsingList = LIST_ALL_EVENTS;
+        filterResults()
+    
+        eventBrowsingListSize = eventBrowsingList.length
+        maxEventPageNumber = Math.ceil(eventBrowsingListSize / 10)
+        console.log(Math.ceil(eventBrowsingListSize / 10))
+        console.log(eventBrowsingList)
+    
+    
+        updateNavbarButtons()
+        displayResults()
+        console.log(`LIST_ALL_EVENTS: ${LIST_ALL_EVENTS} \neventBrowsingList: ${eventBrowsingList} \neventBrowsingListSize: ${eventBrowsingListSize}`)
+    })
 
-    eventBrowsingList = LIST_ALL_EVENTS;
-    filterResults()
-
-    eventBrowsingListSize = eventBrowsingList.length
-    maxEventPageNumber = Math.ceil(eventBrowsingListSize / 10)
-    console.log(Math.ceil(eventBrowsingListSize / 10))
-    console.log(eventBrowsingList)
-
-
-    updateNavbarButtons()
-    displayResults()
-    console.log(`LIST_ALL_EVENTS: ${LIST_ALL_EVENTS} \neventBrowsingList: ${eventBrowsingList} \neventBrowsingListSize: ${eventBrowsingListSize}`)
 }
 setup()
