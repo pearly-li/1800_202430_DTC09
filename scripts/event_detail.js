@@ -103,7 +103,6 @@ function checkUserAttendance() {
           if (eventInfo.data()["participants"].includes(user.uid)) {
             text = "Cancel";
             pressAttend = 1;
-            chatImg.classList.remove(`hidden`);
           }
         }
         document.getElementById("attendBtn").innerText = text;
@@ -132,7 +131,6 @@ function attendEvent() {
           .update({
             eventAttend: firebase.firestore.FieldValue.arrayUnion(eventID),
           });
-        chatImg.classList.remove(`hidden`);
         db.collection("events")
           .doc(eventID)
           .update({
@@ -144,7 +142,6 @@ function attendEvent() {
           .update({
             eventAttend: firebase.firestore.FieldValue.arrayRemove(eventID),
           });
-        chatImg.classList.add(`hidden`);
         db.collection("events")
           .doc(eventID)
           .update({
@@ -161,8 +158,7 @@ function attendEvent() {
 function notHostFooter() {
   footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
             <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
-            <button><img id="chatImg" src="./images/chat.png" class="w-[30px] h-[30px] hidden"></button>
-                <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
+            <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
         </section>`;
   checkUserLiked();
   checkUserAttendance();
@@ -192,8 +188,7 @@ function hostOrNot() {
           if (userInfo.data()["myposts"].includes(eventID)) {
             //check if the user has the eventID in the "myposts" field
             footerNavDesign.innerHTML = `<section class="flex gap-5 my-4 justify-center">
-                    <h1 class="text-white font-bold text-[20px]">You're the host of the event</h1>
-                    <button><img src="./images/chat.png" class="w-[30px] h-[30px]"></button></section>`;
+                    <h1 class="text-white font-bold text-[20px]">You're the host of the event</h1></section>`;
           } else {
             notHostFooter();
           }
