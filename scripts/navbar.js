@@ -14,11 +14,11 @@
 // }
 // getNameFromAuth();
 
-// function getPageName() {
-//   document.getElementById("page_label_goes_here").innerHTML =
-//     document.getElementById("page_label").innerHTML;
-// }
-// getPageName();
+function getPageName() {
+  document.getElementById("page_label_goes_here").innerHTML =
+    document.getElementById("page_label").innerHTML;
+}
+getPageName();
 
 var originalPagePosition = window.scrollY;
 
