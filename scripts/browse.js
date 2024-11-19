@@ -1,25 +1,30 @@
 var LIST_ALL_EVENTS = []
 var eventBrowsingList = []
+var eventBrowsingListSize = eventBrowsingList.length
 
-var currentPage = 1
-var maxPageNumber = 1
+var currentEventPageNumber = 1
+var maxEventPageNumber = 1
 
 
-var eventSearchKeyword = ""
-var eventSize = ""
-var eventType = ""
-var eventDate = ""
+var filterEventSearchKeyword = ""
+var filterEventSize = ""
+var filterEventType = ""
+var filterEventDate = ""
 
-searchBtn = document.getElementById("searchEvent")
-searchBtn.addEventListener("click", () => {
-    eventSearchKeyword = document.getElementById("default-search").value.toLowerCase()
-    eventSize = document.getElementById("size").value
-    eventType = document.getElementById("type").value
-    eventDate = document.getElementById("date").value
+let filterSearchBtn = document.getElementById("searchEvent")
+filterSearchBtn.addEventListener("click", () => {
+    filterEventSearchKeyword = document.getElementById("default-search").value.toLowerCase()
+    filterEventSize = document.getElementById("size").value
+    filterEventType = document.getElementById("type").value
+    filterEventDate = document.getElementById("date").value
 
     eventBrowsingList = LIST_ALL_EVENTS;
     filterResults()
-    //displayResults()
+    eventBrowsingListSize = eventBrowsingList.length
+    maxEventPageNumber = Math.ceil(eventBrowsingListSize / 10)
+
+    updateNavbarButtons()
+    displayResults()
 })
 
 
@@ -30,9 +35,8 @@ function loadAllEvents() {
         .then(allEvents =>
             allEvents.forEach(doc => {
                 LIST_ALL_EVENTS.push(doc.id)
+                console.log(LIST_ALL_EVENTS)
             }));
-
-    eventBrowsingList = LIST_ALL_EVENTS;
 }
 
 function filterResults() {
@@ -40,46 +44,46 @@ function filterResults() {
         db.collection("events").doc(docID)
             .get()
             .then(doc => {
-                if (eventSearchKeyword != "") {
+                if (filterEventSearchKeyword != "") {
                     keywords = doc.data().title.toLowerCase().split(" ")
-                    if (!(keywords.includes(eventSearchKeyword))) {
+                    if (!(keywords.includes(filterEventSearchKeyword))) {
                         eventBrowsingList = eventBrowsingList.filter(id => id !== docID)
                     }
                 }
 
-                if (eventSize == "one on one") {
+                if (filterEventSize == "one on one") {
                     console.log("Filter by size")
                     if (doc.data().scale != 1) {
                         eventBrowsingList = eventBrowsingList.filter(id => id !== docID)
                     }
-                } else if (eventSize == "small") {
+                } else if (filterEventSize == "small") {
                     if (doc.data().scale < 2 || doc.data().scale > 6) {
                         eventBrowsingList = eventBrowsingList.filter(id => id !== docID)
                     }
-                } else if (eventSize == "medium") {
+                } else if (filterEventSize == "medium") {
                     if (doc.data().scale < 7 || doc.data().scale > 12) {
                         eventBrowsingList = eventBrowsingList.filter(id => id !== docID)
                     }
-                } else if (eventSize == "large") {
+                } else if (filterEventSize == "large") {
                     if (doc.data().scale < 13) {
                         eventBrowsingList = eventBrowsingList.filter(id => id !== docID)
                     }
                 }
 
-                if (eventSize == "in person") {
+                if (filterEventSize == "in person") {
                     console.log("Filter by type")
                     if (doc.data().scale != "in person") {
                         eventBrowsingList = eventBrowsingList.filter(id => id !== docID)
                     }
-                } else if (eventSize == "virtual") {
+                } else if (filterEventSize == "virtual") {
                     if (doc.data().scale != "virtual") {
                         eventBrowsingList = eventBrowsingList.filter(id => id !== docID)
                     }
 
-                    if (eventDate != "") {
+                    if (filterEventDate != "") {
                         dateTime = new Date(doc.data().dateTime);
                         dateEachComponent = getDateList(dateTime);
-                        eventDateTime = new Date(`${eventDate}, 0:00`);
+                        eventDateTime = new Date(`${filterEventDate}, 0:00`);
                         eventDateTimeEachComponent = getDateList(eventDateTime)
 
                         if (!(dateEachComponent.year === eventDateTimeEachComponent.year &&
@@ -92,59 +96,12 @@ function filterResults() {
             })
 
     });
-    
-    console.log(eventBrowsingList)
-    console.log("len")
-    console.log(eventBrowsingList.length)
 
-    maxPageNumber = Math.ceil(eventBrowsingList.length / 10)
-}
-
-function displayResults() {
-    var cardTemplate = document.getElementById("event_card_template");
-
-    index = (currentPage * 10) - 10
-    maxIndex = currentPage * 10
-
-    for (index; index < maxIndex; index++) {
-        eventDoc = eventBrowsingList[index]
-
-        db.collection("events").doc(eventDoc)
-            .get()
-            .then(doc => {
-                dateTime = new Date(doc.data().dateTime);
-                dateEachComponent = getDateList(dateTime)
-                today = new Date();
-                todayEachComponent = getDateList(today)
-
-                if (compareDates(todayEachComponent, dateEachComponent)) {
-                    title = doc.data().title;
-                    image = doc.data().image
-                    docID = doc.id;
-                    newCard = cardTemplate.content.cloneNode(true);
-
-                    newCard.querySelector(".event_card_title").innerHTML = title;
-                    newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
-                    newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
-                    newCard.querySelector('img').src = image;
-                    newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
-
-                    if (document.getElementById("browsing_list"))
-                        document.getElementById("browsing_list").appendChild(newCard);
-                }
-            })
-    }
+    eventBrowsingListSize = eventBrowsingList.length
+    maxEventPageNumber = Math.ceil(eventBrowsingListSize / 10)
 }
 
 
-
-// Arrays of the navbar buttons 
-firstNavButtons = [
-    {"id": "prevBtn", "text": "<", "class": "navBtn"}
-]
-lastNavButtons = [
-    {"id": "nextBtn", "text": ">", "class": "navBtn"}
-]
 
 function createAndAppendBtn(id, text, className) {
     navbar = document.getElementById("pagination_navbar")
@@ -160,77 +117,139 @@ function createAndAppendBtn(id, text, className) {
 function createPageBtn() {
     console.log("Mkn Btns")
     buttonList = []
-    index = currentPage
-    maxIndex = currentPage
+    index = currentEventPageNumber
+    maxIndex = currentEventPageNumber
     console.log(maxIndex)
 
-    if (index + 4 > maxPageNumber) {
-        maxIndex += maxPageNumber - currentPage
-        console.log(currentPage)
-        console.log(maxPageNumber)
-        console.log(maxPageNumber - currentPage)
+    if (index + 4 > maxEventPageNumber) {
+        maxIndex += maxEventPageNumber - currentEventPageNumber
+        console.log(currentEventPageNumber)
+        console.log(maxEventPageNumber)
+        console.log(maxEventPageNumber - currentEventPageNumber)
         console.log(maxIndex)
     } else {
         maxIndex += 4
-    }
-        
-
-
+    }    
+    
     for (index; index <= maxIndex; index++) {
         buttonList.push({ "id": `${index}`, "text": `${index}`, "class": "pageBtn" })
     }
 
+
     console.log(buttonList)
+
+    
+    createAndAppendBtn("prevBtn", "<", "navBtn")
+    document.getElementById("prevBtn").addEventListener("click", () => {
+        currentEventPageNumber -= 1
+        console.log(currentEventPageNumber)
+        updateNavbarButtons()
+    })
 
     buttonList.forEach(button => {
         createAndAppendBtn(button.id, button.text, button.class)
         document.getElementById(`navBtn${button.id}`).addEventListener("click", () => {
-            currentPage = parseInt(button.text)
-            console.log(currentPage)
+            currentEventPageNumber = parseInt(button.text)
+            console.log(currentEventPageNumber)
             updateNavbarButtons()
         })
+    })
+    
+    createAndAppendBtn("nextBtn", ">", "navBtn")
+    document.getElementById("nextBtn").addEventListener("click", () => {
+        currentEventPageNumber += 1
+        console.log(currentEventPageNumber)
+        updateNavbarButtons()
     })
 }
 
 function updateNavbarButtons() {
     // Resets the navbar
     document.getElementById("pagination_navbar").innerHTML = ""
-    
-    firstNavButtons.forEach(button => createAndAppendBtn(button.id, button.text, button.class))
-    
-    createPageBtn()
-    
-    lastNavButtons.forEach(button => createAndAppendBtn(button.id, button.text, button.class))
 
-    var currentPageBtn = document.getElementById(`navBtn${currentPage}`)
+    createPageBtn()
+
+    let currentPageBtn = document.getElementById(`navBtn${currentEventPageNumber}`)
     currentPageBtn.classList.add("bg-slate-200", "hover:bg-slate-400")
     currentPageBtn.disabled = true;
 
 
-    if (currentPage == 1) {
+    if (currentEventPageNumber == 1) {
         console.log("hide prev")
         btn = document.getElementById("prevBtn")
         btn.classList.add("hidden")
     }
-    else if (currentPage == maxPageNumber) {
+    else if (currentEventPageNumber == maxEventPageNumber) {
         console.log("hide next")
         btn = document.getElementById("nextBtn")
         btn.classList.add("hidden")
     }
 
-    document.getElementById("prevBtn").addEventListener("click", () => {
-        currentPage -= 1
-        console.log(currentPage)
-        updateNavbarButtons()
-    })
-    document.getElementById("nextBtn").addEventListener("click", () => {
-        currentPage += 1
-        console.log(currentPage)
-        updateNavbarButtons()
-    })
+    
 }
 
-loadAllEvents()
-filterResults()
-updateNavbarButtons()
-displayResults()
+
+
+function displayResults() {
+    document.getElementById("browsing_list").innerHTML = "";
+
+    var cardTemplate = document.getElementById("event_card_template");
+
+    index = (currentEventPageNumber * 10) - 10
+    maxIndex = currentEventPageNumber * 10
+
+    if (currentEventPageNumber * 10 > eventBrowsingListSize) {
+        maxIndex = index + (eventBrowsingListSize % 10)
+    }
+
+    for (index; index < maxIndex; index++) {
+        eventDoc = eventBrowsingList[index]
+
+        db.collection("events").doc(eventDoc)
+            .get()
+            .then(doc => {
+                dateTime = new Date(doc.data().dateTime);
+                dateEachComponent = getDateList(dateTime)
+                today = new Date();
+                todayEachComponent = getDateList(today)
+
+                if (eventBrowsingListSize != 0) {
+                    if (compareDates(todayEachComponent, dateEachComponent)) {
+                        title = doc.data().title;
+                        image = doc.data().image
+                        docID = doc.id;
+                        newCard = cardTemplate.content.cloneNode(true);
+
+                        newCard.querySelector(".event_card_title").innerHTML = title;
+                        newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
+                        newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
+                        newCard.querySelector('img').src = image;
+                        newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
+
+                        document.getElementById("browsing_list").appendChild(newCard);
+
+                    }
+                }
+                else {
+                    document.getElementById("browsing_list").innerHTML = `<p class="my-5 mx-auto">No Events Found.</p>`
+                }
+            })
+    }
+}
+
+
+
+function setup() {
+    console.log("Setup")
+    loadAllEvents()
+    console.log(LIST_ALL_EVENTS)
+
+    eventBrowsingList = LIST_ALL_EVENTS;
+    eventBrowsingListSize = eventBrowsingList.length
+    maxEventPageNumber = Math.ceil(eventBrowsingListSize / 10)
+    console.log(Math.ceil(eventBrowsingListSize / 10))
+
+    updateNavbarButtons()
+    displayResults()
+}
+setup()
