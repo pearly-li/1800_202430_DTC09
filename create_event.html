@@ -41,50 +41,64 @@
                     <h1 class="text-xl">Event Picture</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
+<<<<<<< HEAD
                 <input required type="file" id="image" accept="image/*" class="rounded text-[gray] pl-2">
                 <img id="user_pic">
                 <span id="pictureError" class="error-message invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                     Please select and image.</span>
+=======
+                <input type="file" id="image" accept="image/*" class="rounded text-[gray] pl-2">
+                <img id="user_pic">
+>>>>>>> c0133550661f3c274fc54f2042c25cdc44bc8e2c
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
                     <h1 class="text-xl">Title</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
+<<<<<<< HEAD
                 <input required type="text" id="title" placeholder="Event Title" class="border rounded pl-2">
                 <span id="titleError" class="error-message invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                     Please enter an event title.</span>
+=======
+                <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2">
+>>>>>>> c0133550661f3c274fc54f2042c25cdc44bc8e2c
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
                     <h1 class="text-xl">Description</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
+<<<<<<< HEAD
                 <input required type="text" id="description" placeholder="Event Description" class="border rounded pl-2">
                 <span id="descriptionError" class="error-message invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                     Please enter an event description.</span>
+=======
+                <input type="text" id="description" placeholder="Event Description" class="border rounded pl-2">
+>>>>>>> c0133550661f3c274fc54f2042c25cdc44bc8e2c
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
                     <h1 class="text-xl">Category</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
-                <select id="category" name="activities" class="max-w-[200px] border rounded p-1 peer">
-                    <option value="chooseOne">Choose one</option>
-                    <option value="Arts & Crafts">Arts & Crafts</option>
-                    <option value="Book Club">Book Club</option>
-                    <option value="Food & Drink">Food/Drink</option>
+                <select id="category" class="max-w-[200px] border rounded">
+                    <option value="">Choose one</option>
                     <option value="Game">Game</option>
                     <option value="Sports">Sports</option>
                 </select>
+<<<<<<< HEAD
                 <span id="categoryInput" class="error-message invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                     Please select a category.</span>
+=======
+>>>>>>> c0133550661f3c274fc54f2042c25cdc44bc8e2c
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
-                    <h1 class="text-xl">Activity Level</h1>
+                    <h1 class="text-xl">Participation Number</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
+<<<<<<< HEAD
                 <input required type="text" id="activityLevel" placeholder="Activity Level"
                     class="border rounded pl-2 p-1 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer" min="1"
                     max="10">
@@ -101,15 +115,23 @@
                     class="border rounded pl-2 max-w-[255px]">
                 <span id="capacityError" class="error-message invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                     Please enter the maximum number of participants allowed.</span>
+=======
+                <input type="number" id="scale" placeholder="Maximum Participation Number"
+                    class="border rounded pl-2 max-w-[255px]">
+>>>>>>> c0133550661f3c274fc54f2042c25cdc44bc8e2c
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
                     <h1 class="text-xl">Location</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
+<<<<<<< HEAD
                 <input required type="text" id="address" placeholder="Event Address" class="border rounded pl-2 max-w-[310px]">
                 <span id="locationError" class="error-message invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block ">
                     Please enter a location address.</span>
+=======
+                <input type="text" id="address" placeholder="Event Address" class="border rounded pl-2 max-w-[310px]">
+>>>>>>> c0133550661f3c274fc54f2042c25cdc44bc8e2c
             </div>
             <section class="flex flex-row">
                 <div class="flex flex-col gap-y-2 mr-3">
@@ -117,10 +139,15 @@
                         <h1 class="text-xl">Date and Time</h1>
                         <h1 class="text-red-600">*</h1>
                     </div>
+<<<<<<< HEAD
                     <input required type="datetime-local" id="dateTime" placeholder="Event Date and Time"
                         class="border rounded pl-2">
                     <span id="dateTimeError" class="error-message invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                         Please enter the date and time of the event.</span>
+=======
+                    <input type="datetime-local" id="dateTime" placeholder="Event Date and Time"
+                        class="border rounded pl-2">
+>>>>>>> c0133550661f3c274fc54f2042c25cdc44bc8e2c
                 </div>
             </section>
             <button id="create_event_btn" class="border py-1 border-black rounded text-lg">Create</button>
