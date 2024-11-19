@@ -53,29 +53,33 @@
             <p class="text-l"> Select an image below.</p>
             <div id="eventPictureOptions" class="container py-2 flex flex-row my-2 justify-center">
                 <label class="eventPictureContainer flex flex-col"><img src="
-                    ./images/draftBeer.jpg" class="object-scale-down w-full"> <input type="radio"
+                    ./images/draftBeer.jpg" class="object-scale-down w-full"> <input required class="" type="radio"
                         data-url="draftBeer.jpg" id="event1" name="eventPicture"></label>
                 <label class="eventPictureContainer flex flex-col"><img src="
-                    ./images/bookClub.jpg" class="object-scale-down w-full"> <input type="radio"
+                    ./images/bookClub.jpg" class="object-scale-down w-full"> <input required class="" type="radio"
                         data-url="bookClub.jpg" id="event2" name="eventPicture"></label>
                 <label class="eventPictureContainer flex flex-col"> <img src="
-                    ./images/tennisGame.jpg" class="object-scale-down w-full"> <input type="radio"
+                    ./images/tennisGame.jpg" class="object-scale-down w-full"> <input required class="" type="radio"
                         data-url="tennisGame.jpg" id="event3" name="eventPicture"></label>
                 <label class="eventPictureContainer flex flex-col"><img src="
-                    ./images/hikeGroup.jpg" class="object-scale-down w-full"> <input type="radio"
+                    ./images/hikeGroup.jpg" class="object-scale-down w-full"> <input required class="" type="radio"
                         data-url="hikeGroup.jpg" id="event4" name="eventPicture"></label>
                 <label class="eventPictureContainer flex flex-col"><img src="
                                                             ./images/cafeMeet.jpg" class="object-scale-down w-full">
-                    <input type="radio" data-url="cafeMeet.jpg" id="event5" name="eventPicture"></label>
+                    <input required class="" type="radio" data-url="cafeMeet.jpg" id="event5"
+                        name="eventPicture"></label>
                 <label class="eventPictureContainer flex flex-col"><img src="
-                    ./images/basketball.jpg" class="object-scale-down w-full"> <input type="radio"
+                    ./images/basketball.jpg" class="object-scale-down w-full"> <input required class="" type="radio"
                         data-url="basketball.jpg" id="event6" name="eventPicture"></label>
 
             </div>
-            <div id="selectedPictureContainer" class="container flex flex-row my-2"></div>
-            <h1 class="text-l font-bold">Selected Picture:</h1> <img class="flex flex-col w-full" id="selectedPicture"
-                src="" alt="Selected event picture">
-            <!-- <img id="eventImage"> -->
+            <h1 class="text-l font-bold">Selected Picture:</h1>
+            <div id="selectedPictureContainer" class="container flex flex-row justify-center items-center my-2">
+                <img class="flex flex-col w-1/2" id="selectedPicture" src="" alt="Selected event picture">
+                <span id="pictureError"
+                    class="error-message invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                    Please select and image.</span>
+                <!-- <img id="eventImage"> -->
             </div>
 
 
@@ -107,13 +111,15 @@
                     <h1 class="text-xl">Category</h1>
                     <h1 class="text-red-600">*</h1>
                 </div>
-                <select id="category" class="max-w-[200px] border rounded p-1 peer">
-                    <option value="">Choose one</option>
+                <select id="category" name="activities" class="max-w-[200px] border rounded p-1 peer">
+                    <option value="chooseOne">Choose one</option>
+                    <option value="Arts & Crafts">Arts & Crafts</option>
+                    <option value="Book Club">Book Club</option>
+                    <option value="Food & Drink">Food/Drink</option>
                     <option value="Game">Game</option>
                     <option value="Sports">Sports</option>
-                    <option value="Food/Drink">Food/Drink</option>
                 </select>
-                <span id="categoryInput requiredError"
+                <span id="categoryInput"
                     class="error-message invisible peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                     Please select a
                     category.</span>
