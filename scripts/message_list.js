@@ -53,6 +53,12 @@ function populateMessages() {
         messageCard.querySelector("#message_description").innerHTML =
           message_description;
         messageCard.querySelector("#reviewer_name").innerHTML = reviewer_name;
+        let reviewerPicture = doc.data().reviewer_profile_picture;
+        if (reviewerPicture) {
+          messageCard.querySelector(
+            "#reviewer_picture"
+          ).src = `images/${reviewerPicture}`;
+        }
         messageCardGroup.appendChild(messageCard);
       });
     });
