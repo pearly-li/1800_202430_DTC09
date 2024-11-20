@@ -157,7 +157,7 @@ function attendEvent() {
 //when user is not a host for the event the user is browsing, display a footer that is different from the host's footer
 function notHostFooter() {
   footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
-            <a href="./main.html"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
+            <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
             <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
             <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
         </section>`;
@@ -189,7 +189,7 @@ function hostOrNot() {
           if (userInfo.data()["myposts"].includes(eventID)) {
             //check if the user has the eventID in the "myposts" field
             footerNavDesign.innerHTML = `<section class="flex gap-3 my-4 justify-between px-3 items-center">
-                    <a href="./main.html"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
+                    <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
                     <button class="bg-white rounded-[5px] font-bold text-xl px-5 min-h-[40px]" id="deleteBtn">Delete The Event</button></section>`;
           } else {
             notHostFooter();
