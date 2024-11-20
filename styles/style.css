@@ -111,8 +111,8 @@ main h1 {
 }
 
 /* Event Details */
-.event_post .pic {
-  height: 260px;
+.eventImg {
+  width: clamp(260px, 60vw, 750px);
 }
 
 /* Event Detail - Reviews */
