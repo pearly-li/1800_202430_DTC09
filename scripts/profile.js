@@ -127,7 +127,7 @@ function saveUserInfo() {
 }
 
 document.getElementById("likedEvents").addEventListener("click", () => {
-  window.location.href = "likedEvents.html";
+  window.location.href = "liked_events.html";
 });
 document.getElementById("logOut").addEventListener("click", () => {
   window.location.href = "index.html";
