@@ -51,7 +51,7 @@
             </a>
         </section>
         <section class="event_post">
-            <img id="eventImg" class="block max-w-screen-md" alt="Event Display Photo">
+            <img id="eventImg" class="block" alt="Event Display Photo">
         </section>
     </header>
 
@@ -64,11 +64,11 @@
             <h5 class="w-[85%] text-[15px] ml-2 mt-2" id="eventDescription">
             </h5>
         </section>
-        <div class="flex items-center ml-[30px] mt-4 gap-2">
+        <div class="flex items-center ml-[30px] mt-7 gap-2">
             <img src="./images/info.png" class="w-[17px] h-[17px]">
             <h1 class="text-2xl font-bold">Event Details</h1>
         </div>
-        <section class="mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px] mt-2">
+        <section class="mx-[30px] bg-[#DCDCDC] rounded-[16px] text-[13px] mt-4 mb-5">
             <div class="flex gap-3 text-center ml-3 mt-3">
                 <img src="./images/person.png" class="w-[17px] h-[17px]">
                 <h5 class="font-bold" id="eventParticipation"></h5>
@@ -109,9 +109,9 @@
 
         <div id="messageBoard" class="flex flex-col justify-items-end">
             <div class="ml-[30px] mt-6 gap-2">
-                <div id="messageBoardHeader" class="flex flex-row items-center">
+                <div id="messageBoardHeader" class="flex flex-row items-center mb-2">
                     <img src="./images/review.png" class="w-[17px] h-[17px] flex-col">
-                    <h1 class="text-2xl font-bold pl-2 flex-col">Message Board:</h1>
+                    <h1 class="text-2xl font-bold pl-2 flex-col">Message Board</h1>
                 </div>
                 <div id="details-go-here"></div>
                 <!-- Here is the container for cards with vertical scrolling -->
@@ -120,7 +120,7 @@
                         <!-- Add your card templates here -->
                         <template id="messageCardTemplate" class="">
                             <div id="messageCard"
-                                class="bg-success border-2 rounded-[16px] border-gray-300 mr-[30px] px-4 pb-4">
+                                class="bg-success border-2 rounded-[16px] border-gray-300 mr-[30px] px-4 pb-4 mt-2">
                                 <div class="card-body bg-light">
                                     <div id="messageHeader" class="flex flex-row justify-between">
                                         <div id="profilePictureNameContainer" class="pt-2 flex items-center">
@@ -129,7 +129,7 @@
                                                 alt="Reviewer Profile Picture" src="./images/user.png">
                                             <p id="reviewer_name" class="flex flex-col pl-4">placeholder</p>
                                         </div>
-                                        <p id="message_created_at" class="flex flex-wrap w-1/3 pt-3 ">placeholder</p>
+                                        <p id="message_created_at" class="flex flex-wrap w-1/3 pt-3">placeholder</p>
 
                                         <!-- Removed last_updated until I can make an edit function -->
                                         <!-- <p class="last_updated">placeholder</p> -->
@@ -149,7 +149,7 @@
             </div>
             <textarea class="flex form-control mx-[30px] border-2 rounded-[16px] p-4 my-2 border-gray-300"
                 id="messageDescription" rows="3" placeholder="Type your message here"></textarea>
-            <button type="button" class="btn py-1 text-lg mr-5" onclick="writeMessage()">Submit</button>
+            <button type="button" class="btn py-1 text-lg mr-[30px]" onclick="writeMessage()">Submit</button>
     </main>
     <footer class="sticky bottom-0 mt-auto bg-[#2e394f]" id="footerNav">
     </footer>
