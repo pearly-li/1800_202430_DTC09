@@ -39,18 +39,18 @@
             <h1 class="text-l font-bold"> Profile Picture Options:</h1>
             <div id="profilePictureOptions" class="container py-2 flex flex-row my-2 justify-center">
                 <!-- Data attributes: JS will change how it's written. HTML expects kebab case with hyphens, but JS expects camelCase -->
-                <label class="avatarContainer flex flex-col"><img src=" ./images/avatar1.png"> <input type="radio"
-                        data-url="avatar1.png" id="avatar1" name="profilePicture"></label>
-                <label class="avatarContainer flex flex-col"><img src=" ./images/avatar2.png"><input type="radio"
-                        data-url="avatar2.png" id="avatar2" name="profilePicture"></label>
-                <label class="avatarContainer flex flex-col"> <img src=" ./images/avatar3.png"> <input type="radio"
-                        data-url="avatar3.png" id="avatar3" name="profilePicture"></label>
-                <label class="avatarContainer flex flex-col"><img src=" ./images/avatar4.png"> <input type="radio"
-                        data-url="avatar4.png" id="avatar4" name="profilePicture"></label>
-                <label class="avatarContainer flex flex-col"><img src=" ./images/avatar5.png"> <input type="radio"
-                        data-url="avatar5.png" id="avatar5" name="profilePicture"></label>
-                <label class="avatarContainer flex flex-col"><img src="./images/avatar6.png"> <input type="radio"
-                        data-url="avatar6.png" id="avatar6" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col mx-1"><img src=" ./images/avatar1.png"> <input class="mt-2"
+                        type="radio" data-url="avatar1.png" id="avatar1" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col mx-1"><img src=" ./images/avatar2.png"><input class="mt-2"
+                        type="radio" data-url="avatar2.png" id="avatar2" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col mx-1"> <img src=" ./images/avatar3.png"> <input class="mt-2"
+                        type="radio" data-url="avatar3.png" id="avatar3" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col mx-1"><img src=" ./images/avatar4.png"> <input class="mt-2"
+                        type="radio" data-url="avatar4.png" id="avatar4" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col mx-1"><img src=" ./images/avatar5.png"> <input class="mt-2"
+                        type="radio" data-url="avatar5.png" id="avatar5" name="profilePicture"></label>
+                <label class="avatarContainer flex flex-col mx-1"><img src="./images/avatar6.png"> <input class="mt-2"
+                        type="radio" data-url="avatar6.png" id="avatar6" name="profilePicture"></label>
             </div>
             <div id="selectedPictureContainer" class="container flex flex-row my-2"></div>
             <h1 class="text-l font-bold">Selected Picture:</h1> <img class="flex flex-col" id="selectedPicture"
@@ -81,7 +81,7 @@
             </div>
         </form>
         <section class="flex flex-col gap-y-9">
-            <section class="items-center flex justify-between mx-12" id="likedEvents">
+            <section class="items-center flex justify-between mx-12 mt-10 mb-5" id="likedEvents">
                 <h1 class="font-bold text-[20px]">Liked Events</h1>
                 <svg xmlns="http://www.w3.org/2000/svg" class="mt-1" x-bind:width="size" x-bind:height="size"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke"
@@ -89,14 +89,15 @@
                     <path d="M9 6l6 6l-6 6"></path>
                 </svg>
             </section>
-            <section class="items-center flex justify-between mx-12" id="setting">
+            <!-- Disabled the Settings section since we don't have anything for that. -->
+            <!-- <section class="items-center flex justify-between mx-12" id="setting">
                 <h1 class="font-bold text-[20px]">Setting</h1>
                 <svg xmlns="http://www.w3.org/2000/svg" class="mt-1" x-bind:width="size" x-bind:height="size"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke"
                     stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
                     <path d="M9 6l6 6l-6 6"></path>
                 </svg>
-            </section>
+            </section> -->
             <section class="items-center flex justify-between mx-12" id="logOut">
                 <h1 class="font-bold text-[20px]">Log out</h1>
                 <svg xmlns="http://www.w3.org/2000/svg" class="mt-1" x-bind:width="size" x-bind:height="size"
