@@ -176,6 +176,51 @@ function notHostFooter() {
   });
 }
 
+function deleteEvent(){
+  firebase.auth().onAuthStateChanged(function (user) {
+    db.collection("users")
+    .doc(user.uid)
+    .update({
+      myposts: firebase.firestore.FieldValue.arrayRemove(eventID)
+    })
+    db.collection("events")
+      .doc(eventID)
+      .get()
+      .then(doc => {
+        var data = doc.data()
+        var participants = data.participants
+        participants.forEach((eachPerson) => {
+          db.collection("users")
+            .doc(eachPerson)
+            .update({
+              eventAttend: firebase.firestore.FieldValue.arrayRemove(eventID)
+            })
+        })
+      })
+    db.collection("users")
+      .where("likePosts", "array-contains", eventID)
+      .get()
+      .then((info) => {
+        if(info.empty) {
+          console.log("There is no one who clicked a like button for the event")
+        } else {
+          info.forEach((doc) => {
+            db.collection("users")
+              .doc(doc.id)
+              .update({
+                likePosts: firebase.firestore.FieldValue.arrayRemove(eventID)
+              })
+          })
+        }
+      })
+    var findEventInfo = db.collection('events').where('host', '==', user.uid);
+    findEventInfo.get().then(doc => doc.forEach(all => { 
+      all.ref.delete() 
+        .then(() => { window.location.href = "./main.html" })
+    }))
+  })
+}
+
 //check if the user is a host for the event the user is browsing
 //if the user is a host for the event, display specific footer for the host
 function hostOrNot() {
@@ -199,7 +244,7 @@ function hostOrNot() {
                               <h1 class="font-bold text-[18px]">Are you sure <br>you want to delete this event?</h1>
                               <section class="flex mt-8 justify-center gap-7">
                                 <button id="closePopup" class="text-[20px] px-10 py-2 border rounded-full bg-[#e1ae17] text-white font-bold">No</button>
-                                <button id="deleteEvent" class="text-[20px] px-10 py-2 border rounded-full bg-[#2e394f] text-white font-bold">Yes</button>
+                                <button id="deleteEventBtn" class="text-[20px] px-10 py-2 border rounded-full bg-[#2e394f] text-white font-bold">Yes</button>
                               </section>
                             </div>
                           </div>
@@ -218,6 +263,9 @@ function hostOrNot() {
                     "show"
                   );}
               });
+            deleteEventBtn.addEventListener("click", () => {
+              deleteEvent()
+            })
           } else 
             notHostFooter();
         } else 
