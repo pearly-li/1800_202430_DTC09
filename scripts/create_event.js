@@ -48,7 +48,17 @@ function createEvent() {
 
 create_event_btn = document.getElementById("create_event_btn");
 create_event_btn.addEventListener("click", () => {
-  createEvent();
+  if (document.getElementById("title").value != "" && 
+      document.getElementById("description").value != "" && 
+      document.getElementById("category").value != "" && 
+      document.getElementById("scale").value != "" && 
+      document.getElementById("address").value != "" && 
+      document.getElementById("dateTime").value != "") {
+    createEvent();
+  } else {
+    alert("Please fill in all the fields!")
+  }
+  
 });
 
 function uploadPic(postDocID) {
