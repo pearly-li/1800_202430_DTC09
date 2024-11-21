@@ -188,9 +188,13 @@ function hostOrNot() {
           //check if the user has "myposts" field
           if (userInfo.data()["myposts"].includes(eventID)) {
             //check if the user has the eventID in the "myposts" field
-            footerNavDesign.innerHTML = `<section class="flex gap-3 my-4 justify-between px-3 items-center">
-                    <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
-                    <button class="bg-white rounded-[5px] font-bold text-xl px-5 min-h-[40px]" id="deleteBtn">Delete The Event</button></section>`;
+            footerNavDesign.innerHTML = `<section class="flex gap-5 my-4 justify-center px-3 items-center">
+                      <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[28px] h-[28px]"></a>
+                      <h1 class="text-white font-bold text-[20px]">You're the host of the event</h1>
+                      <button class="w-[32px] h-[32px]" id="deleteBtn">
+                        <img src="./images/delete.png">
+                      </button>
+                    </section>`;
           } else {
             notHostFooter();
           }
