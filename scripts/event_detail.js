@@ -192,15 +192,36 @@ function hostOrNot() {
                       <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[28px] h-[28px]"></a>
                       <h1 class="text-white font-bold text-[20px]">You're the host of the event</h1>
                       <button class="w-[32px] h-[32px]" id="deleteBtn">
-                        <img src="./images/delete.png">
-                      </button>
+                        <img src="./images/delete.png"></button>
+                        <div class="popup-overlay" id="popupOverlay">
+                          <div id="popUp" class="popup rounded-[15px] w-[80%] h-[25%] pt-[50px]">
+                            <div class="popup-content rounded-[10px] mx-auto text-center">
+                              <h1 class="font-bold text-[18px]">Are you sure <br>you want to delete this event?</h1>
+                              <section class="flex mt-8 justify-center gap-7">
+                                <button id="closePopup" class="text-[20px] px-10 py-2 border rounded-full bg-[#e1ae17] text-white font-bold">No</button>
+                                <button id="deleteEvent" class="text-[20px] px-10 py-2 border rounded-full bg-[#2e394f] text-white font-bold">Yes</button>
+                              </section>
+                            </div>
+                          </div>
+                        </div>
                     </section>`;
-          } else {
+            deleteBtn.addEventListener("click", () => {
+                popupOverlay.classList.add("show");
+              });
+            closePopup.addEventListener("click", () => {
+                popupOverlay.classList.remove(
+                  "show"
+                );});
+            window.addEventListener("click", (event) => {
+                if (event.target == popupOverlay) {
+                  popupOverlay.classList.remove(
+                    "show"
+                  );}
+              });
+          } else 
             notHostFooter();
-          }
-        } else {
+        } else 
           notHostFooter();
-        }
       });
   });
 }
