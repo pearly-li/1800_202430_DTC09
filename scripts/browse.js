@@ -257,9 +257,6 @@ function displayResults() {
                     newCard.querySelector(".event_card_title").innerHTML = title;
                     newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
                     newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
-                    if (image == "") {
-
-                    }
                     newCard.querySelector('img').src = image;
                     newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
 
