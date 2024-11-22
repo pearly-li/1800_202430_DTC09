@@ -37,13 +37,13 @@ function writeMessage() {
             reviewer_name: reviewerName,
             message_description:
               document.getElementById("messageDescription").value,
-            message_created_at: firebase.firestore.FieldValue.serverTimestamp(),
-            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+            message_created_at: new Date(),
+            last_updated: new Date(),
           })
           .then(() => {
             // Show alert when message is posted successfully
             alert("Message posted");
-            window.location.href = "event_detail.html?docID=" + docID;
+            // populateMessages();
           })
           .catch((error) => {
             console.error("Error adding message: ", error);
