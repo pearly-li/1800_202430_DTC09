@@ -30,7 +30,12 @@ function createEvent() {
             title: title,
             description: document.getElementById("description").value,
             category: category.options[category.selectedIndex].value,
-            scale: parseInt(document.getElementById("scale").value),
+            activtyLevel: parseInt(
+              document.getElementById("activityLevel").value
+            ),
+            maximumParticipants: parseInt(
+              document.getElementById("capacity").value
+            ),
             location: document.getElementById("address").value,
             dateTime: dateTime,
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
@@ -48,17 +53,7 @@ function createEvent() {
 
 create_event_btn = document.getElementById("create_event_btn");
 create_event_btn.addEventListener("click", () => {
-  if (document.getElementById("title").value != "" && 
-      document.getElementById("description").value != "" && 
-      document.getElementById("category").value != "" && 
-      document.getElementById("scale").value != "" && 
-      document.getElementById("address").value != "" && 
-      document.getElementById("dateTime").value != "") {
-    createEvent();
-  } else {
-    alert("Please fill in all the fields!")
-  }
-  
+  createEvent();
 });
 
 function uploadPic(postDocID) {
