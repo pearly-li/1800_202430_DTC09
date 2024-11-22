@@ -1,3 +1,8 @@
+var todayEachComponent = getDateList(new Date())
+var upcomingEvents = []
+
+
+
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -10,55 +15,64 @@ function doAll() {
 doAll();
 
 
-function displayUpcomingEventCards() {
-    if (document.getElementById("event_card_template")) {
+async function loadAllEvents() {
+    return db.collection("events")
+        .orderBy("dateTime")
+        .get()
+        .then(allEvents =>
+            allEvents.forEach(doc => {
+                let dateEachComponent = getDateList(new Date(doc.data().dateTime))
+                let dateTime = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent)
+
+                if (compareDates(todayEachComponent, dateEachComponent) && (dateTime == "Today" || dateTime == "Tomorrow")) {
+                    upcomingEvents.push(doc.id)
+                }
+                
+            }
+            ));
+}
+
+function displayResults() {
+    if (upcomingEvents.length != 0) {
         var cardTemplate = document.getElementById("event_card_template");
+        
+        document.getElementById("upcoming_browsing_list").innerHTML = "";
+        upcomingEvents.forEach(eventDocID => {
+            db.collection("events").doc(eventDocID)
+                .get()
+                .then(doc => {
+                    dateTime = new Date(doc.data().dateTime);
+                    dateEachComponent = getDateList(dateTime)
 
-        db.collection("events")
-            .orderBy("dateTime")
-            .get()
-            .then(allEvents => {
-                allEvents.forEach(doc => {
-                    var dateTime = new Date(doc.data().dateTime);
-                    var dateEachComponent = getDateList(dateTime)
-                    var today = new Date();
-                    var todayEachComponent = getDateList(today)
+                    title = doc.data().title;
+                    image = doc.data().image
+                    docID = doc.id;
+                    newCard = cardTemplate.content.cloneNode(true);
 
-                    dateTime = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent)
-                    if (compareDates(todayEachComponent, dateEachComponent) && (dateTime == "Today" || dateTime == "Tomorrow")) {
-                        var title = doc.data().title;
-                        var image = doc.data().image
-                        var docID = doc.id;
-                        let newCard = cardTemplate.content.cloneNode(true);
+                    newCard.querySelector(".event_card_title").innerHTML = title;
+                    newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
+                    newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
+                    newCard.querySelector('img').src = image;
+                    newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
 
-                        newCard.querySelector(".event_card_title").innerHTML = title;
-                        newCard.querySelector(".event_card_date").innerHTML = dateTime;
-                        newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
-                        newCard.querySelector('img').src = image;
-                        newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
-
-                        document.getElementById("upcoming_browsing_list").appendChild(newCard);
-                    }
-
-                    if (document.getElementById("upcoming_browsing_list").innerHTML == "") {
-                        document.getElementById("upcoming_browsing_list").innerHTML = `<p class="mx-auto my-20">No Events Found.</p>`
-                    }
+                    document.getElementById("upcoming_browsing_list").appendChild(newCard);
                 })
-            })
+        })
     }
 }
-displayUpcomingEventCards()
 
 function displayUserSchedule(user) {
     var cardTemplate = document.getElementById("user_event_schedule_template");
     var eventIDs = []
-    
+
 
     db.collection("users").doc(user.uid)
         .get()
         .then(userDoc => {
             if (userDoc.data().eventAttend) {
-                document.getElementById("user_event_schedule").innerHTML = ""
+                if (userDoc.data().eventAttend.length > 0) {
+                    document.getElementById("user_event_schedule").innerHTML = ""
+                }
                 eventIDs = userDoc.data().eventAttend
                 console.log(eventIDs)
 
@@ -90,7 +104,14 @@ function displayUserSchedule(user) {
                             }
                         })
                     })
-            } 
+            }
         })
 
-}           
+}
+
+
+async function setup() {
+    await loadAllEvents()
+    displayResults()
+}
+setup()
