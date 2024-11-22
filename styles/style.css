@@ -225,6 +225,9 @@ main h1 {
 }
 
 /* Create Event Page */
+#user_pic {
+  width: clamp(260px, 60vw, 750px);
+}
 .error-message {
   color: red;
   font-size: 14px;
