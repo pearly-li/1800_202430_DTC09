@@ -1,5 +1,5 @@
 var currentUser; //points to the document of the user who is logged in
-var newSavedPicture = db.collection("users").doc("profilePicture");
+var savedFirebasePicture = db.collection("users").doc("profilePicture");
 // Problem is that we're loading the profile picture from local storage and NOT the user's saved image from firebase. I need to change that section in populateUserInfo(). Then it'll show up properly. Also, need to change the         if (savedPicture) {
 //   document.querySelector(
 //     "#pictureGoesHere"
@@ -25,18 +25,18 @@ function populateUserInfo() {
           document.getElementById("cityInput").value = userCity;
         }
         // Find saved image in firebase if it exists, and then have it as the selected image to be auto populated on page load
-        if (newSavedPicture) {
+        if (savedFirebasePicture) {
           document.getElementById(
             "selectedPicture"
-          ).src = `images/${newSavedPicture}`;
+          ).src = `images/${savedFirebasePicture}`;
         } else {
           console.log("No saved photo yet.");
         }
         // Put the profile picture in the header
-        if (newSavedPicture) {
+        if (savedFirebasePicture) {
           document.querySelector(
             "#pictureGoesHere"
-          ).src = `images/${newSavedPicture}`;
+          ).src = `images/${savedFirebasePicture}`;
         }
       });
     } else {
@@ -79,10 +79,10 @@ function saveProfilePicture() {
 
 function loadProfilePicture() {
   // Load the saved profile picture from Firebase, if available
-  if (newSavedPicture) {
+  if (savedFirebasePicture) {
     document.getElementById(
       "selectedPicture"
-    ).src = `images/${newSavedPicture}`;
+    ).src = `images/${savedFirebasePicture}`;
   } else {
     console.log("No saved photo yet.");
   }
