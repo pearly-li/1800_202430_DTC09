@@ -5,25 +5,6 @@ var params = new URL(window.location.href);
 var messageID = params.searchParams.get("docID");
 var eventRef = db.collection("events");
 
-// function getEventTitle(eventID) {
-//   eventRef
-//     .doc(eventID)
-//     .get()
-//     .then((thisEvent) => {
-//       var eventTitle = thisEvent.data().title;
-//       document.getElementById("eventTitle").innnerHTML = eventTitle;
-//     });
-// }
-
-// function getEventDateTime(eventID) {
-//   eventRef
-//     .doc(eventID)
-//     .get()
-//     .then((thisEvent) => {
-//       var eventDateTime = thisEvent.data().dateTime;
-//       document.getElementById("eventDateTime").innnerHTML = eventDateTime;
-//     });
-// }
 // This grabs the messages that are associated with the event and orders the messages by message_created_at date.
 function populateMessages() {
   console.log("test");
@@ -46,10 +27,6 @@ function populateMessages() {
           .data()
           .message_created_at.toDate()
           .toLocaleString();
-        // messageCard.querySelector(".last_updated").innerHTML = doc
-        //   .data()
-        //   .last_updated.toDate()
-        //   .toLocaleString();
         messageCard.querySelector("#message_description").innerHTML =
           message_description;
         messageCard.querySelector("#reviewer_name").innerHTML = reviewer_name;
