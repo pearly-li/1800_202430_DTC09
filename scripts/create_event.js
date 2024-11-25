@@ -1,7 +1,18 @@
-var ImageFile;
+var ImageFile = null;
 var image;
 var title;
 var dateTime;
+
+var check = document.getElementById("defaultImg");
+check.addEventListener("click", savedefaultImg);
+
+function savedefaultImg() {
+  // Get the selected avatar
+  const chooseDefault = document.querySelector("input:checked").dataset.url;
+
+  // Save the avatar choice in localStorage
+  localStorage.setItem("defaultPic", chooseDefault);
+}
 
 function listenFileSelect() {
   //listen for file selection
@@ -43,7 +54,10 @@ function createEvent() {
           .then((doc) => {
             console.log("1. Post document added!");
             console.log(doc.id);
-            uploadPic(doc.id);
+            if (ImageFile)
+              uploadPic(doc.id);
+            else
+              savePostInfoforUser(doc.id)
           });
       } else {
         console.log("Error, no user signed in");
@@ -51,7 +65,7 @@ function createEvent() {
     });
 }
 
-create_event_btn = document.getElementById("create_event_btn");
+var create_event_btn = document.getElementById("create_event_btn");
 create_event_btn.addEventListener("click", () => {
   createEvent();
 });
@@ -89,6 +103,14 @@ function uploadPic(postDocID) {
 
 //saves the post information for the user, in an array
 function savePostInfoforUser(postDocID) {
+  if (!ImageFile){
+    var savedPicture = localStorage.getItem("defaultPic");
+    db.collection("events")
+    .doc(postDocID)
+    .update({
+      image: savedPicture,
+    })
+  }
   firebase.auth().onAuthStateChanged((user) => {
     console.log("user id is: " + user.uid);
     console.log("postdoc id is: " + postDocID);

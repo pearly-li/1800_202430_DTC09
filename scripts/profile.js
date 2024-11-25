@@ -68,7 +68,7 @@ for (const radio of radios) {
 
 function saveProfilePicture() {
   // Get the selected avatar
-  const selectedAvatar = document.querySelector("input:checked").dataset.url;
+  const selectedAvatar = document.querySelector('input[name="defaultPic"]:checked').dataset.url;
 
   // Display the selected image immediately
   document.getElementById("selectedPicture").src = `images/${selectedAvatar}`;
