@@ -19,13 +19,12 @@ function createEventDetail() {
       var image = eventInfo.data().image;
       var location = eventInfo.data().location;
       var description = eventInfo.data().description;
-      var scale = eventInfo.data().maximumParticipants;
-      var participant = eventInfo.data().participants.length;
       var activitylevel = eventInfo.data().activtyLevel;
       var typeEventValue = eventInfo.data().typeOfEvent;
-
       var dateTime = new Date(eventInfo.data().dateTime);
       var dateEachComponent = getDateList(dateTime);
+      var participant = eventInfo.data().participants.length;
+      var scale = eventInfo.data().maximumParticipants;
 
       document.getElementById("eventImg").src = image;
       document.getElementById("eventTitle").innerText = title;
@@ -159,24 +158,40 @@ function attendEvent() {
 
 //when user is not a host for the event the user is browsing, display a footer that is different from the host's footer
 function notHostFooter() {
-  footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
+  let eventRef = db.collection("events");
+  eventRef
+    .doc(eventID)
+    .get()
+    .then((eventInfo) => {
+      var participant = eventInfo.data().participants.length;
+      var scale = eventInfo.data().maximumParticipants;
+
+      if (participant == scale) {
+        footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
             <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
-            <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
+            <h1 class="text-white font-bold text-[22px]">No spots available</h1>
             <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
         </section>`;
-  checkUserLiked();
-  checkUserAttendance();
-  like_btn = document.getElementById("likeBtn");
-  like_btn.addEventListener("click", () => {
-    pressLikeBtn();
-    likedEventCollection();
-  });
+      }else
+        {footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
+              <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
+              <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
+              <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
+          </section>`;
+        checkUserLiked();
+        checkUserAttendance();
+        like_btn = document.getElementById("likeBtn");
+        like_btn.addEventListener("click", () => {
+          pressLikeBtn();
+          likedEventCollection();
+        });
 
-  attend_btn = document.getElementById("attendBtn");
-  attend_btn.addEventListener("click", () => {
-    pressAttendBtn();
-    attendEvent();
-  });
+        attend_btn = document.getElementById("attendBtn");
+        attend_btn.addEventListener("click", () => {
+          pressAttendBtn();
+          attendEvent();
+        });}
+    })
 }
 
 function deleteEvent(){
