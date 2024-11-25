@@ -21,6 +21,7 @@ function createEventDetail() {
       var description = eventInfo.data().description;
       var scale = eventInfo.data().scale;
       var participant = eventInfo.data().participants.length;
+      var activitylevel = eventInfo.data().activtyLevel;
 
       var dateTime = new Date(eventInfo.data().dateTime);
       var dateEachComponent = getDateList(dateTime);
@@ -32,6 +33,7 @@ function createEventDetail() {
       document.getElementById("eventParticipation").innerText =
         participant + "/" + scale;
       document.getElementById("eventAddress").innerText = location;
+      document.getElementById("activityLevelNum").innerText = "Level " + activitylevel;
       document.getElementById("eventTime").innerText =
         formatDate(dateEachComponent) + ", " + formatTime(dateEachComponent);
     });
