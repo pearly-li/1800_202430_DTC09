@@ -27,6 +27,7 @@ function loadingInfo() {
             var activitylevel = eventInfo.data().activtyLevel;
             var date = eventInfo.data().dateTime
             var categoryvalue = eventInfo.data().category
+            var typeEventValue = eventInfo.data().typeOfEvent;
 
             document.getElementById("title").value = title;
             document.getElementById("description").value = description;
@@ -35,6 +36,7 @@ function loadingInfo() {
             document.getElementById("address").value = location;
             document.getElementById("capacity").value = scale;
             document.getElementById("dateTime").value = date;
+            document.getElementById("typeEvent").value = typeEventValue;
 
             if (image === "./images/no_img.jpg") {
                 document.getElementById("defaultImg").checked = true;

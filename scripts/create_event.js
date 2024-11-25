@@ -36,6 +36,7 @@ listenFileSelect();
 function createEvent() {
   var eventInfo = db.collection("events");
   var category = document.getElementById("category");
+  var typeEvent = document.getElementById("typeEvent")
   title = document.getElementById("title").value;
   (dateTime = document.getElementById("dateTime").value),
     firebase.auth().onAuthStateChanged(function (user) {
@@ -46,6 +47,7 @@ function createEvent() {
             title: title,
             description: document.getElementById("description").value,
             category: category.options[category.selectedIndex].value,
+            typeOfEvent: typeEvent.options[typeEvent.selectedIndex].value,
             activtyLevel: parseInt(
               document.getElementById("activityLevel").value
             ),
@@ -158,6 +160,7 @@ function editEvent(docID) {
             title: title,
             description: document.getElementById("description").value,
             category: category.options[category.selectedIndex].value,
+            typeOfEvent: typeEvent.options[typeEvent.selectedIndex].value,
             activtyLevel: parseInt(
               document.getElementById("activityLevel").value
             ),

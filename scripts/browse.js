@@ -105,9 +105,9 @@ async function filterResults() {
         }
 
 
-        if (filterEventType == "in person" && doc.data().scale != "in person") {
+        if (filterEventType == "In Person" && doc.data().scale != "In Person") {
             continue;
-        } else if (filterEventType == "virtual" && doc.data().scale != "virtual") {
+        } else if (filterEventType == "Virtual" && doc.data().scale != "Virtual") {
             continue;
         }
 
