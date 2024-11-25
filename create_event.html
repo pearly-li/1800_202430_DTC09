@@ -27,7 +27,7 @@
 
 <body class="flex flex-col min-h-screen">
     <!-- Page Name -->
-    <template id="page_label">Create Event</template>
+    <template id="page_label">Social Scout</template>
 
     <header id="header_navbar">
         <nav id="headerPlaceholder"></nav>
@@ -87,7 +87,7 @@
                 <span id="activityLevelDescription" class="">
                     Please enter an activity level between 1-10. 1 being low energy, and 10 being high energy.</span>
                 <input required type="text" id="activityLevel" placeholder="Activity Level"
-                    class="border rounded pl-2 p-1" min="1" max="10">
+                    class="border rounded pl-2 p-1 w-[35%]" min="1" max="10">
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
@@ -95,7 +95,7 @@
                     <h1 class="text-red-600">*</h1>
                 </div>
                 <input required type="number" id="capacity" placeholder="Maximum Number of Participants"
-                    class="border rounded pl-2 p-1 ">
+                    class="border rounded pl-2 p-1 w-[80%]">
 
             </div>
             <div class="flex flex-col gap-y-2">
@@ -132,6 +132,7 @@
     <!-- Main.js doesn't do anything on this page so I'e disabled it. It's just having errors in the console otherwise. -Pearly -->
     <!-- <script src="./scripts/main.js"></script> -->
     <script src="./scripts/create_event.js" defer></script>
+    <script src="./scripts/edit.js"></script>
 </body>
 
 </html>

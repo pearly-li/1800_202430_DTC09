@@ -19,14 +19,13 @@ function createEventDetail() {
       var image = eventInfo.data().image;
       var location = eventInfo.data().location;
       var description = eventInfo.data().description;
-      var scale = eventInfo.data().scale;
+      var scale = eventInfo.data().maximumParticipants;
       var participant = eventInfo.data().participants.length;
       var activitylevel = eventInfo.data().activtyLevel;
 
       var dateTime = new Date(eventInfo.data().dateTime);
       var dateEachComponent = getDateList(dateTime);
 
-      document.getElementById;
       document.getElementById("eventImg").src = image;
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
@@ -252,10 +251,14 @@ function hostOrNot() {
                             </div>
                           </div>
                         </div>
-                      <button class="w-[30px] h-[30px]" id="editBtn">
+                      <button id="editBtn" class="w-[30px] h-[30px]">
                         <img src="./images/edit.png"></button>
                       </section>
                     </section>`;
+            editBtn.addEventListener("click", () => {
+              localStorage.setItem("editOrNot", "1");
+              window.location.href = "create_event.html?docID=" + eventID
+            })
             deleteBtn.addEventListener("click", () => {
                 popupOverlay.classList.add("show");
               });

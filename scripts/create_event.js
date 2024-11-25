@@ -1,4 +1,4 @@
-var ImageFile = null;
+var ImageFile;
 var image;
 var title;
 var dateTime;
@@ -7,11 +7,15 @@ var check = document.getElementById("defaultImg");
 check.addEventListener("click", savedefaultImg);
 
 function savedefaultImg() {
-  // Get the selected avatar
-  const chooseDefault = document.querySelector("input:checked").dataset.url;
-
-  // Save the avatar choice in localStorage
-  localStorage.setItem("defaultPic", chooseDefault);
+  console.log("checked")
+  if (document.getElementById("defaultImg").checked){
+    ImageFile = null;
+    const chooseDefault = document.querySelector("input:checked").dataset.url;
+    document.getElementById("user_pic").src = "";
+    localStorage.setItem("defaultPic", chooseDefault);}
+  else{
+    document.getElementById("defaultImg").checked = false;
+  }
 }
 
 function listenFileSelect() {
@@ -21,6 +25,7 @@ function listenFileSelect() {
 
   //when a change happens to the File Chooser Input
   fileInput.addEventListener("change", function (e) {
+    document.getElementById("defaultImg").checked = false;
     ImageFile = e.target.files[0];
     var blob = URL.createObjectURL(ImageFile);
     image.src = blob; //Display this image
@@ -105,6 +110,7 @@ function uploadPic(postDocID) {
 function savePostInfoforUser(postDocID) {
   if (!ImageFile){
     var savedPicture = localStorage.getItem("defaultPic");
+    localStorage.removeItem("defaultPic");
     db.collection("events")
     .doc(postDocID)
     .update({
@@ -137,4 +143,40 @@ function savePostInfoforUser(postDocID) {
         console.error("Error writing document: ", error);
       });
   });
+}
+
+function editEvent(docID) {
+  var eventInfo = db.collection("events");
+  var category = document.getElementById("category");
+  title = document.getElementById("title").value;
+  (dateTime = document.getElementById("dateTime").value),
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        eventInfo
+        .doc(docID)
+          .update({
+            title: title,
+            description: document.getElementById("description").value,
+            category: category.options[category.selectedIndex].value,
+            activtyLevel: parseInt(
+              document.getElementById("activityLevel").value
+            ),
+            maximumParticipants: parseInt(
+              document.getElementById("capacity").value
+            ),
+            location: document.getElementById("address").value,
+            dateTime: dateTime,
+            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+          })
+          .then((doc) => {
+            console.log("1. Post document added!");
+            if (ImageFile)
+              uploadPic(docID);
+            else
+              savePostInfoforUser(docID)
+          });
+      } else {
+        console.log("Error, no user signed in");
+      }
+    });
 }
