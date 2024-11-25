@@ -235,11 +235,12 @@ function hostOrNot() {
           //check if the user has "myposts" field
           if (userInfo.data()["myposts"].includes(eventID)) {
             //check if the user has the eventID in the "myposts" field
-            footerNavDesign.innerHTML = `<section class="flex gap-5 my-4 justify-center px-3 items-center">
-                      <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[28px] h-[28px]"></a>
-                      <h1 class="text-white font-bold text-[20px]">You're the host of the event</h1>
-                      <button class="w-[32px] h-[32px]" id="deleteBtn">
-                        <img src="./images/delete.png"></button>
+            footerNavDesign.innerHTML = `<section class="flex gap-6 my-4 justify-center px-3 items-center">
+                      <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[24px] h-[24px]"></a>
+                      <h1 class="text-white font-bold text-[22px]">The host of the event</h1>
+                      <section class="flex gap-3">
+                      <button class="w-[28px] h-[33px]" id="deleteBtn">
+                        <img src="./images/trash.png"></button>
                         <div class="popup-overlay" id="popupOverlay">
                           <div id="popUp" class="popup rounded-[15px] w-[80%] h-[25%] pt-[50px]">
                             <div class="popup-content rounded-[10px] mx-auto text-center">
@@ -251,6 +252,9 @@ function hostOrNot() {
                             </div>
                           </div>
                         </div>
+                      <button class="w-[30px] h-[30px]" id="editBtn">
+                        <img src="./images/edit.png"></button>
+                      </section>
                     </section>`;
             deleteBtn.addEventListener("click", () => {
                 popupOverlay.classList.add("show");
