@@ -34,7 +34,7 @@
 
 <body class="flex flex-col min-h-screen">
     <header class="flex justify-center items-center flex-col mx-auto w-full">
-        <section class="bg-[#2e394f] pl-2 py-2 flex flex-row w-full items-center justify-between">
+        <section class="bg-[#2e394f] pl-2 py-2 flex flex-row w-full items-center justify-between sticky top-0">
             <a href="javascript:history.go(-1)">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px] text-white flex flex-col"
                     x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -78,8 +78,8 @@
                     <img src="./images/location.png" class="w-[17px] h-[17px]">
                     <h5 class="font-bold w-[80%]" id="eventAddress"></h5>
                 </div>
-                <a href="./map.html" alt="Map Page">
-                    <button>
+                <a href="./map.html" class="event-map-link" alt="Map Page">
+                    <button data-id="" id="mapBtn">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" x-bind:width="size" x-bind:height="size"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke"
                             stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
@@ -104,6 +104,14 @@
                 </svg>
                 <!--Should make a function border color must change to black when user chooses specific date-->
                 <p class="text-[13px] font-bold" id="eventTime"></p>
+            </div>
+            <div class="flex ml-3 mb-3 gap-3">
+                <img src="./images/lighting.png" class="w-[17px] h-[17px] mt-[2px]">
+                <h5 class="font-bold" id="activityLevelNum"></h5>
+            </div>
+            <div class="flex ml-3 mb-3 gap-3">
+                <img src="./images/antenna.png" class="w-[17px] h-[17px] mt-[2px]">
+                <h5 class="font-bold" id="typeofevent"></h5>
             </div>
         </section>
 
@@ -167,6 +175,7 @@
     <script src="./scripts/event_detail.js"></script>
     <script src="./scripts/message_list.js"></script>
     <script src="./scripts/profile_picture_only.js"></script>
+    <script src="./scripts/edit.js"></script>
 </body>
 
 </html>

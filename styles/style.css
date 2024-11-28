@@ -273,28 +273,6 @@ main h1 {
   filter: grayscale(100%);
 }
 
-/* Map */
-/* 
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. 
- */
-/* 
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. 
- */
-#map {
-  height: 100%;
-}
-
-/* 
- * Optional: Makes the sample page fill the window. 
- */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
 
 .custom-map-control-button {
   background-color: #fff;
@@ -431,4 +409,17 @@ body {
 
 .show {
   display: block;
+}
+
+#map {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }

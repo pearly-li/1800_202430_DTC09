@@ -27,7 +27,7 @@
 
 <body class="flex flex-col min-h-screen">
     <!-- Page Name -->
-    <template id="page_label">Create Event</template>
+    <template id="page_label">Social Scout</template>
 
     <header id="header_navbar">
         <nav id="headerPlaceholder"></nav>
@@ -42,6 +42,11 @@
                     <h1 class="text-red-600">*</h1>
                 </div>
                 <input type="file" id="image" accept="image/*" class="rounded text-[gray] pl-2">
+
+                <section class="flex flex-row gap-2 text-center ml-2">
+                    <input type="checkbox" data-url="./images/no_img.jpg" id="defaultImg" name="defaultPic">
+                    <h3>Using default Image</h3>
+                </section>
                 <img id="user_pic">
             </div>
             <div class="flex flex-col gap-y-2">
@@ -71,7 +76,17 @@
                     <option value="Language">Language</option>
                     <option value="Game">Game</option>
                     <option value="Sports">Sports</option>
-                    <option value="OnlineEvent">Online Event</option>
+                </select>
+            </div>
+            <div class="flex flex-col gap-y-2">
+                <div class="flex gap-1">
+                    <h1 class="text-xl">Type of Event</h1>
+                    <h1 class="text-red-600">*</h1>
+                </div>
+                <select id="typeEvent" class="max-w-[200px] border rounded">
+                    <option value="">Choose one</option>
+                    <option value="In Person">In-Person</option>
+                    <option value="Virtual">Virtual</option>
                 </select>
             </div>
             <div class="flex flex-col gap-y-2">
@@ -82,7 +97,7 @@
                 <span id="activityLevelDescription" class="">
                     Please enter an activity level between 1-10. 1 being low energy, and 10 being high energy.</span>
                 <input required type="text" id="activityLevel" placeholder="Activity Level"
-                    class="border rounded pl-2 p-1" min="1" max="10">
+                    class="border rounded pl-2 p-1 w-[35%]" min="1" max="10">
             </div>
             <div class="flex flex-col gap-y-2">
                 <div class="flex gap-1">
@@ -90,7 +105,7 @@
                     <h1 class="text-red-600">*</h1>
                 </div>
                 <input required type="number" id="capacity" placeholder="Maximum Number of Participants"
-                    class="border rounded pl-2 p-1 ">
+                    class="border rounded pl-2 p-1 w-[80%]">
 
             </div>
             <div class="flex flex-col gap-y-2">
@@ -127,6 +142,10 @@
     <!-- Main.js doesn't do anything on this page so I'e disabled it. It's just having errors in the console otherwise. -Pearly -->
     <!-- <script src="./scripts/main.js"></script> -->
     <script src="./scripts/create_event.js" defer></script>
+    <script src="./scripts/edit.js"></script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsPLw0PJHcMEsvCAabM9IKpgaG35o7IaA&loading=async&libraries=places&callback=initMap">
+        </script>
 </body>
 
 </html>

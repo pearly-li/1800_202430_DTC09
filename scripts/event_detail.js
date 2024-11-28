@@ -19,24 +19,37 @@ function createEventDetail() {
       var image = eventInfo.data().image;
       var location = eventInfo.data().location;
       var description = eventInfo.data().description;
-      var scale = eventInfo.data().scale;
-      var participant = eventInfo.data().participants.length;
-
+      var activitylevel = eventInfo.data().activtyLevel;
+      var typeEventValue = eventInfo.data().typeOfEvent;
       var dateTime = new Date(eventInfo.data().dateTime);
       var dateEachComponent = getDateList(dateTime);
+      var participant = eventInfo.data().participants.length;
+      var scale = eventInfo.data().maximumParticipants;
 
-      document.getElementById;
       document.getElementById("eventImg").src = image;
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("eventParticipation").innerText =
         participant + "/" + scale;
       document.getElementById("eventAddress").innerText = location;
+      document.getElementById("typeofevent").innerText = typeEventValue;
+      document.getElementById("activityLevelNum").innerText = "Level " + activitylevel;
       document.getElementById("eventTime").innerText =
         formatDate(dateEachComponent) + ", " + formatTime(dateEachComponent);
+      document.getElementById("mapBtn").setAttribute("data-id", eventID);
     });
 }
 createEventDetail();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const mapButton = document.getElementById("mapBtn");
+  if (mapButton) {
+    mapButton.addEventListener("click", () => {
+      const eventId = mapButton.getAttribute("data-id");
+      localStorage.setItem("eventId", eventId)
+    });
+  }
+});
 
 //Check whether the user pressed attend button or not
 function checkUserLiked() {
@@ -156,33 +169,50 @@ function attendEvent() {
 
 //when user is not a host for the event the user is browsing, display a footer that is different from the host's footer
 function notHostFooter() {
-  footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
+  let eventRef = db.collection("events");
+  eventRef
+    .doc(eventID)
+    .get()
+    .then((eventInfo) => {
+      var participant = eventInfo.data().participants.length;
+      var scale = eventInfo.data().maximumParticipants;
+
+      if (participant == scale) {
+        footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
             <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
-            <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
+            <h1 class="text-white font-bold text-[22px]">No spots available</h1>
             <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
         </section>`;
-  checkUserLiked();
-  checkUserAttendance();
-  like_btn = document.getElementById("likeBtn");
-  like_btn.addEventListener("click", () => {
-    pressLikeBtn();
-    likedEventCollection();
-  });
+      } else {
+        footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
+              <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
+              <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
+              <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
+          </section>`;
+        checkUserLiked();
+        checkUserAttendance();
+        like_btn = document.getElementById("likeBtn");
+        like_btn.addEventListener("click", () => {
+          pressLikeBtn();
+          likedEventCollection();
+        });
 
-  attend_btn = document.getElementById("attendBtn");
-  attend_btn.addEventListener("click", () => {
-    pressAttendBtn();
-    attendEvent();
-  });
+        attend_btn = document.getElementById("attendBtn");
+        attend_btn.addEventListener("click", () => {
+          pressAttendBtn();
+          attendEvent();
+        });
+      }
+    })
 }
 
-function deleteEvent(){
+function deleteEvent() {
   firebase.auth().onAuthStateChanged(function (user) {
     db.collection("users")
-    .doc(user.uid)
-    .update({
-      myposts: firebase.firestore.FieldValue.arrayRemove(eventID)
-    })
+      .doc(user.uid)
+      .update({
+        myposts: firebase.firestore.FieldValue.arrayRemove(eventID)
+      })
     db.collection("events")
       .doc(eventID)
       .get()
@@ -201,7 +231,7 @@ function deleteEvent(){
       .where("likePosts", "array-contains", eventID)
       .get()
       .then((info) => {
-        if(info.empty) {
+        if (info.empty) {
           console.log("There is no one who clicked a like button for the event")
         } else {
           info.forEach((doc) => {
@@ -214,8 +244,8 @@ function deleteEvent(){
         }
       })
     var findEventInfo = db.collection('events').where('host', '==', user.uid);
-    findEventInfo.get().then(doc => doc.forEach(all => { 
-      all.ref.delete() 
+    findEventInfo.get().then(doc => doc.forEach(all => {
+      all.ref.delete()
         .then(() => { window.location.href = "./main.html" })
     }))
   })
@@ -233,11 +263,12 @@ function hostOrNot() {
           //check if the user has "myposts" field
           if (userInfo.data()["myposts"].includes(eventID)) {
             //check if the user has the eventID in the "myposts" field
-            footerNavDesign.innerHTML = `<section class="flex gap-5 my-4 justify-center px-3 items-center">
-                      <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[28px] h-[28px]"></a>
-                      <h1 class="text-white font-bold text-[20px]">You're the host of the event</h1>
-                      <button class="w-[32px] h-[32px]" id="deleteBtn">
-                        <img src="./images/delete.png"></button>
+            footerNavDesign.innerHTML = `<section class="flex gap-6 my-4 justify-center px-3 items-center">
+                      <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[24px] h-[24px]"></a>
+                      <h1 class="text-white font-bold text-[22px]">The host of the event</h1>
+                      <section class="flex gap-3">
+                      <button class="w-[28px] h-[33px]" id="deleteBtn">
+                        <img src="./images/trash.png"></button>
                         <div class="popup-overlay" id="popupOverlay">
                           <div id="popUp" class="popup rounded-[15px] w-[80%] h-[25%] pt-[50px]">
                             <div class="popup-content rounded-[10px] mx-auto text-center">
@@ -249,26 +280,35 @@ function hostOrNot() {
                             </div>
                           </div>
                         </div>
+                      <button id="editBtn" class="w-[30px] h-[30px]">
+                        <img src="./images/edit.png"></button>
+                      </section>
                     </section>`;
+            editBtn.addEventListener("click", () => {
+              localStorage.setItem("editOrNot", "1");
+              window.location.href = "create_event.html?docID=" + eventID
+            })
             deleteBtn.addEventListener("click", () => {
-                popupOverlay.classList.add("show");
-              });
+              popupOverlay.classList.add("show");
+            });
             closePopup.addEventListener("click", () => {
+              popupOverlay.classList.remove(
+                "show"
+              );
+            });
+            window.addEventListener("click", (event) => {
+              if (event.target == popupOverlay) {
                 popupOverlay.classList.remove(
                   "show"
-                );});
-            window.addEventListener("click", (event) => {
-                if (event.target == popupOverlay) {
-                  popupOverlay.classList.remove(
-                    "show"
-                  );}
-              });
+                );
+              }
+            });
             deleteEventBtn.addEventListener("click", () => {
               deleteEvent()
             })
-          } else 
+          } else
             notHostFooter();
-        } else 
+        } else
           notHostFooter();
       });
   });

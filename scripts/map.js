@@ -1,21 +1,20 @@
-let map, infoWindow;
+let map, infoWindow, geocoder;
 
 function initMap() {
-    // Initialize map centered at a default location
+
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 49.292464046735944, lng: - 123.14540259572419 },
         zoom: 15,
     });
 
     infoWindow = new google.maps.InfoWindow();
+    geocoder = new google.maps.Geocoder();
 
-    // Create a button to pan to the user's current location
     const locationButton = document.createElement("button");
     locationButton.textContent = "Use Current Location";
     locationButton.classList.add("custom-map-control-button");
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
-    // Handle button click to find the user's location
     locationButton.addEventListener("click", () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -36,10 +35,10 @@ function initMap() {
                 }
             );
         } else {
-            // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
     });
+    displayEventLocation();
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -52,5 +51,47 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 }
 
-// Attach initMap to the global window object
+function displayEventLocation() {
+    const eventID = localStorage.getItem("eventId");
+
+    if (!eventID) {
+        alert("No event selected. Please go back and select an event.");
+        return;
+    }
+
+    db.collection("events")
+        .doc(eventID)
+        .get()
+        .then((doc) => {
+            if (doc.exists) {
+                const eventLocation = doc.data().location;
+
+                geocoder.geocode({ address: eventLocation }, (results, status) => {
+
+                    if (status === "OK") {
+
+                        map.setCenter(results[0].geometry.location);
+
+                        new google.maps.Marker({
+                            position: results[0].geometry.location,
+                            map: map,
+                            title: doc.data().title,
+                        });
+
+                        infoWindow.setContent(`<h3>${doc.data().title}</h3><p>${eventLocation}</p>}`);
+                        infoWindow.open(map);
+                    } else {
+                        console.error("Geocode was not successful for the following reason: " + status);
+                        alert("Could not find the event location on the map.");
+                    }
+                });
+            } else {
+                alert("Event not found.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error retrieving event data: ", error);
+        });
+}
+
 window.initMap = initMap;
