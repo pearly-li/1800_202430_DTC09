@@ -9,7 +9,15 @@ var filterEventSize = document.getElementById("size").value
 var filterEventType = document.getElementById("type").value
 var filterEventDate = document.getElementById("date").value
 
-var todayEachComponent = getDateList(new Date())
+var today = new Date();
+var yesterday = today
+var tomorrow = today
+yesterday.setDate(yesterday.getDate() - 1)
+tomorrow.setDate(yesterday.getDate() + 1)
+
+var todayEachComponent = getDateList(today)
+var tomorrowEachComponent = getDateList(tomorrow)
+var yesterdayEachComponent = getDateList(yesterday)
 
 let searchBar = document.getElementById("default-search")
 searchBar.addEventListener("keyup", function(event) {
@@ -59,10 +67,9 @@ async function loadAllEvents() {
         .get()
         .then(allEvents =>
             allEvents.forEach(doc => {
-                let dateTime = new Date(doc.data().dateTime);
-                let dateEachComponent = getDateList(dateTime)
+                let dateEachComponent = getDateList(new Date(doc.data().dateTime))
 
-                if (compareDates(todayEachComponent, dateEachComponent)) {
+                if (compareIfTodayOrLater(todayEachComponent, dateEachComponent)) {
                     eventBrowsingList.push(doc.id)
                 }
             }
@@ -256,17 +263,17 @@ function displayResults() {
             db.collection("events").doc(eventDocID)
                 .get()
                 .then(doc => {
-                    dateTime = new Date(doc.data().dateTime);
-                    dateEachComponent = getDateList(dateTime)
+                    dateEachComponent = getDateList(new Date(doc.data().dateTime))
 
+                    dateDisplay = checkIfTodayOrTomorrowOrYesterday(todayEachComponent, tomorrowEachComponent, yesterdayEachComponent, dateEachComponent);
                     title = doc.data().title;
                     image = doc.data().image
                     docID = doc.id;
                     newCard = cardTemplate.content.cloneNode(true);
 
                     newCard.querySelector(".event_card_title").innerHTML = title;
-                    newCard.querySelector(".event_card_date").innerHTML = checkIfTodayOrTomorrow(todayEachComponent, dateEachComponent);
-                    newCard.querySelector(".event_card_time").innerHTML = formatTime(dateEachComponent);
+                    newCard.querySelector(".event_card_date").innerHTML = dateDisplay;
+                    newCard.querySelector(".event_card_time").innerHTML = formatTimeAgo(dateDisplay, todayEachComponent, dateEachComponent);;
                     newCard.querySelector('img').src = image;
                     newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
 

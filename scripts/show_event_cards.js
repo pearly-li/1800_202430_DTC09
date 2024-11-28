@@ -8,7 +8,7 @@ function getDateList(date) {
     }
 }
 
-function compareDates(today, eventDate) {
+function compareIfTodayOrLater(today, eventDate) {
     if (eventDate.year > today.year) {
         return true;
     } else if (eventDate.year == today.year && eventDate.month > today.month) {
@@ -24,32 +24,30 @@ function compareDates(today, eventDate) {
     }
 }
 
-function checkIfTodayOrTomorrow(today, eventDate) {
-    maxDays = 31
-    if (today.month in [4, 6, 9, 11]) {
-        maxDays = 30;
-    } else if (today.year % 4 == 0) {
-        maxDays = 29
-    } else if (today.month == 2) {
-        maxDays = 28
+function compareIfYesterdayOrOlder(yesterday, eventDate) {
+    if (eventDate.year < yesterday.year) {
+        return true;
+    } else if (eventDate.year == yesterday.year && eventDate.month < yesterday.month) {
+        return true;
+    } else if (eventDate.month == yesterday.month && eventDate.day < yesterday.day) {
+        return true;
+    } else if (eventDate.day == yesterday.day && eventDate.hour < yesterday.hour) {
+        return true;
+    } else if (eventDate.hour == yesterday.hour && eventDate.minute < yesterday.minute) {
+        return true;
+    } else {
+        return false;
     }
+}
 
-    var tomorrowDay = today.day + 1;
-    var tomorrowMonth = today.month;
-    var tomorrowYear = today.year;
-    if (tomorrowDay > maxDays) {
-        tomorrowDay = 1;
-        tomorrowMonth += 1;
-    }
-    if (tomorrowMonth > 11) {
-        tomorrowMonth = 0;
-        tomorrowYear += 1;
-    }
+function checkIfTodayOrTomorrowOrYesterday(today, tomorrow, yesterday, eventDate) {
 
     if (today.year === eventDate.year && today.month === eventDate.month && today.day === eventDate.day) {
         return "Today";
-    } else if (tomorrowYear === eventDate.year && tomorrowMonth === eventDate.month && tomorrowDay === eventDate.day) {
+    } else if (tomorrow.year === eventDate.year && tomorrow.month === eventDate.month && tomorrow.day === eventDate.day) {
         return "Tomorrow";
+    } else if (yesterday.year === eventDate.year && yesterday.month === eventDate.month && yesterday.day === eventDate.day) {
+        return "Yesterday";
     } else {
         return formatDate(eventDate)
     }
@@ -89,4 +87,18 @@ function formatTime(eventDate) {
     }
 
     return `${eventDate.hour}:${eventDate.minute} ${timeSuffix}`
+}
+
+function formatTimeAgo(display, today, date) {
+    if (display == "Yesterday" && (today.hour + 24 - date.hour + 24) < 24) {
+        return `${today.hour + 24 - date.hour + 24} hour(s) ago`
+    } else if (display == "Today" && today.hour > date.hour) {
+        return `${today.hour - date.hour} hour(s) ago`
+    } else if (display == "Today" && today.hour == date.hour && today.minute > date.minute) {
+        return `${today.minute - date.minute} minute(s) ago`
+    } else if (display == "Today" && today.hour == date.hour && today.minute == date.minute) {
+        return "Just now"
+    } else {
+        formatTime(date)
+    }
 }
