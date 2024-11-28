@@ -31,3 +31,9 @@ window.onscroll = function hideNavbar() {
   }
   originalPagePosition = currentPagePosition;
 };
+
+if (document.getElementById("page_label_goes_here").innerText == "Social Scout") {
+  btn = document.getElementById("back_arrow_btn")
+  btn.classList.add("invisible")
+  btn.disabled = true;
+}
