@@ -4,7 +4,7 @@ var eventBrowsingListSize = eventBrowsingList.length
 var currentEventPageNumber = 1
 var maxEventPageNumber = 1
 
-var filterEventSearchKeyword = document.getElementById("default-search").value.toLowerCase()
+var filterEventSearchKeyword = document.getElementById("default-search").value.toLowerCase().split(" ")
 var filterEventSize = document.getElementById("size").value
 var filterEventType = document.getElementById("type").value
 var filterEventDate = document.getElementById("date").value
@@ -20,17 +20,14 @@ removeFilterBtn.addEventListener("click", clickRemoveFiltersButton)
 async function clickFilterButton() {
     currentEventPageNumber = 1
 
-    console.log("Start")
     await loadAllEvents()
 
-    console.log(2)
-    filterEventSearchKeyword = await document.getElementById("default-search").value.toLowerCase()
+    filterEventSearchKeyword = await document.getElementById("default-search").value.toLowerCase().split(" ")
     filterEventSize = await document.getElementById("size").value
     filterEventType = await document.getElementById("type").value
     filterEventDate = await document.getElementById("date").value
 
     await filterResults()
-    console.log(4)
 
     updateNavbarButtons()
     displayResults()
@@ -61,7 +58,6 @@ async function loadAllEvents() {
                 if (compareDates(todayEachComponent, dateEachComponent)) {
                     eventBrowsingList.push(doc.id)
                 }
-                console.log(1)
             }
             ));
 }
@@ -87,7 +83,14 @@ async function filterResults() {
                 .toLowerCase()
                 .split(" ")
 
-            if (!keywords.includes(filterEventSearchKeyword)) {
+            matchSearchKeyword = false;
+            await filterEventSearchKeyword.forEach(word => {
+                if (!keywords.includes(word)) {
+                    matchSearchKeyword = true;
+                }
+            })  
+
+            if (matchSearchKeyword) {
                 continue;
             }
 
@@ -273,17 +276,14 @@ function displayResults() {
 
 
 async function setup() {
-    console.log("Start")
     await loadAllEvents()
 
-    console.log(2)
-    filterEventSearchKeyword = await document.getElementById("default-search").value.toLowerCase()
+    filterEventSearchKeyword = await document.getElementById("default-search").value.toLowerCase().split(" ")
     filterEventSize = await document.getElementById("size").value
     filterEventType = await document.getElementById("type").value
     filterEventDate = await document.getElementById("date").value
 
     await filterResults()
-    console.log(4)
 
     updateNavbarButtons()
     displayResults()
