@@ -172,8 +172,8 @@ function notHostFooter() {
             <h1 class="text-white font-bold text-[22px]">No spots available</h1>
             <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
         </section>`;
-      }else
-        {footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
+      } else {
+        footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
               <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
               <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
               <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
@@ -190,17 +190,18 @@ function notHostFooter() {
         attend_btn.addEventListener("click", () => {
           pressAttendBtn();
           attendEvent();
-        });}
+        });
+      }
     })
 }
 
-function deleteEvent(){
+function deleteEvent() {
   firebase.auth().onAuthStateChanged(function (user) {
     db.collection("users")
-    .doc(user.uid)
-    .update({
-      myposts: firebase.firestore.FieldValue.arrayRemove(eventID)
-    })
+      .doc(user.uid)
+      .update({
+        myposts: firebase.firestore.FieldValue.arrayRemove(eventID)
+      })
     db.collection("events")
       .doc(eventID)
       .get()
@@ -219,7 +220,7 @@ function deleteEvent(){
       .where("likePosts", "array-contains", eventID)
       .get()
       .then((info) => {
-        if(info.empty) {
+        if (info.empty) {
           console.log("There is no one who clicked a like button for the event")
         } else {
           info.forEach((doc) => {
@@ -232,8 +233,8 @@ function deleteEvent(){
         }
       })
     var findEventInfo = db.collection('events').where('host', '==', user.uid);
-    findEventInfo.get().then(doc => doc.forEach(all => { 
-      all.ref.delete() 
+    findEventInfo.get().then(doc => doc.forEach(all => {
+      all.ref.delete()
         .then(() => { window.location.href = "./main.html" })
     }))
   })
@@ -277,24 +278,26 @@ function hostOrNot() {
               window.location.href = "create_event.html?docID=" + eventID
             })
             deleteBtn.addEventListener("click", () => {
-                popupOverlay.classList.add("show");
-              });
+              popupOverlay.classList.add("show");
+            });
             closePopup.addEventListener("click", () => {
+              popupOverlay.classList.remove(
+                "show"
+              );
+            });
+            window.addEventListener("click", (event) => {
+              if (event.target == popupOverlay) {
                 popupOverlay.classList.remove(
                   "show"
-                );});
-            window.addEventListener("click", (event) => {
-                if (event.target == popupOverlay) {
-                  popupOverlay.classList.remove(
-                    "show"
-                  );}
-              });
+                );
+              }
+            });
             deleteEventBtn.addEventListener("click", () => {
               deleteEvent()
             })
-          } else 
+          } else
             notHostFooter();
-        } else 
+        } else
           notHostFooter();
       });
   });

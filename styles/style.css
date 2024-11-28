@@ -432,3 +432,16 @@ body {
 .show {
   display: block;
 }
+
+#map {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

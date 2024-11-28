@@ -8,12 +8,13 @@ check.addEventListener("click", savedefaultImg);
 
 function savedefaultImg() {
   console.log("checked")
-  if (document.getElementById("defaultImg").checked){
+  if (document.getElementById("defaultImg").checked) {
     ImageFile = null;
     const chooseDefault = document.querySelector("input:checked").dataset.url;
     document.getElementById("user_pic").src = "";
-    localStorage.setItem("defaultPic", chooseDefault);}
-  else{
+    localStorage.setItem("defaultPic", chooseDefault);
+  }
+  else {
     document.getElementById("defaultImg").checked = false;
   }
 }
@@ -110,14 +111,14 @@ function uploadPic(postDocID) {
 
 //saves the post information for the user, in an array
 function savePostInfoforUser(postDocID) {
-  if (!ImageFile){
+  if (!ImageFile) {
     var savedPicture = localStorage.getItem("defaultPic");
     localStorage.removeItem("defaultPic");
     db.collection("events")
-    .doc(postDocID)
-    .update({
-      image: savedPicture,
-    })
+      .doc(postDocID)
+      .update({
+        image: savedPicture,
+      })
   }
   firebase.auth().onAuthStateChanged((user) => {
     console.log("user id is: " + user.uid);
@@ -155,7 +156,7 @@ function editEvent(docID) {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         eventInfo
-        .doc(docID)
+          .doc(docID)
           .update({
             title: title,
             description: document.getElementById("description").value,
@@ -182,4 +183,71 @@ function editEvent(docID) {
         console.log("Error, no user signed in");
       }
     });
+}
+
+function getLocation() {
+  map;
+  originPlaceId;
+  destinationPlaceId;
+  travelMode;
+  directionsService;
+  directionsRenderer;
+  this.originPlaceId = "";
+  this.destinationPlaceId = "";
+  this.travelMode = google.maps.TravelMode.WALKING;
+  this.directionsService = new google.maps.DirectionsService();
+  this.directionsRenderer = new google.maps.DirectionsRenderer();
+  this.directionsRenderer.setMap(map);
+
+  const originInput = document.getElementById("origin-input");
+  const destinationInput = document.getElementById("destination-input");
+  const modeSelector = document.getElementById("mode-selector");
+  // Specify just the place data fields that you need.
+  const originAutocomplete = new google.maps.places.Autocomplete(
+    originInput,
+    { fields: ["place_id"] },
+  );
+  // Specify just the place data fields that you need.
+  const destinationAutocomplete = new google.maps.places.Autocomplete(
+    destinationInput,
+    { fields: ["place_id"] },
+  );
+
+  this.setupClickListener(
+    "changemode-walking",
+    google.maps.TravelMode.WALKING,
+  );
+  this.setupClickListener(
+    "changemode-transit",
+    google.maps.TravelMode.TRANSIT,
+  );
+  this.setupClickListener(
+    "changemode-driving",
+    google.maps.TravelMode.DRIVING,
+  );
+  this.setupPlaceChangedListener(originAutocomplete, "ORIG");
+  this.setupPlaceChangedListener(destinationAutocomplete, "DEST");
+  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
+    destinationInput,
+  );
+  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+  setupPlaceChangedListener(autocomplete, mode)
+  autocomplete.bindTo("bounds", this.map);
+  autocomplete.addListener("place_changed", () => {
+    const place = autocomplete.getPlace();
+
+    if (!place.place_id) {
+      window.alert("Please select an option from the dropdown list.");
+      return;
+    }
+
+    if (mode === "ORIG") {
+      this.originPlaceId = place.place_id;
+    } else {
+      this.destinationPlaceId = place.place_id;
+    }
+
+    this.route();
+  });
 }
