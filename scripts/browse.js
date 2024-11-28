@@ -11,6 +11,13 @@ var filterEventDate = document.getElementById("date").value
 
 var todayEachComponent = getDateList(new Date())
 
+let searchBar = document.getElementById("default-search")
+searchBar.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        clickFilterButton()
+    }
+});
+
 let filterSearchBtn = document.getElementById("searchEvent")
 filterSearchBtn.addEventListener("click", clickFilterButton)
 
