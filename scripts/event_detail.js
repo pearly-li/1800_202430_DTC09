@@ -36,9 +36,20 @@ function createEventDetail() {
       document.getElementById("activityLevelNum").innerText = "Level " + activitylevel;
       document.getElementById("eventTime").innerText =
         formatDate(dateEachComponent) + ", " + formatTime(dateEachComponent);
+      document.getElementById("mapBtn").setAttribute("data-id", eventID);
     });
 }
 createEventDetail();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const mapButton = document.getElementById("mapBtn");
+  if (mapButton) {
+    mapButton.addEventListener("click", () => {
+      const eventId = mapButton.getAttribute("data-id");
+      localStorage.setItem("eventId", eventId)
+    });
+  }
+});
 
 //Check whether the user pressed attend button or not
 function checkUserLiked() {
