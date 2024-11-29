@@ -2,10 +2,11 @@
 // Next, they can view the messages related to the hike.
 // Then there's an add message button that takes them back to the original page.
 var params = new URL(window.location.href);
-var messageID = params.searchParams.get("docID");
 var eventRef = db.collection("events");
 
-function editMessageAllowed() {}
+var messageIDList = []
+
+function editMessageAllowed() { }
 
 // This grabs the messages that are associated with the event and orders the messages by message_created_at date.
 function populateMessages() {
@@ -83,3 +84,49 @@ function appendMessages() {
 // });
 
 // appendMessages(listofmessageIDs[-1]);
+
+
+async function loadEventMessages() {
+  return db.collection("messages")
+    .orderBy("message_created_at")
+    .get()
+    .then(allMessages =>
+      allMessages.forEach(doc => {
+        if (doc.data().eventID == eventID) {
+          messageIDList.push(doc.id)
+        }
+      })
+    );
+}
+
+function appendMessageCards(docID) {
+  db.collection("messages").doc(docID)
+    .get()
+    .then((doc) => {
+      var reviewer_name = doc.data().reviewer_name;
+      var message_description = doc.data().message_description;
+      
+      // Clear out the "type your message here" field
+      document.getElementById("messageDescription").value = "";
+
+      let messageCard = messageCardTemplate.content.cloneNode(true);
+      messageCard.querySelector("#message_created_at").innerHTML = doc
+        .data()
+        .message_created_at.toDate()
+        .toLocaleString();
+      messageCard.querySelector("#messageDescriptionPosted").innerHTML =
+        message_description;
+      messageCard.querySelector("#reviewer_name").innerHTML = reviewer_name;
+      let reviewerPicture = doc.data().reviewer_profile_picture;
+      if (reviewerPicture) {
+        messageCard.querySelector(
+          "#reviewer_picture"
+        ).src = `images/${reviewerPicture}`;
+      }
+      messageCardGroup.appendChild(messageCard);
+    });
+}
+
+async function setup() {
+  await loadEventMessages()
+}

@@ -259,6 +259,11 @@ main h1 {
 }
 
 
+#messageCardGroup {
+  box-shadow: 0px 5px 5px 2px  #0000002b inset;
+}
+
+
 /* Create Event Page */
 #user_pic {
   width: clamp(260px, 60vw, 750px);
