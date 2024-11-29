@@ -65,6 +65,13 @@ function createEvent() {
             console.log(doc.id);
             if (ImageFile) uploadPic(doc.id);
             else savePostInfoforUser(doc.id);
+            swal({
+              title: "Event created!",
+              text: "Your event was successfully created.",
+              type: "success",
+              confirmButtonColor: "#e1ae17",
+              confirmButtonText: "Ok",
+            });
           });
       } else {
         console.log("Error, no user signed in");

@@ -11,7 +11,54 @@ var eventID = params.searchParams.get("docID");
 //   window.location.href = "message_list.html";
 // }
 // Go through all the messages, then do a loop looking for the reference to that event ID
-
+function editMessage() {
+  firebase.auth().onAuthStateChanged((user) => {
+    // Check if user is signed in:
+    if (user) {
+      //go to the correct user document by referencing to the user uid
+      //get the document for current user.
+      var currentUser = db.collection("users").doc(user.uid);
+      var userID = user.uid;
+      currentUser.get().then((userDoc) => {
+        //get the data fields of the user
+        // var lengthOfMessageList = messageRef;
+        var messageRef = db.collection("messages");
+        console.log(eventID);
+        // let eventDocID = db.collection("events").doc.id;
+        // var eventID = eventInfo.data().eventID;
+        messageRef
+          .update({
+            message_description:
+              document.getElementById("messageDescription").value,
+            last_updated: new Date(),
+          })
+          .then(() => {
+            // Show alert when message is posted successfully
+            swal({
+              title: "Message updated!",
+              text: "Message was successfully updated.",
+              type: "success",
+              confirmButtonColor: "#e1ae17",
+              confirmButtonText: "Ok",
+            });
+            location.reload();
+            // Need to add a fresh read of new message later
+            // window.location.href = "event_detail.html/" + eventID;
+          })
+          .catch((error) => {
+            console.error("Error adding message: ", error);
+          });
+      });
+    } else {
+      // No user is signed in.
+      console.log("No user is signed in");
+      alert("You must be signed in to post a message.");
+    }
+  });
+}
+// No time to create an edit message button. :(
+// var editMessageStart = document.getElementById("editOptionAllowed");
+// editMessageStart.addEventListener("click", () => {});
 function writeMessage() {
   firebase.auth().onAuthStateChanged((user) => {
     // Check if user is signed in:
