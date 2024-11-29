@@ -19,18 +19,22 @@ function createEventDetail() {
       var image = eventInfo.data().image;
       var location = eventInfo.data().location;
       var description = eventInfo.data().description;
-      var activitylevel = eventInfo.data().activtyLevel;
+      var activitylevel = eventInfo.data().activityLevel;
       var typeEventValue = eventInfo.data().typeOfEvent;
       var dateTime = new Date(eventInfo.data().dateTime);
       var dateEachComponent = getDateList(dateTime);
-      var participant = eventInfo.data().participants.length;
-      var scale = eventInfo.data().maximumParticipants;
+      if (eventInfo.data().participants != undefined || eventInfo.data().participants != null) {
+        var participant = eventInfo.data().participants;
+      } else {
+        var participant = 0;
+      }
+      var maximumParticipants = eventInfo.data().maximumParticipants;
 
       document.getElementById("eventImg").src = image;
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("eventParticipation").innerText =
-        participant + "/" + scale;
+        participant.length + "/" + maximumParticipants;
       document.getElementById("eventAddress").innerText = location;
       document.getElementById("typeofevent").innerText = typeEventValue;
       document.getElementById("activityLevelNum").innerText = "Level " + activitylevel;
