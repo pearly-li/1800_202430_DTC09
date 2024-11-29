@@ -93,12 +93,12 @@ function formatTimeAgo(display, today, date) {
     if (display == "Yesterday" && (today.hour + 24 - date.hour + 24) < 24) {
         return `${today.hour + 24 - date.hour + 24} hour(s) ago`
     } else if (display == "Today" && today.hour > date.hour) {
-        return `${today.hour - date.hour} hour(s) ago`
+        return `${today.hour - date.hour} hr(s) ago`
     } else if (display == "Today" && today.hour == date.hour && today.minute > date.minute) {
-        return `${today.minute - date.minute} minute(s) ago`
+        return `${today.minute - date.minute} min(s) ago`
     } else if (display == "Today" && today.hour == date.hour && today.minute == date.minute) {
         return "Just now"
     } else {
-        formatTime(date)
+        return formatTime(date)
     }
 }
