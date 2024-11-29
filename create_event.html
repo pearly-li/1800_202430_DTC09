@@ -34,81 +34,81 @@
     </header>
 
     <!-- Main Body -->
+    <!-- In an ideal world, I would've made a better form validator but it was breaking due to our many different types of inputs, ie. image upload, text, dateTime. Carly's TechTips' template doesn't work for inputs other than strings. I defaulted to just putting "required" next to the input tags which triggers the browser's automatic Please fill in the field prompt. It will suffice for this project. - Pearly-->
     <main class="flex justify-center flex-col space-y-7 px-10 md:px-0 min-w-full md:min-w-[768px] mx-0 md:mx-auto">
-            <div class="flex flex-col space-y-2">
-                <h1 class="text-xl">Event Picture <span class="text-red-600">*</span></h1>
-                
-                <input type="file" id="image" accept="image/*" class="rounded text-[gray] pl-2">
+        <div class="flex flex-col space-y-2">
+            <h1 class="text-xl">Event Picture <span class="text-red-600">*</span></h1>
 
-                <label class="ml-2">
-                    <input type="checkbox" data-url="./images/no_img.jpg" id="defaultImg" name="defaultPic">
-                    <span class="mx-1">Use default Image</span> 
-                </label>
-                <img id="user_pic">
-            </div>
-            <div class="space-y-2">
-                <h1 class="text-xl">Title <span class="text-red-600">*</span></h1>
-                <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2">
-            </div>
-            <div class="space-y-2">
-                <h1 class="text-xl">Description <span class="text-red-600">*</span></h1>
-                <input type="text" id="description" placeholder="Event Description" class="border rounded pl-2">
-            </div>
-            <div class="space-y-2">
-                <h1 class="text-xl">Category <span class="text-red-600">*</span></h1>
-                <select id="category" class="max-w-[200px] border rounded">
-                    <option value="">Choose one</option>
-                    <option value="Arts & Crafts">Arts & Crafts</option>
-                    <option value="Book Club">Book Club</option>
-                    <option value="Food/Drink">Food/Drink</option>
-                    <option value="Language">Language</option>
-                    <option value="Game">Game</option>
-                    <option value="Nature">Nature</option>
-                    <option value="Sports">Sports</option>
-                </select>
-            </div>
-            <div class="space-y-2">
-                <h1 class="text-xl">Type of Event <span class="text-red-600">*</span></h1>
-                <select id="typeEvent" class="max-w-[200px] border rounded">
-                    <option value="">Choose one</option>
-                    <option value="In Person">In-Person</option>
-                    <option value="Virtual">Virtual</option>
-                </select>
-            </div>
-            <div class="space-y-2">
-                <h1 class="text-xl">Activity Level <span class="text-red-600">*</span></h1>
-                <span id="activityLevelDescription" class="">
-                    Please enter an activity level between 1-10. 1 being low energy, and 10 being high energy.</span>
-                <input required type="number" id="activityLevel" placeholder="Activity Level"
-                    class="border rounded pl-2 p-1 w-[35%]" min="1" max="10">
-            </div>
-            <div class="space-y-2">
-                <h1 class="text-xl">Maximum Number of Participants <span class="text-red-600">*</span></h1>
-                <input required type="number" id="capacity" placeholder="Maximum Number of Participants"
-                    class="border rounded pl-2 p-1 w-[80%]">
-            </div>
-            
-            <div class="space-y-2">
-                <h1 class="text-xl">Location <span class="text-red-600">*</span></h1>
-                <!-- <section class="flex flex-row">
+            <input type="file" id="image" accept="image/*" class="rounded text-[gray] pl-2">
+
+            <label class="ml-2">
+                <input type="checkbox" data-url="./images/no_img.jpg" id="defaultImg" name="defaultPic">
+                <span class="mx-1">Use default Image</span>
+            </label>
+            <img id="user_pic">
+        </div>
+        <div class="space-y-2">
+            <h1 class="text-xl">Title <span class="text-red-600">*</span></h1>
+            <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2">
+        </div>
+        <div class="space-y-2">
+            <h1 class="text-xl">Description <span class="text-red-600">*</span></h1>
+            <input type="text" id="description" placeholder="Event Description" class="border rounded pl-2">
+        </div>
+        <div class="space-y-2">
+            <h1 class="text-xl">Category <span class="text-red-600">*</span></h1>
+            <select id="category" class="max-w-[200px] border rounded">
+                <option value="">Choose one</option>
+                <option value="Arts & Crafts">Arts & Crafts</option>
+                <option value="Book Club">Book Club</option>
+                <option value="Food/Drink">Food/Drink</option>
+                <option value="Language">Language</option>
+                <option value="Game">Game</option>
+                <option value="Nature">Nature</option>
+                <option value="Sports">Sports</option>
+            </select>
+        </div>
+        <div class="space-y-2">
+            <h1 class="text-xl">Type of Event <span class="text-red-600">*</span></h1>
+            <select id="typeEvent" class="max-w-[200px] border rounded">
+                <option value="">Choose one</option>
+                <option value="In Person">In-Person</option>
+                <option value="Virtual">Virtual</option>
+            </select>
+        </div>
+        <div class="space-y-2">
+            <h1 class="text-xl">Activity Level <span class="text-red-600">*</span></h1>
+            <span id="activityLevelDescription" class="">
+                Please enter an activity level between 1-10. 1 being low energy, and 10 being high energy.</span>
+            <input required type="number" id="activityLevel" placeholder="Activity Level"
+                class="border rounded pl-2 p-1 w-[35%]" min="1" max="10">
+        </div>
+        <div class="space-y-2">
+            <h1 class="text-xl">Maximum Number of Participants <span class="text-red-600">*</span></h1>
+            <input required type="number" id="capacity" placeholder="Maximum Number of Participants"
+                class="border rounded pl-2 p-1 w-[80%]">
+        </div>
+
+        <div class="space-y-2">
+            <h1 class="text-xl">Location <span class="text-red-600">*</span></h1>
+            <!-- <section class="flex flex-row">
                     <input type="text" id="streetNumber" placeholder="Street Number"
                         class="border rounded pl-2 max-w-[310px] flex">
                     <input type="text" id="streetName" placeholder="Street Name"
                         class="border rounded pl-2 max-w-[310px] flex">
                     <input type="text" id="city" placeholder="City" class="border rounded pl-2 max-w-[310px] flex">
                 </section> -->
-            </div>
-            
-            <div class="space-y-2">
-                <h1 class="text-xl">Date and Time <span class="text-red-600">*</span></h1>
-                <input type="datetime-local" id="dateTime" placeholder="Event Date and Time"
-                    class="border rounded pl-2">
-            </div>
-            
-            <div>
-                <button id="create_event_btn" class="btn border py-2 w-full rounded-full text-lg">Create</button>        
-            </div>
-            
+        </div>
+
+        <div class="space-y-2">
+            <h1 class="text-xl">Date and Time <span class="text-red-600">*</span></h1>
+            <input type="datetime-local" id="dateTime" placeholder="Event Date and Time" class="border rounded pl-2">
+        </div>
+
+        <div>
+            <button id="create_event_btn" class="btn border py-2 w-full rounded-full text-lg">Create</button>
+        </div>
+
     </main>
 
     <footer id="footer_navbar" class="mt-auto">
