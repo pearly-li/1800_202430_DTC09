@@ -1,11 +1,4 @@
 var currentUser; //points to the document of the user who is logged in
-// var savedFirebasePicture = db.collection("users").doc("profilePicture");
-// Problem is that we're loading the profile picture from local storage and NOT the user's saved image from firebase. I need to change that section in populateUserInfo(). Then it'll show up properly. Also, need to change the         if (savedPicture) {
-//   document.querySelector(
-//     "#pictureGoesHere"
-//   ).src = `images/${savedPicture}`;
-// }
-// to reflect the savedimage in firebase
 function populateUserInfo() {
   firebase.auth().onAuthStateChanged((user) => {
     // Check if user is signed in:
@@ -16,7 +9,6 @@ function populateUserInfo() {
       currentUser.get().then((userDoc) => {
         //get the data fields of the user
         let userName = userDoc.data().name;
-        // let userProfilePicture = userDoc.data().profilePicture;
         let userCity = userDoc.data().city;
         if (userName) {
           document.getElementById("nameInput").value = userName;
@@ -55,14 +47,6 @@ function editUserInfo() {
   //Enable the form fields
   document.getElementById("personalInfoFields").disabled = false;
 }
-//
-
-// function selectProfilePicture() {}
-// selectedAvatar is the variable for what's checked
-// selectedPicture is the ID of the image in HTML
-// profilePicture is name of radio buttons to check if it's checked
-
-// Needed to find radio buttons, within the form, and then add event listeners. We went with addEventListener over buttononlick since that seems like the plan we're used to.
 
 var radios = document.querySelectorAll(".avatarContainer");
 for (const radio of radios) {
@@ -91,15 +75,6 @@ function loadProfilePicture() {
   }
 }
 
-// function getSelectedPicture() {
-//   // Get the selected picture as the user selects different options in their profile page.
-//   if (savedPicture) {
-//     document.getElementById("selectedPicture").src = `images/${savedPicture}`;
-//   } else {
-//     console.log("No saved photo yet.");
-//   }
-// }
-// ---------------------------------------------------
 function saveUserInfo() {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
