@@ -66,7 +66,7 @@ function displayResults() {
         })
     } else {
         document.getElementById("upcoming_browsing_list").innerHTML = `
-        <p class="m-auto text-center">
+        <p class="m-auto text-center my-20">
         No Upcoming Events Found.
         <br>
         <a href="browse.html" class="text-blue-800 underline">Browse for events</a>
@@ -85,6 +85,7 @@ function displayUserSchedule(user) {
                     document.getElementById("user_event_schedule").innerHTML = ""
 
                     eventIDs = userDoc.data().eventAttend
+                    console.log("OAISDOJA")
                     console.log(eventIDs)
 
                     db.collection("events")

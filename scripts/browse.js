@@ -68,7 +68,9 @@ function clickRemoveFiltersButton() {
 
 function toggleDropDown() {
     console.log(11212)
-    document.getElementById("filterDropDown").classList.toggle("hidden");
+    dropDown = document.getElementById("filterDropDown")
+    dropDown.classList.toggle("hidden");
+    dropDown.classList.toggle("flex");
 }
 
 

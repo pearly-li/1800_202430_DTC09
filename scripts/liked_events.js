@@ -57,7 +57,7 @@ function showLikedPosts(user) {
                     })
                 } else {
                     document.getElementById("likePosts").innerHTML = `
-                        <p class="m-auto text-center">
+                        <p class="m-auto text-center my-20">
                         Not attending any events.
                         <br>
                         <a href="browse.html" class="text-blue-800 underline">Browse for events</a>
@@ -65,7 +65,7 @@ function showLikedPosts(user) {
                 }
             } else {
                 document.getElementById("likePosts").innerHTML = `
-                    <p class="m-auto text-center">
+                    <p class="m-auto text-center my-20">
                     Not attending any events.
                     <br>
                     <a href="browse.html" class="text-blue-800 underline">Browse for events</a>
