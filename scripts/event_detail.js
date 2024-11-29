@@ -24,16 +24,17 @@ function createEventDetail() {
       var dateTime = new Date(eventInfo.data().dateTime);
       var dateEachComponent = getDateList(dateTime);
       var participant = eventInfo.data().participants.length;
-      var scale = eventInfo.data().maximumParticipants;
+      var capacity = eventInfo.data().capacity;
 
       document.getElementById("eventImg").src = image;
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
-      document.getElementById("eventParticipation").innerText =
-        participant + "/" + scale;
+      document.getElementById("capacity").innerText =
+        participant + "/" + capacity;
       document.getElementById("eventAddress").innerText = location;
       document.getElementById("typeofevent").innerText = typeEventValue;
-      document.getElementById("activityLevelNum").innerText = "Level " + activitylevel;
+      document.getElementById("activityLevelNum").innerText =
+        "Level " + activitylevel;
       document.getElementById("eventTime").innerText =
         formatDate(dateEachComponent) + ", " + formatTime(dateEachComponent);
       document.getElementById("mapBtn").setAttribute("data-id", eventID);
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (mapButton) {
     mapButton.addEventListener("click", () => {
       const eventId = mapButton.getAttribute("data-id");
-      localStorage.setItem("eventId", eventId)
+      localStorage.setItem("eventId", eventId);
     });
   }
 });
@@ -203,7 +204,7 @@ function notHostFooter() {
           attendEvent();
         });
       }
-    })
+    });
 }
 
 function deleteEvent() {
@@ -211,44 +212,49 @@ function deleteEvent() {
     db.collection("users")
       .doc(user.uid)
       .update({
-        myposts: firebase.firestore.FieldValue.arrayRemove(eventID)
-      })
+        myposts: firebase.firestore.FieldValue.arrayRemove(eventID),
+      });
     db.collection("events")
       .doc(eventID)
       .get()
-      .then(doc => {
-        var data = doc.data()
-        var participants = data.participants
+      .then((doc) => {
+        var data = doc.data();
+        var participants = data.participants;
         participants.forEach((eachPerson) => {
           db.collection("users")
             .doc(eachPerson)
             .update({
-              eventAttend: firebase.firestore.FieldValue.arrayRemove(eventID)
-            })
-        })
-      })
+              eventAttend: firebase.firestore.FieldValue.arrayRemove(eventID),
+            });
+        });
+      });
     db.collection("users")
       .where("likePosts", "array-contains", eventID)
       .get()
       .then((info) => {
         if (info.empty) {
-          console.log("There is no one who clicked a like button for the event")
+          console.log(
+            "There is no one who clicked a like button for the event"
+          );
         } else {
           info.forEach((doc) => {
             db.collection("users")
               .doc(doc.id)
               .update({
-                likePosts: firebase.firestore.FieldValue.arrayRemove(eventID)
-              })
-          })
+                likePosts: firebase.firestore.FieldValue.arrayRemove(eventID),
+              });
+          });
         }
+      });
+    var findEventInfo = db.collection("events").where("host", "==", user.uid);
+    findEventInfo.get().then((doc) =>
+      doc.forEach((all) => {
+        all.ref.delete().then(() => {
+          window.location.href = "./main.html";
+        });
       })
-    var findEventInfo = db.collection('events').where('host', '==', user.uid);
-    findEventInfo.get().then(doc => doc.forEach(all => {
-      all.ref.delete()
-        .then(() => { window.location.href = "./main.html" })
-    }))
-  })
+    );
+  });
 }
 
 //check if the user is a host for the event the user is browsing
@@ -286,30 +292,24 @@ function hostOrNot() {
                     </section>`;
             editBtn.addEventListener("click", () => {
               localStorage.setItem("editOrNot", "1");
-              window.location.href = "create_event.html?docID=" + eventID
-            })
+              window.location.href = "create_event.html?docID=" + eventID;
+            });
             deleteBtn.addEventListener("click", () => {
               popupOverlay.classList.add("show");
             });
             closePopup.addEventListener("click", () => {
-              popupOverlay.classList.remove(
-                "show"
-              );
+              popupOverlay.classList.remove("show");
             });
             window.addEventListener("click", (event) => {
               if (event.target == popupOverlay) {
-                popupOverlay.classList.remove(
-                  "show"
-                );
+                popupOverlay.classList.remove("show");
               }
             });
             deleteEventBtn.addEventListener("click", () => {
-              deleteEvent()
-            })
-          } else
-            notHostFooter();
-        } else
-          notHostFooter();
+              deleteEvent();
+            });
+          } else notHostFooter();
+        } else notHostFooter();
       });
   });
 }
