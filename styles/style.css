@@ -196,7 +196,7 @@ main h1 {
 }
 
 .user_event_schedule img {
-  border-radius: 16px;
+  border-radius: 28px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px;
   filter: saturate(30%) contrast(30%) brightness(150%);
 }
@@ -308,7 +308,6 @@ main h1 {
   filter: grayscale(100%);
 }
 
-
 .custom-map-control-button {
   background-color: #fff;
   border: 0;
@@ -337,7 +336,7 @@ main h1 {
 .card {
   border-width: 2px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 4px 6px;
-  border-radius: 30px;
+  border-radius: 28px;
   font: 400 18px Roboto, Arial, sans-serif;
   position: relative;
   display: flex;
@@ -346,7 +345,7 @@ main h1 {
 }
 
 .card-img-top {
-  border-radius: 20px;
+  border-radius: 28px;
   margin-bottom: 10px;
   padding-top: 5px;
   padding-right: 5px;
