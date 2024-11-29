@@ -33,7 +33,7 @@ function listenFileSelect() {
 }
 listenFileSelect();
 
-function createEvent() {
+async function createEvent() {
   var eventInfo = db.collection("events");
   var category = document.getElementById("category");
   var typeEvent = document.getElementById("typeEvent");
@@ -72,7 +72,8 @@ function createEvent() {
               confirmButtonColor: "#e1ae17",
               confirmButtonText: "Ok",
             });
-          });
+          })
+          .then(console.log("Uploaded"));
       } else {
         console.log("Error, no user signed in");
       }
