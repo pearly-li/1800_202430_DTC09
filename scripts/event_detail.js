@@ -23,10 +23,13 @@ function createEventDetail() {
       var typeEventValue = eventInfo.data().typeOfEvent;
       var dateTime = new Date(eventInfo.data().dateTime);
       var dateEachComponent = getDateList(dateTime);
-      if (eventInfo.data().participants != undefined || eventInfo.data().participants != null) {
-        var participant = eventInfo.data().participants;
+      if (
+        eventInfo.data().participants != undefined ||
+        eventInfo.data().participants != null
+      ) {
+        var participants = eventInfo.data().participants;
       } else {
-        var participant = 0;
+        var participants = 0;
       }
       var maximumParticipants = eventInfo.data().maximumParticipants;
 
@@ -34,7 +37,7 @@ function createEventDetail() {
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("eventParticipation").innerText =
-        participant.length + "/" + maximumParticipants;
+        participants.length + "/" + maximumParticipants;
       document.getElementById("eventAddress").innerText = location;
       document.getElementById("typeofevent").innerText = typeEventValue;
       document.getElementById("activityLevelNum").innerText =
@@ -180,9 +183,9 @@ function notHostFooter() {
     .get()
     .then((eventInfo) => {
       var participant = eventInfo.data().participants.length;
-      var scale = eventInfo.data().maximumParticipants;
+      var maximumParticipants = eventInfo.data().maximumParticipants;
 
-      if (participant == scale) {
+      if (participant == maximumParticipants) {
         footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
             <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
             <h1 class="text-white font-bold text-[22px]">No spots available</h1>
