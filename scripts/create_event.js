@@ -7,14 +7,13 @@ var check = document.getElementById("defaultImg");
 check.addEventListener("click", savedefaultImg);
 
 function savedefaultImg() {
-  console.log("checked")
+  console.log("checked");
   if (document.getElementById("defaultImg").checked) {
     ImageFile = null;
     const chooseDefault = document.querySelector("input:checked").dataset.url;
     document.getElementById("user_pic").src = "";
     localStorage.setItem("defaultPic", chooseDefault);
-  }
-  else {
+  } else {
     document.getElementById("defaultImg").checked = false;
   }
 }
@@ -37,7 +36,7 @@ listenFileSelect();
 function createEvent() {
   var eventInfo = db.collection("events");
   var category = document.getElementById("category");
-  var typeEvent = document.getElementById("typeEvent")
+  var typeEvent = document.getElementById("typeEvent");
   title = document.getElementById("title").value;
   (dateTime = document.getElementById("dateTime").value),
     firebase.auth().onAuthStateChanged(function (user) {
@@ -53,19 +52,22 @@ function createEvent() {
               document.getElementById("activityLevel").value
             ),
             maximumParticipants: parseInt(
-              document.getElementById("capacity").value
+              document.getElementById("maximumParticipants").value
             ),
-            location: document.getElementById("streetNumber").value + " " + document.getElementById("streetName").value + " " + document.getElementById("city").value,
+            location:
+              document.getElementById("streetNumber").value +
+              " " +
+              document.getElementById("streetName").value +
+              " " +
+              document.getElementById("city").value,
             dateTime: dateTime,
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
           })
           .then((doc) => {
             console.log("1. Post document added!");
             console.log(doc.id);
-            if (ImageFile)
-              uploadPic(doc.id);
-            else
-              savePostInfoforUser(doc.id)
+            if (ImageFile) uploadPic(doc.id);
+            else savePostInfoforUser(doc.id);
           });
       } else {
         console.log("Error, no user signed in");
@@ -114,11 +116,9 @@ function savePostInfoforUser(postDocID) {
   if (!ImageFile) {
     var savedPicture = localStorage.getItem("defaultPic");
     localStorage.removeItem("defaultPic");
-    db.collection("events")
-      .doc(postDocID)
-      .update({
-        image: savedPicture,
-      })
+    db.collection("events").doc(postDocID).update({
+      image: savedPicture,
+    });
   }
   firebase.auth().onAuthStateChanged((user) => {
     console.log("user id is: " + user.uid);
@@ -174,10 +174,8 @@ function editEvent(docID) {
           })
           .then((doc) => {
             console.log("1. Post document added!");
-            if (ImageFile)
-              uploadPic(docID);
-            else
-              savePostInfoforUser(docID)
+            if (ImageFile) uploadPic(docID);
+            else savePostInfoforUser(docID);
           });
       } else {
         console.log("Error, no user signed in");
@@ -203,36 +201,26 @@ function getLocation() {
   const destinationInput = document.getElementById("destination-input");
   const modeSelector = document.getElementById("mode-selector");
   // Specify just the place data fields that you need.
-  const originAutocomplete = new google.maps.places.Autocomplete(
-    originInput,
-    { fields: ["place_id"] },
-  );
+  const originAutocomplete = new google.maps.places.Autocomplete(originInput, {
+    fields: ["place_id"],
+  });
   // Specify just the place data fields that you need.
   const destinationAutocomplete = new google.maps.places.Autocomplete(
     destinationInput,
-    { fields: ["place_id"] },
+    { fields: ["place_id"] }
   );
 
-  this.setupClickListener(
-    "changemode-walking",
-    google.maps.TravelMode.WALKING,
-  );
-  this.setupClickListener(
-    "changemode-transit",
-    google.maps.TravelMode.TRANSIT,
-  );
-  this.setupClickListener(
-    "changemode-driving",
-    google.maps.TravelMode.DRIVING,
-  );
+  this.setupClickListener("changemode-walking", google.maps.TravelMode.WALKING);
+  this.setupClickListener("changemode-transit", google.maps.TravelMode.TRANSIT);
+  this.setupClickListener("changemode-driving", google.maps.TravelMode.DRIVING);
   this.setupPlaceChangedListener(originAutocomplete, "ORIG");
   this.setupPlaceChangedListener(destinationAutocomplete, "DEST");
   this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
   this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
-    destinationInput,
+    destinationInput
   );
   this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
-  setupPlaceChangedListener(autocomplete, mode)
+  setupPlaceChangedListener(autocomplete, mode);
   autocomplete.bindTo("bounds", this.map);
   autocomplete.addListener("place_changed", () => {
     const place = autocomplete.getPlace();
