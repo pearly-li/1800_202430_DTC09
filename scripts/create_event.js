@@ -55,7 +55,7 @@ function createEvent() {
             maximumParticipants: parseInt(
               document.getElementById("capacity").value
             ),
-            location: document.getElementById("address").value,
+            location: document.getElementById("streetNumber").value + " " + document.getElementById("streetName").value + " " + document.getElementById("city").value,
             dateTime: dateTime,
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
           })
