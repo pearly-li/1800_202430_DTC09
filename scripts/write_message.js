@@ -42,7 +42,15 @@ function writeMessage() {
           })
           .then(() => {
             // Show alert when message is posted successfully
-            alert("Message posted");
+            swal({
+              title: "Message posted!",
+              text: "Message was successfully posted.",
+              type: "success",
+              confirmButtonColor: "#e1ae17",
+              confirmButtonText: "Ok",
+            });
+
+            // Need to add a fresh read of new message later
             // populateMessages();
           })
           .catch((error) => {
