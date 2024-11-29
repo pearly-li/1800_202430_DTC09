@@ -230,10 +230,20 @@ main h1 {
   color: black;
   box-shadow: 0px 5px 5px #0000002b;
   font-size: 16px;
-  font-weight: bold;
-  text-align: center;
 
   z-index: 50;
+}
+
+#removeFilters {
+  background-color: transparent;
+  text-decoration: underline;
+  color: black;
+}
+
+#removeFilters:hover {
+  background-color: transparent;
+  text-decoration: underline;
+  color: black;
 }
 
 /* Create Event Page */

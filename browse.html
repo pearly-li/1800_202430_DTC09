@@ -41,21 +41,32 @@
                     class="block w-full p-4 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-700 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search Events" required />
             </div>
-            <button class="relative btn float-left flex px-5" id="searchEvent">Filters</button>
-            <div id="filterDropDown" class="absolute flex flex-col gap-2 p-2 translate-y-12 rounded-xl z-20 w-[70%]">
+
+            <button class="relative btn float-left flex px-5" id="filterDropDownBtn">Filters</button>
+            <div id="filterDropDown" class="absolute flex flex-col gap-2 p-3 translate-y-12 rounded-xl z-20 w-[70%] hidden">
+                <select class="" id="category">
+                    <option value="">Activity Category</option>
+                    <option value="Arts & Crafts">Arts & Crafts</option>
+                    <option value="Book Club">Book Club</option>
+                    <option value="Food/Drink">Food/Drink</option>
+                    <option value="Language">Language</option>
+                    <option value="Game">Game</option>
+                    <option value="Sports">Sports</option>
+                </select>
                 <select class="" id="size">
-                    <option value="">Size of Event</option>
+                    <option value="">Max Participants</option>
                     <option value="one on one">1</option>
                     <option value="small">2-6</option>
                     <option value="medium">7-12</option>
                     <option value="large">13+</option>
                 </select>
-                <select class="" id="size">
-                    <option value="">Energy Level</option>
-                    <option value="1">1</option>
-                    <option value="2">2-6</option>
-                    <option value="3">7-12</option>
-                    <option value="4">13+</option>
+                <select class="" id="activityLevel">
+                    <option value="">Activity Level</option>
+                    <option value="low">1</option>
+                    <option value="low-medium">2-3</option>
+                    <option value="medium">4-6</option>
+                    <option value="high-medium">7-9</option>
+                    <option value="high">10</option>
                 </select>
                 <select class="" id="type">
                     <option value="">Type of Event</option>
@@ -67,7 +78,7 @@
 
 
             <button class="btn float-right flex" id="searchEvent">Search</button>
-            <button class="btn bg-transparent hover:bg-transparent hover:underline text-black float-right flex"
+            <button class="btn float-right flex"
                 id="removeFilters">Remove Filters</button>
         </section>
 
