@@ -17,7 +17,9 @@ function createEventDetail() {
     .then((eventInfo) => {
       var title = eventInfo.data().title;
       var image = eventInfo.data().image;
-      var location = eventInfo.data().location;
+      var streetNum = eventInfo.data().streetNumber;
+      var streetName = eventInfo.data().streetName;
+      var city = eventInfo.data().city;
       var description = eventInfo.data().description;
       var activitylevel = eventInfo.data().activityLevel;
       var typeEventValue = eventInfo.data().typeOfEvent;
@@ -38,7 +40,7 @@ function createEventDetail() {
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("maximumParticipants").innerText =
         participants.length + "/" + maximumParticipants;
-      document.getElementById("eventAddress").innerText = location;
+      document.getElementById("eventAddress").innerText = streetNum + " " + streetName + " " + city;
       document.getElementById("typeofevent").innerText = typeEventValue;
       document.getElementById("activityLevelNum").innerText =
         "Level " + activitylevel;

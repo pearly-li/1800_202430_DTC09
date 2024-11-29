@@ -21,10 +21,12 @@ function loadingInfo() {
     .then((eventInfo) => {
       var title = eventInfo.data().title;
       var image = eventInfo.data().image;
-      var location = eventInfo.data().location;
+      var streetNum = eventInfo.data().streetNumber;
+      var streetName = eventInfo.data().streetName;
+      var city = eventInfo.data().city;
       var description = eventInfo.data().description;
       var maximumParticipants = eventInfo.data().maximumParticipants;
-      var activitylevel = eventInfo.data().activtyLevel;
+      var activitylevel = eventInfo.data().activityLevel;
       var date = eventInfo.data().dateTime;
       var categoryvalue = eventInfo.data().category;
       var typeEventValue = eventInfo.data().typeOfEvent;
@@ -33,8 +35,10 @@ function loadingInfo() {
       document.getElementById("description").value = description;
       category.options[category.selectedIndex].value = categoryvalue;
       document.getElementById("activityLevel").value = activitylevel;
-      document.getElementById("address").value = location;
-      document.getElementById("maximumParticipants").value =
+      document.getElementById("streetNumber").value = streetNum;
+      document.getElementById("streetName").value = streetName;
+      document.getElementById("city").value = city;
+      document.getElementById("capacity").value =
         maximumParticipants;
       document.getElementById("dateTime").value = date;
       document.getElementById("typeEvent").value = typeEventValue;
