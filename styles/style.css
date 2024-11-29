@@ -18,13 +18,14 @@ main h1 {
 #landingNav {
   padding-top: 10px;
   padding-left: 5px;
+  z-index: 50;
 }
 
 /* Top Navbar - After */
 #header_navbar {
   background-color: white;
   color: black;
-  box-shadow: 0px 5px 5px #0000002b;
+  box-shadow: 1px 5px 5px 2px #0000002b;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
@@ -46,6 +47,8 @@ main h1 {
   font-family: Helvetica;
   font-size: 14px;
   text-align: center;
+
+  z-index: 50;
 }
 
 #landing_footer h1 {
@@ -228,8 +231,9 @@ main h1 {
 #filterDropDown {
   background-color: white;
   color: black;
-  box-shadow: 0px 5px 5px #0000002b;
+  box-shadow: 1px 5px 5px 2px #0000002b;
   font-size: 16px;
+  overflow: hidden;
 
   z-index: 50;
 }
@@ -245,6 +249,15 @@ main h1 {
   text-decoration: underline;
   color: black;
 }
+
+
+/* Browsing */
+#eventDetailPageCardShadow {
+  box-shadow: 1px -5px 5px 2px #0000002b;
+
+  z-index: 20;
+}
+
 
 /* Create Event Page */
 #user_pic {
