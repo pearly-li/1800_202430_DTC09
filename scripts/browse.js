@@ -5,7 +5,9 @@ var currentEventPageNumber = 1
 var maxEventPageNumber = 1
 
 var filterEventSearchKeyword = document.getElementById("default-search").value.toLowerCase().split(" ")
+var filterEventCategory = document.getElementById("category").value
 var filterEventSize = document.getElementById("size").value
+var filterEventActivityLevel = document.getElementById("activityLevel").value
 var filterEventType = document.getElementById("type").value
 var filterEventDate = document.getElementById("date").value
 
@@ -32,15 +34,20 @@ filterSearchBtn.addEventListener("click", clickFilterButton)
 let removeFilterBtn = document.getElementById("removeFilters")
 removeFilterBtn.addEventListener("click", clickRemoveFiltersButton)
 
+let filterDropDownBtn = document.getElementById("filterDropDownBtn")
+filterDropDownBtn.addEventListener("click", toggleDropDown)
+
 async function clickFilterButton() {
     currentEventPageNumber = 1
 
     await loadAllEvents()
 
-    filterEventSearchKeyword = await document.getElementById("default-search").value.toLowerCase().split(" ")
-    filterEventSize = await document.getElementById("size").value
-    filterEventType = await document.getElementById("type").value
-    filterEventDate = await document.getElementById("date").value
+    filterEventSearchKeyword = document.getElementById("default-search").value.toLowerCase().split(" ")
+    filterEventCategory = document.getElementById("category").value
+    filterEventSize = document.getElementById("size").value
+    filterEventActivityLevel = document.getElementById("activityLevel").value
+    filterEventType = document.getElementById("type").value
+    filterEventDate = document.getElementById("date").value
 
     await filterResults()
 
@@ -50,11 +57,18 @@ async function clickFilterButton() {
 
 function clickRemoveFiltersButton() {
     document.getElementById("default-search").value = ""
+    document.getElementById("category").value = ""
     document.getElementById("size").value = ""
+    document.getElementById("activityLevel").value = ""
     document.getElementById("type").value = ""
     document.getElementById("date").value = ""
 
     clickFilterButton()
+}
+
+function toggleDropDown() {
+    console.log(11212)
+    document.getElementById("filterDropDown").classList.toggle("hidden");
 }
 
 
@@ -110,6 +124,9 @@ async function filterResults() {
 
         }
 
+        if (filterEventCategory != "" && filterEventCategory != doc.data().category) {
+            continue;
+        }
 
         if (filterEventSize == "one on one" && doc.data().scale != 1) {
             continue;
@@ -121,10 +138,20 @@ async function filterResults() {
             continue;
         }
 
-
-        if (filterEventType == "In Person" && doc.data().scale != "In Person") {
+        eventLevel = doc.data().activityLevel
+        if (filterEventActivityLevel == "low" && eventLevel != 1) {
             continue;
-        } else if (filterEventType == "Virtual" && doc.data().scale != "Virtual") {
+        } else if (filterEventActivityLevel == "low-medium" && (eventLevel < 2 || eventLevel > 3)) {
+            continue;
+        } else if (filterEventActivityLevel == "medium" && (eventLevel < 4 || eventLevel > 6)) {
+            continue;
+        } else if (filterEventActivityLevel == "high-medium" && (eventLevel < 7 || eventLevel > 9)) {
+            continue;
+        } else if (filterEventActivityLevel == "high" && eventLevel < 10) {
+            continue;
+        }
+
+        if (filterEventType != "" && filterEventType != doc.data().scale) {
             continue;
         }
 
@@ -292,12 +319,18 @@ function displayResults() {
 async function setup() {
     await loadAllEvents()
 
-    filterEventSearchKeyword = await document.getElementById("default-search").value.toLowerCase().split(" ")
-    filterEventSize = await document.getElementById("size").value
-    filterEventType = await document.getElementById("type").value
-    filterEventDate = await document.getElementById("date").value
+    console.log("eventBrowsingList")
+    console.log(eventBrowsingList)
+
+    filterEventSearchKeyword = document.getElementById("default-search").value.toLowerCase().split(" ")
+    filterEventCategory = document.getElementById("category").value
+    filterEventSize = document.getElementById("size").value
+    filterEventActivityLevel = document.getElementById("activityLevel").value
+    filterEventType = document.getElementById("type").value
+    filterEventDate = document.getElementById("date").value
 
     await filterResults()
+    console.log(eventBrowsingList)
 
     updateNavbarButtons()
     displayResults()
