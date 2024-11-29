@@ -52,14 +52,11 @@ function createEvent() {
               document.getElementById("activityLevel").value
             ),
             maximumParticipants: parseInt(
-              document.getElementById("maximumParticipants").value
+              document.getElementById("capacity").value
             ),
-            location:
-              document.getElementById("streetNumber").value +
-              " " +
-              document.getElementById("streetName").value +
-              " " +
-              document.getElementById("city").value,
+            streetNumber: document.getElementById("streetNumber").value,
+            streetName: document.getElementById("streetName").value,
+            city: document.getElementById("city").value,
             dateTime: dateTime,
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
           })
