@@ -187,32 +187,33 @@ function notHostFooter() {
       var participant = eventInfo.data().participants.length;
       var maximumParticipants = eventInfo.data().maximumParticipants;
 
-      if (participant == maximumParticipants) {
-        footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
-            <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
-            <h1 class="text-white font-bold text-[22px]">No spots available</h1>
-            <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
-        </section>`;
-      } else {
-        footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
-              <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
-              <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
-              <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
-          </section>`;
-        checkUserLiked();
-        checkUserAttendance();
-        like_btn = document.getElementById("likeBtn");
-        like_btn.addEventListener("click", () => {
-          pressLikeBtn();
-          likedEventCollection();
-        });
+      loadEventDetailNav();
+      // if (participant == maximumParticipants) {
+      //   footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
+      //       <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
+      //       <h1 class="text-white font-bold text-[22px]">No spots available</h1>
+      //       <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
+      //   </section>`;
+      // } else {
+      //   footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
+      //         <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
+      //         <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
+      //         <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
+      //     </section>`;
+      //   checkUserLiked();
+      //   checkUserAttendance();
+      //   like_btn = document.getElementById("likeBtn");
+      //   like_btn.addEventListener("click", () => {
+      //     pressLikeBtn();
+      //     likedEventCollection();
+      //   });
 
-        attend_btn = document.getElementById("attendBtn");
-        attend_btn.addEventListener("click", () => {
-          pressAttendBtn();
-          attendEvent();
-        });
-      }
+      //   attend_btn = document.getElementById("attendBtn");
+      //   attend_btn.addEventListener("click", () => {
+      //     pressAttendBtn();
+      //     attendEvent();
+      //   });
+      // }
     });
 }
 
@@ -277,28 +278,6 @@ function hostOrNot() {
         if (userInfo.data().hasOwnProperty("myposts")) {
           //check if the user has "myposts" field
           if (userInfo.data()["myposts"].includes(eventID)) {
-            //check if the user has the eventID in the "myposts" field
-            footerNavDesign.innerHTML = `<section class="flex gap-6 my-4 justify-center px-3 items-center">
-                      <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[24px] h-[24px]"></a>
-                      <h1 class="text-white font-bold text-[22px]">The host of the event</h1>
-                      <section class="flex gap-3">
-                      <button class="w-[28px] h-[33px]" id="deleteBtn">
-                        <img src="./images/trash.png"></button>
-                        <div class="popup-overlay" id="popupOverlay">
-                          <div id="popUp" class="popup rounded-[15px] w-[80%] h-[25%] pt-[50px]">
-                            <div class="popup-content rounded-[10px] mx-auto text-center">
-                              <h1 class="font-bold text-[18px]">Are you sure <br>you want to delete this event?</h1>
-                              <section class="flex mt-8 justify-center gap-7">
-                                <button id="closePopup" class="text-[20px] px-10 py-2 border rounded-full bg-[#e1ae17] text-white font-bold">No</button>
-                                <button id="deleteEventBtn" class="text-[20px] px-10 py-2 border rounded-full bg-[#2e394f] text-white font-bold">Yes</button>
-                              </section>
-                            </div>
-                          </div>
-                        </div>
-                      <button id="editBtn" class="w-[30px] h-[30px]">
-                        <img src="./images/edit.png"></button>
-                      </section>
-                    </section>`;
             editBtn.addEventListener("click", () => {
               localStorage.setItem("editOrNot", "1");
               window.location.href = "create_event.html?docID=" + eventID;
@@ -323,3 +302,10 @@ function hostOrNot() {
   });
 }
 hostOrNot();
+
+function loadEventDetailNav() {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) 
+      console.log($("#eventDetailNav").load("./text/event_detail_nav.html"));
+  });
+}
