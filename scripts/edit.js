@@ -33,18 +33,19 @@ function loadingInfo() {
 
       document.getElementById("title").value = title;
       document.getElementById("description").value = description;
-      category.options[category.selectedIndex].value = categoryvalue;
+      document.getElementById("category").value = categoryvalue;
       document.getElementById("activityLevel").value = activitylevel;
       document.getElementById("streetNumber").value = streetNum;
       document.getElementById("streetName").value = streetName;
       document.getElementById("city").value = city;
-      document.getElementById("capacity").value =
+      document.getElementById("maximumParticipants").value =
         maximumParticipants;
       document.getElementById("dateTime").value = date;
       document.getElementById("typeEvent").value = typeEventValue;
 
       if (image === "./images/no_img.jpg") {
         document.getElementById("defaultImg").checked = true;
+        ImageFile = null;
       } else {
         document.getElementById("user_pic").src = image;
       }

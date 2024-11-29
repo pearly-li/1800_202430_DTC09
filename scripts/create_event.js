@@ -52,7 +52,7 @@ function createEvent() {
               document.getElementById("activityLevel").value
             ),
             maximumParticipants: parseInt(
-              document.getElementById("capacity").value
+              document.getElementById("maximumParticipants").value
             ),
             streetNumber: document.getElementById("streetNumber").value,
             streetName: document.getElementById("streetName").value,
@@ -119,7 +119,6 @@ function uploadPic(postDocID) {
 function savePostInfoforUser(postDocID) {
   if (!ImageFile) {
     var savedPicture = localStorage.getItem("defaultPic");
-    localStorage.removeItem("defaultPic");
     db.collection("events").doc(postDocID).update({
       image: savedPicture,
     });
@@ -170,9 +169,11 @@ function editEvent(docID) {
               document.getElementById("activityLevel").value
             ),
             maximumParticipants: parseInt(
-              document.getElementById("capacity").value
+              document.getElementById("maximumParticipants").value
             ),
-            location: document.getElementById("address").value,
+            streetNumber: document.getElementById("streetNumber").value,
+            streetName: document.getElementById("streetName").value,
+            city: document.getElementById("city").value,
             dateTime: dateTime,
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
           })
