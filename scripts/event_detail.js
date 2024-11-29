@@ -39,7 +39,7 @@ function createEventDetail() {
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("maximumParticipants").innerText =
-        participants.length - 1 + "/" + maximumParticipants;
+        (participants.length - 1) + "/" + maximumParticipants;
       document.getElementById("eventAddress").innerText =
         streetNum + " " + streetName + " " + city;
       document.getElementById("typeofevent").innerText = typeEventValue;
