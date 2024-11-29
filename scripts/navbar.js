@@ -20,26 +20,6 @@ function getPageName() {
 }
 getPageName();
 
-var originalPagePosition = window.scrollY;
-
-window.onscroll = function hideNavbar() {
-  var currentPagePosition = window.scrollY;
-  if (originalPagePosition > currentPagePosition) {
-    document.getElementById("header_navbar").style.top = "0";
-  } else {
-    document.getElementById("header_navbar").style.top = "-75px";
-  }
-  originalPagePosition = currentPagePosition;
-};
-
-if (
-  document.getElementById("page_label_goes_here").innerText == "Social Scout"
-) {
-  btn = document.getElementById("back_arrow_btn");
-  btn.classList.add("invisible");
-  btn.disabled = true;
-}
-
 // This is the function that generates profile_picture in the top nav
 var currentUser; //points to the document of the user who is logged in
 
