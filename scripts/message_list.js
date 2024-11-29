@@ -27,7 +27,7 @@ function populateMessages() {
           .data()
           .message_created_at.toDate()
           .toLocaleString();
-        messageCard.querySelector("#message_description").innerHTML =
+        messageCard.querySelector("#messageDescriptionPosted").innerHTML =
           message_description;
         messageCard.querySelector("#reviewer_name").innerHTML = reviewer_name;
         let reviewerPicture = doc.data().reviewer_profile_picture;
@@ -45,26 +45,35 @@ populateMessages();
 function appendMessages() {
   var messageCardGroup = document.getElementById("messageCardGroup");
   var messageRef = db.collection("messages");
-  messageRef.get().then((doc) => {
-    var reviewer_name = doc.data().reviewer_name;
-    // var last_updated = doc.data().last_updated;
-    var message_description = doc.data().message_description;
-    let messageCard = messageCardTemplate.content.cloneNode(true);
-    messageCard.querySelector("#message_created_at").innerHTML = doc
-      .data()
-      .message_created_at.toDate()
-      .toLocaleString();
-    messageCard.querySelector("#message_description").innerHTML =
-      message_description;
-    messageCard.querySelector("#reviewer_name").innerHTML = reviewer_name;
-    let reviewerPicture = doc.data().reviewer_profile_picture;
-    if (reviewerPicture) {
-      messageCard.querySelector(
-        "#reviewer_picture"
-      ).src = `images/${reviewerPicture}`;
-    }
-    messageCardGroup.appendChild(messageCard);
-  });
+  messageRef
+    .where("eventID", "==", eventID)
+    .orderBy("message_created_at")
+    .get()
+    .then((doc) => {
+      messages = allMessages.docs;
+      console.log(messages);
+      var reviewer_name = doc.data().reviewer_name;
+      // var last_updated = doc.data().last_updated;
+      var message_description = doc.data().message_description;
+      document.getElementById("eventTitle").innerText = title;
+      // Clear out the "type your message here" field
+      messageCard.getElementById("messageDescription").value = "";
+      let messageCard = messageCardTemplate.content.cloneNode(true);
+      messageCard.querySelector("#message_created_at").innerHTML = doc
+        .data()
+        .message_created_at.toDate()
+        .toLocaleString();
+      messageCard.querySelector("#messageDescriptionPosted").innerHTML =
+        message_description;
+      messageCard.querySelector("#reviewer_name").innerHTML = reviewer_name;
+      let reviewerPicture = doc.data().reviewer_profile_picture;
+      if (reviewerPicture) {
+        messageCard.querySelector(
+          "#reviewer_picture"
+        ).src = `images/${reviewerPicture}`;
+      }
+      messageCardGroup.appendChild(messageCard);
+    });
 }
 
 // listofmessageIDs = [];
