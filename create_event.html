@@ -49,11 +49,11 @@
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Title <span class="text-red-600">*</span></h1>
-            <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2">
+            <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2 w-full">
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Description <span class="text-red-600">*</span></h1>
-            <input type="text" id="description" placeholder="Event Description" class="border rounded pl-2">
+            <textarea id="description" placeholder="Event Description" class="border rounded pl-2 w-full" rows="5"></textarea>
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Category <span class="text-red-600">*</span></h1>
@@ -85,7 +85,7 @@
         <div class="space-y-2">
             <h1 class="text-xl">Maximum Number of Participants <span class="text-red-600">*</span></h1>
             <input required type="number" id="maximumParticipants" placeholder="Maximum Number of Participants"
-                class="border rounded pl-2 p-1 w-[85%]">
+                class="border rounded pl-2 p-1 w-[40%]" min="1">
         </div>
 
         <div class="space-y-2">

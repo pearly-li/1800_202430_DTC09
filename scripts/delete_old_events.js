@@ -5,9 +5,19 @@ yesterday.setDate(yesterday.getDate() - 1)
 var todayEachComponent = getDateList(today)
 var yesterdayEachComponent = getDateList(yesterday)
 
+console.log(yesterday, yesterdayEachComponent)
+
 oldEventsList = []
 
 async function loadAllOldEvents() {
+    console.log("DELETE")
+
+    var today = new Date();
+    var yesterday = today
+    yesterday.setDate(yesterday.getDate() - 1)
+
+    var yesterdayEachComponent = getDateList(yesterday)
+    
     return db.collection("events")
         .orderBy("dateTime")
         .get()
