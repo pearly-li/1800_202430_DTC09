@@ -63,6 +63,7 @@ function createEvent() {
           .then((doc) => {
             console.log("1. Post document added!");
             console.log(doc.id);
+            // If they used a default image, then we skip uploading it to firebase. Then we save the rest of their inputted fields to firebase.
             if (ImageFile) uploadPic(doc.id);
             else savePostInfoforUser(doc.id);
             swal({
