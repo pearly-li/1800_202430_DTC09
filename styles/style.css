@@ -254,6 +254,8 @@ main h1 {
 
 /* Browsing */
 #eventDetailPageCardShadow {
+  
+  margin-top: 0;
   box-shadow: 1px -5px 5px 2px #0000002b;
 
   z-index: 20;
