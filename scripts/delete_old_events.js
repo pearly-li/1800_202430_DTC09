@@ -79,6 +79,7 @@ async function deleteOldEvents() {
                                 })
                             }
                         })
+                    console.log("DELETE", docID)
                     db.collection("events").doc(docID)
                         .delete()
                 })
