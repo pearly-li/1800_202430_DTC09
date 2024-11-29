@@ -6,7 +6,7 @@ var userEvent = db.collection("users");
 var image;
 var pressLike;
 var pressAttend;
-var eventRef = db.collection("events")
+var eventRef = db.collection("events");
 
 //fill the information about the event
 function createEventDetail() {
@@ -19,6 +19,7 @@ function createEventDetail() {
       var streetNum = eventInfo.data().streetNumber;
       var streetName = eventInfo.data().streetName;
       var city = eventInfo.data().city;
+      var location = streetNum + " " + streetName + " " + city;
       var description = eventInfo.data().description;
       var activitylevel = eventInfo.data().activityLevel;
       var typeEventValue = eventInfo.data().typeOfEvent;
@@ -38,8 +39,14 @@ function createEventDetail() {
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("maximumParticipants").innerText =
+<<<<<<< HEAD
         (participants.length - 1) + "/" + maximumParticipants;
-      document.getElementById("eventAddress").innerText = streetNum + " " + streetName + " " + city;
+      document.getElementById("eventAddress").innerText = location;
+=======
+        participants.length - 1 + "/" + maximumParticipants;
+      document.getElementById("eventAddress").innerText =
+        streetNum + " " + streetName + " " + city;
+>>>>>>> 0e65ba2 (Changed notHostFooter to participantButtons)
       document.getElementById("typeofevent").innerText = typeEventValue;
       document.getElementById("activityLevelNum").innerText =
         "Level " + activitylevel;
@@ -55,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (mapButton) {
     mapButton.addEventListener("click", () => {
       const eventId = mapButton.getAttribute("data-id");
-      localStorage.setItem("eventId", eventId);
+      localStorage.setItem("eventId", eventID);
     });
   }
 });
@@ -177,16 +184,16 @@ function attendEvent() {
           var participants = eventInfo.data().participants;
           var maximumParticipants = eventInfo.data().maximumParticipants;
           document.getElementById("maximumParticipants").innerText =
-            (participants.length - 1) + "/" + maximumParticipants;
-        })
+            participants.length - 1 + "/" + maximumParticipants;
+        });
     } else {
       console.log("Error, no user signed in");
     }
   });
 }
 
-//when user is not a host for the event the user is browsing, display a footer that is different from the host's footer
-function notHostFooter() {
+//when user is not a host for the event the user is browsing, display a button (attend/cancel) that is different from the host's buttons ("You are the host")
+function participantButtons() {
   let eventRef = db.collection("events");
   eventRef
     .doc(eventID)
@@ -196,17 +203,20 @@ function notHostFooter() {
       var numOfParticipant = eventInfo.data().participants.length - 1;
       var maximumParticipants = eventInfo.data().maximumParticipants;
       var showOption = document.getElementById("notHostOption");
-      var buttonsForHost = document.getElementById("hostOption")
+      var buttonsForHost = document.getElementById("hostOption");
 
-      buttonsForHost.classList.add("hidden")
+      buttonsForHost.classList.add("hidden");
 
       firebase.auth().onAuthStateChanged(function (user) {
-        userEvent
-        if ((!participantList.includes(user.uid)) && (numOfParticipant == maximumParticipants)) {
+        userEvent;
+        if (
+          !participantList.includes(user.uid) &&
+          numOfParticipant == maximumParticipants
+        ) {
           showOption.innerHTML = `<h1 class= "bg-[#e1ae17] text-white rounded-[5px] text-center pt-1 font-bold text-[22px] min-h-[40px]">No spots available</h1>`;
         } else {
           showOption.innerHTML = `<button class="bg-[#e1ae17] text-white rounded-[5px] px-20 font-bold text-xl w-full min-h-[40px]" id="attendBtn">Attend</button>`;
-          showOption.classList.add("mt-7")
+          showOption.classList.add("mt-7");
           checkUserLiked();
           checkUserAttendance();
           like_btn = document.getElementById("likeBtn");
@@ -214,16 +224,15 @@ function notHostFooter() {
             pressLikeBtn();
             likedEventCollection();
           });
-    
+
           attend_btn = document.getElementById("attendBtn");
           attend_btn.addEventListener("click", () => {
             pressAttendBtn();
             attendEvent();
-        });
+          });
         }
       });
-
-  });
+    });
 }
 
 function deleteEvent() {
@@ -277,7 +286,7 @@ function deleteEvent() {
 }
 
 //check if the user is a host for the event the user is browsing
-//if the user is a host for the event, display specific footer for the host
+//if the user is a host for the event, then they get a "you are the host" banner, instead of the default "attend" or "cancel" event.
 function hostOrNot() {
   firebase.auth().onAuthStateChanged(function (user) {
     userEvent
@@ -286,7 +295,7 @@ function hostOrNot() {
       .then((userInfo) => {
         if (userInfo.data().hasOwnProperty("myposts")) {
           if (userInfo.data()["myposts"].includes(eventID)) {
-            var heartBtn = document.getElementById("likeBtn")
+            var heartBtn = document.getElementById("likeBtn");
             heartBtn.classList.add("hidden");
 
             editBtn.addEventListener("click", () => {
@@ -307,8 +316,8 @@ function hostOrNot() {
             deleteEventBtn.addEventListener("click", () => {
               deleteEvent();
             });
-          } else notHostFooter();
-        } else notHostFooter();
+          } else participantButtons();
+        } else participantButtons();
       });
   });
 }

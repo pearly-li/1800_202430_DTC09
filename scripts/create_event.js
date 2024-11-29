@@ -38,46 +38,45 @@ function createEvent() {
   var category = document.getElementById("category");
   var typeEvent = document.getElementById("typeEvent");
   title = document.getElementById("title").value;
-  var dateTime = document.getElementById("dateTime").value;
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      eventInfo
-        .add({
-          host: user.uid,
-          title: title,
-          description: document.getElementById("description").value,
-          category: category.options[category.selectedIndex].value,
-          typeOfEvent: typeEvent.options[typeEvent.selectedIndex].value,
-          activityLevel: parseInt(
-            document.getElementById("activityLevel").value
-          ),
-          maximumParticipants: parseInt(
-            document.getElementById("maximumParticipants").value
-          ),
-          streetNumber: document.getElementById("streetNumber").value,
-          streetName: document.getElementById("streetName").value,
-          city: document.getElementById("city").value,
-          dateTime: dateTime,
-          last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-        })
-        .then((doc) => {
-          console.log("1. Post document added!");
-          console.log(doc.id);
-          // If they used a default image, then we skip uploading it to firebase. Then we save the rest of their inputted fields to firebase.
-          if (ImageFile) uploadPic(doc.id);
-          else savePostInfoforUser(doc.id);
-          swal({
-            title: "Event created!",
-            text: "Your event was successfully created.",
-            type: "success",
-            confirmButtonColor: "#e1ae17",
-            confirmButtonText: "Ok",
+  (dateTime = document.getElementById("dateTime").value),
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        eventInfo
+          .add({
+            host: user.uid,
+            title: title,
+            description: document.getElementById("description").value,
+            category: category.options[category.selectedIndex].value,
+            typeOfEvent: typeEvent.options[typeEvent.selectedIndex].value,
+            activityLevel: parseInt(
+              document.getElementById("activityLevel").value
+            ),
+            maximumParticipants: parseInt(
+              document.getElementById("maximumParticipants").value
+            ),
+            streetNumber: document.getElementById("streetNumber").value,
+            streetName: document.getElementById("streetName").value,
+            city: document.getElementById("city").value,
+            dateTime: dateTime,
+            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+          })
+          .then((doc) => {
+            console.log("1. Post document added!");
+            console.log(doc.id);
+            if (ImageFile) uploadPic(doc.id);
+            else savePostInfoforUser(doc.id);
+            swal({
+              title: "Event created!",
+              text: "Your event was successfully created.",
+              type: "success",
+              confirmButtonColor: "#e1ae17",
+              confirmButtonText: "Ok",
+            });
           });
-        });
-    } else {
-      console.log("Error, no user signed in");
-    }
-  });
+      } else {
+        console.log("Error, no user signed in");
+      }
+    });
 }
 
 var create_event_btn = document.getElementById("create_event_btn");
@@ -175,6 +174,7 @@ function editEvent(docID) {
             streetNumber: document.getElementById("streetNumber").value,
             streetName: document.getElementById("streetName").value,
             city: document.getElementById("city").value,
+            location: document.getElementById("streetNumber").value + " " + document.getElementById("streetName").value + " " + document.getElementById("city").value,
             dateTime: dateTime,
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
           })
@@ -187,61 +187,4 @@ function editEvent(docID) {
         console.log("Error, no user signed in");
       }
     });
-}
-
-function getLocation() {
-  map;
-  originPlaceId;
-  destinationPlaceId;
-  travelMode;
-  directionsService;
-  directionsRenderer;
-  this.originPlaceId = "";
-  this.destinationPlaceId = "";
-  this.travelMode = google.maps.TravelMode.WALKING;
-  this.directionsService = new google.maps.DirectionsService();
-  this.directionsRenderer = new google.maps.DirectionsRenderer();
-  this.directionsRenderer.setMap(map);
-
-  const originInput = document.getElementById("origin-input");
-  const destinationInput = document.getElementById("destination-input");
-  const modeSelector = document.getElementById("mode-selector");
-  // Specify just the place data fields that you need.
-  const originAutocomplete = new google.maps.places.Autocomplete(originInput, {
-    fields: ["place_id"],
-  });
-  // Specify just the place data fields that you need.
-  const destinationAutocomplete = new google.maps.places.Autocomplete(
-    destinationInput,
-    { fields: ["place_id"] }
-  );
-
-  this.setupClickListener("changemode-walking", google.maps.TravelMode.WALKING);
-  this.setupClickListener("changemode-transit", google.maps.TravelMode.TRANSIT);
-  this.setupClickListener("changemode-driving", google.maps.TravelMode.DRIVING);
-  this.setupPlaceChangedListener(originAutocomplete, "ORIG");
-  this.setupPlaceChangedListener(destinationAutocomplete, "DEST");
-  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
-    destinationInput
-  );
-  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
-  setupPlaceChangedListener(autocomplete, mode);
-  autocomplete.bindTo("bounds", this.map);
-  autocomplete.addListener("place_changed", () => {
-    const place = autocomplete.getPlace();
-
-    if (!place.place_id) {
-      window.alert("Please select an option from the dropdown list.");
-      return;
-    }
-
-    if (mode === "ORIG") {
-      this.originPlaceId = place.place_id;
-    } else {
-      this.destinationPlaceId = place.place_id;
-    }
-
-    this.route();
-  });
 }
