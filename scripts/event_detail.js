@@ -19,6 +19,7 @@ function createEventDetail() {
       var streetNum = eventInfo.data().streetNumber;
       var streetName = eventInfo.data().streetName;
       var city = eventInfo.data().city;
+      var location = streetNum + " " + streetName + " " + city;
       var description = eventInfo.data().description;
       var activitylevel = eventInfo.data().activityLevel;
       var typeEventValue = eventInfo.data().typeOfEvent;
@@ -39,7 +40,7 @@ function createEventDetail() {
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("maximumParticipants").innerText =
         participants.length + "/" + maximumParticipants;
-      document.getElementById("eventAddress").innerText = streetNum + " " + streetName + " " + city;
+      document.getElementById("eventAddress").innerText = location;
       document.getElementById("typeofevent").innerText = typeEventValue;
       document.getElementById("activityLevelNum").innerText =
         "Level " + activitylevel;
@@ -55,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (mapButton) {
     mapButton.addEventListener("click", () => {
       const eventId = mapButton.getAttribute("data-id");
-      localStorage.setItem("eventId", eventId);
+      localStorage.setItem("eventId", eventID);
     });
   }
 });
@@ -207,8 +208,8 @@ function notHostFooter() {
       attend_btn.addEventListener("click", () => {
         pressAttendBtn();
         attendEvent();
+      });
     });
-  });
 }
 
 function deleteEvent() {
