@@ -5,6 +5,8 @@ var params = new URL(window.location.href);
 var messageID = params.searchParams.get("docID");
 var eventRef = db.collection("events");
 
+function editMessageAllowed() {}
+
 // This grabs the messages that are associated with the event and orders the messages by message_created_at date.
 function populateMessages() {
   console.log("test");
@@ -50,8 +52,6 @@ function appendMessages() {
     .orderBy("message_created_at")
     .get()
     .then((doc) => {
-      messages = allMessages.docs;
-      console.log(messages);
       var reviewer_name = doc.data().reviewer_name;
       // var last_updated = doc.data().last_updated;
       var message_description = doc.data().message_description;
