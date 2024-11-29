@@ -38,7 +38,7 @@ function createEventDetail() {
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("maximumParticipants").innerText =
-        participants.length + "/" + maximumParticipants;
+        (participants.length - 1) + "/" + maximumParticipants;
       document.getElementById("eventAddress").innerText = streetNum + " " + streetName + " " + city;
       document.getElementById("typeofevent").innerText = typeEventValue;
       document.getElementById("activityLevelNum").innerText =
@@ -183,31 +183,37 @@ function notHostFooter() {
     .doc(eventID)
     .get()
     .then((eventInfo) => {
-      var participant = eventInfo.data().participants.length;
+      var participantList = eventInfo.data().participants;
+      var numOfParticipant = eventInfo.data().participants.length - 1;
       var maximumParticipants = eventInfo.data().maximumParticipants;
       var showOption = document.getElementById("notHostOption");
       var buttonsForHost = document.getElementById("hostOption")
 
       buttonsForHost.classList.add("hidden")
-      if (participant == maximumParticipants) {
-        showOption.innerHTML = `<h1 class= "bg-[#e1ae17] text-white rounded-[5px] text-center pt-1 font-bold text-[22px] min-h-[40px]">No spots available</h1>`;
-      } else {
-        showOption.innerHTML = `<button class="bg-[#e1ae17] text-white rounded-[5px] px-20 font-bold text-xl w-full min-h-[40px]" id="attendBtn">Attend</button>`;
-      }
-      showOption.classList.add("mt-7")
-      checkUserLiked();
-      checkUserAttendance();
-      like_btn = document.getElementById("likeBtn");
-      like_btn.addEventListener("click", () => {
-        pressLikeBtn();
-        likedEventCollection();
+
+      firebase.auth().onAuthStateChanged(function (user) {
+        userEvent
+        if ((!participantList.includes(user.uid)) && (numOfParticipant == maximumParticipants)) {
+          showOption.innerHTML = `<h1 class= "bg-[#e1ae17] text-white rounded-[5px] text-center pt-1 font-bold text-[22px] min-h-[40px]">No spots available</h1>`;
+        } else {
+          showOption.innerHTML = `<button class="bg-[#e1ae17] text-white rounded-[5px] px-20 font-bold text-xl w-full min-h-[40px]" id="attendBtn">Attend</button>`;
+          showOption.classList.add("mt-7")
+          checkUserLiked();
+          checkUserAttendance();
+          like_btn = document.getElementById("likeBtn");
+          like_btn.addEventListener("click", () => {
+            pressLikeBtn();
+            likedEventCollection();
+          });
+    
+          attend_btn = document.getElementById("attendBtn");
+          attend_btn.addEventListener("click", () => {
+            pressAttendBtn();
+            attendEvent();
+        });
+        }
       });
 
-      attend_btn = document.getElementById("attendBtn");
-      attend_btn.addEventListener("click", () => {
-        pressAttendBtn();
-        attendEvent();
-    });
   });
 }
 

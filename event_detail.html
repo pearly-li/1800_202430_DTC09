@@ -147,7 +147,7 @@
 
             <textarea class="flex form-control border-2 rounded-[16px] p-4 my-2 border-gray-300"
                 id="messageDescription" rows="3" placeholder="Type your message here"></textarea>
-            <button type="button" class="btn py-1 text-lg mr-[30px]" onclick="writeMessage()">Submit</button>
+            <button type="button" class="btn py-1 text-lg mr-[30px]" onclick="clickSubmitMessage()">Submit</button>
         </div>
     </main>
     <footer id="footer_navbar" class="mt-auto">
@@ -158,13 +158,13 @@
     <template id="messageCardTemplate" class="">
         <div id="messageCard" class="bg-success border-2 rounded-[16px] border-gray-300 m-auto px-4 pb-4 mt-2">
             <div class="card-body bg-light">
-                <div id="messageHeader" class="flex flex-row justify-between">
-                    <div id="profilePictureNameContainer" class="pt-2 flex items-center">
-                        <img id="reviewer_picture" class="flex-col w-[10vw] h-[10vw] max-h-[30px] max-w-[30px]"
+                <div class="flex flex-row justify-between">
+                    <div class="pt-2 flex items-center">
+                        <img class="reviewer_picture flex-col w-[10vw] h-[10vw] max-h-[30px] max-w-[30px]"
                             alt="Reviewer Profile Picture" src="./images/user.png">
-                        <p id="reviewer_name" class="flex flex-col pl-4">placeholder</p>
+                        <p class="reviewer_name flex flex-col pl-4">placeholder</p>
                     </div>
-                    <p id="message_created_at" class="flex flex-wrap w-1/3 pt-3">placeholder</p>
+                    <p class="message_created_at flex flex-wrap w-1/3 pt-3">placeholder</p>
 
                     <!-- Removed last_updated until I can make an edit function -->
                     <!-- <p class="last_updated">placeholder</p> -->
@@ -177,7 +177,7 @@
                     </div> -->
                 </div>
                 <br>
-                <p id="messageDescriptionPosted" class="pt-4">
+                <p class="messageDescriptionPosted pt-4">
                     This card has supporting text below as a natural lead-in to additional content.
                 </p>
             </div>
