@@ -33,27 +33,36 @@
 </head>
 
 <body class="flex flex-col min-h-screen">
-    <header class="flex justify-center items-center flex-col mx-auto w-full">
-        <section class="bg-[#2e394f] pl-2 py-2 flex flex-row w-full items-center justify-between sticky top-0">
-            <a href="javascript:history.go(-1)">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px] text-white flex flex-col"
-                    x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
-                    stroke-width="2">
-                    <path d="M5 12l14 0"></path>
-                    <path d="M5 12l6 6"></path>
-                    <path d="M5 12l6 -6"></path>
-                </svg>
-            </a>
-            <h1 class="text-white flex flex-col text-[20px] font-bold tracking-wide"> Event </h1>
-            <a href="./user_profile.html" class="mr-2">
-                <img src="./images/user.png" class="w-[10vw] h-[10vw] max-h-[30px] max-w-[30px]" id="pictureGoesHere">
-            </a>
-        </section>
-        <section class="event_post">
-            <img id="eventImg" class="block" alt="Event Display Photo">
-        </section>
+    <template id="page_label">Event Details</template>
+
+    <header>
+        <nav id="headerPlaceholder"></nav>
     </header>
+    
+    <!--
+        <header class="flex justify-center items-center flex-col mx-auto w-full">
+            <section class="bg-[#2e394f] pl-2 py-2 flex flex-row w-full items-center justify-between sticky top-0">
+                <a href="javascript:history.go(-1)">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px] text-white flex flex-col"
+                        x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
+                        stroke-width="2">
+                        <path d="M5 12l14 0"></path>
+                        <path d="M5 12l6 6"></path>
+                        <path d="M5 12l6 -6"></path>
+                    </svg>
+                </a>
+                <h1 class="text-white flex flex-col text-[20px] font-bold tracking-wide"> Event </h1>
+                <a href="./user_profile.html" class="mr-2">
+                    <img src="./images/user.png" class="w-[10vw] h-[10vw] max-h-[30px] max-w-[30px]" id="pictureGoesHere">
+                </a>
+            </section>
+            <section class="event_post">
+                <img id="eventImg" class="block" alt="Event Display Photo">
+            </section>
+        </header>
+    -->
+
 
     <!-- Main Body -->
     <!-- <main class="flex flex-col mx-auto justify-center max-w-[390px]"> -->
@@ -168,12 +177,10 @@
     <!-- Javascript -->
     <script src="./scripts/firebaseAPI_TEAM09.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/write_message.js"></script>
     <script src="./scripts/show_event_cards.js"></script>
     <script src="./scripts/delete_old_events.js"></script>
     <script src="./scripts/event_detail.js"></script>
-    <script src="./scripts/message_list.js"></script>
-    <script src="./scripts/profile_picture_only.js"></script>
+    <script src="./scripts/write_message.js"></script>
     <script src="./scripts/edit.js"></script>
 </body>
 

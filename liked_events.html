@@ -33,29 +33,26 @@
 </head>
 
 <body class="flex flex-col min-h-screen">
-    <header>
-        <section class="bg-[#2e394f] pl-2 py-2 flex items-center">
-            <a href="user_profile.html">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px] text-white" x-bind:width="size"
-                    x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke"
-                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
-                    <path d="M5 12l14 0"></path>
-                    <path d="M5 12l6 6"></path>
-                    <path d="M5 12l6 -6"></path>
-                </svg>
-            </a>
-            <h1 class="text-white text-[22px] ml-3">Liked Events</h1>
-        </section>
+    <!-- Page Name -->
+    <template id="page_label">Liked Events</template>
+
+    <header id="header_navbar">
+        <nav id="headerPlaceholder"></nav>
     </header>
 
     <!-- Main Body -->
-    <main id="likePosts" class="flex flex-col gap-y-3 mx-auto justify-center min-w-[330px]">
+    <main class="flex justify-center flex-col space-y-3 px-10 md:px-0 min-w-full md:min-w-[768px] mx-0 md:mx-auto">
+        <div id="likePosts" class="flex flex-col gap-y-3">
+            <p class="mx-auto my-20">Loading...</p>
+        </div>
     </main>
 
     <footer id="footer_navbar" class="mt-auto">
         <nav id="footerPlaceholder"></nav>
     </footer>
 
+
+    <!-- Templates -->
     <template id="event_card_template">
     </template>
 

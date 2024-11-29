@@ -114,12 +114,19 @@ function displayUserSchedule(user) {
                         })
                 } else {
                     document.getElementById("user_event_schedule").innerHTML = `
+                        <p class="m-auto text-center">
+                        Not attending any events.
+                        <br>
+                        <a href="browse.html" class="text-blue-800 underline">Browse for events</a>
+                        </p>`
+                }
+            } else {
+                document.getElementById("user_event_schedule").innerHTML = `
                     <p class="m-auto text-center">
                     Not attending any events.
                     <br>
                     <a href="browse.html" class="text-blue-800 underline">Browse for events</a>
                     </p>`
-                }
             }
         })
 

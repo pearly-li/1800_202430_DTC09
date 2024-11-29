@@ -224,6 +224,18 @@ main h1 {
   text-overflow: ellipsis;
 }
 
+/* Browsing */
+#filterDropDown {
+  background-color: white;
+  color: black;
+  box-shadow: 0px 5px 5px #0000002b;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+
+  z-index: 50;
+}
+
 /* Create Event Page */
 #user_pic {
   width: clamp(260px, 60vw, 750px);
