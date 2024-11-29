@@ -14,6 +14,9 @@ async function loadAllOldEvents() {
         .then(allEvents =>
             allEvents.forEach(doc => {
                 let dateEachComponent = getDateList(new Date(doc.data().dateTime))
+                
+                console.log(doc.id)
+                console.log(compareIfYesterdayOrOlder(yesterdayEachComponent, dateEachComponent))
 
                 if (compareIfYesterdayOrOlder(yesterdayEachComponent, dateEachComponent)) {
                     oldEventsList.push(doc.id)
