@@ -49,7 +49,7 @@ function createEvent() {
             description: document.getElementById("description").value,
             category: category.options[category.selectedIndex].value,
             typeOfEvent: typeEvent.options[typeEvent.selectedIndex].value,
-            activtyLevel: parseInt(
+            activityLevel: parseInt(
               document.getElementById("activityLevel").value
             ),
             maximumParticipants: parseInt(
