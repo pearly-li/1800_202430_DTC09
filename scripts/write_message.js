@@ -85,8 +85,8 @@ function writeMessage() {
             reviewer_name: reviewerName,
             message_description:
               document.getElementById("messageDescription").value,
-            message_created_at: new Date(),
-            last_updated: new Date(),
+            message_created_at_for_order: new Date(),
+            message_created_at: getDateList(new Date())
           })
           .then(() => {
             // Show alert when message is posted successfully
@@ -97,7 +97,7 @@ function writeMessage() {
               confirmButtonColor: "#e1ae17",
               confirmButtonText: "Ok",
             });
-            appendMessages();
+            //appendMessages();
             // Need to add a fresh read of new message later
             // window.location.href = "event_detail.html/" + eventID;
           })
