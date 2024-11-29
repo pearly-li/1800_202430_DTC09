@@ -2,6 +2,7 @@
 /* Main - Shared Formatting */
 main {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   padding-top: 2rem /* 32px */;
   padding-bottom: 2rem /* 32px */;
 
