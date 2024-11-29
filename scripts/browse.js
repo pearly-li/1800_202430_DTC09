@@ -38,6 +38,8 @@ let filterDropDownBtn = document.getElementById("filterDropDownBtn")
 filterDropDownBtn.addEventListener("click", toggleDropDown)
 
 async function clickFilterButton() {
+    document.getElementById("browsing_list").innerHTML = `<p class="mx-auto py-40">Loading...</p>`
+    document.getElementById("pagination_navbar").innerHTML = ""
     dropDown = document.getElementById("filterDropDown")
     if (dropDown.classList.contains("flex") == true) {
         toggleDropDown()
@@ -158,7 +160,7 @@ async function filterResults() {
             continue;
         }
 
-        if (filterEventType != "" && filterEventType != doc.data().scale) {
+        if (filterEventType != "" && filterEventType != doc.data().typeOfEvent) {
             continue;
         }
 
