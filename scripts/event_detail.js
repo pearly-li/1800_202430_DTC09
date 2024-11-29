@@ -36,7 +36,7 @@ function createEventDetail() {
       document.getElementById("eventImg").src = image;
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
-      document.getElementById("eventParticipation").innerText =
+      document.getElementById("maximumParticipants").innerText =
         participants.length + "/" + maximumParticipants;
       document.getElementById("eventAddress").innerText = location;
       document.getElementById("typeofevent").innerText = typeEventValue;
