@@ -22,6 +22,7 @@ function writeMessage() {
       var userID = user.uid;
       currentUser.get().then((userDoc) => {
         //get the data fields of the user
+        // var lengthOfMessageList = messageRef;
         let userName = userDoc.data().name;
         var messageRef = db.collection("messages");
         let reviewerName = userName;
@@ -49,9 +50,9 @@ function writeMessage() {
               confirmButtonColor: "#e1ae17",
               confirmButtonText: "Ok",
             });
-
+            appendMessages();
             // Need to add a fresh read of new message later
-            // populateMessages();
+            // window.location.href = "event_detail.html/" + eventID;
           })
           .catch((error) => {
             console.error("Error adding message: ", error);
