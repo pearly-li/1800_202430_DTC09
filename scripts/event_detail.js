@@ -3,7 +3,6 @@ var eventID = params.searchParams.get("docID");
 var title;
 var dateTime;
 var userEvent = db.collection("users");
-var footerNavDesign = document.getElementById("footerNav");
 var image;
 var pressLike;
 var pressAttend;
@@ -186,37 +185,30 @@ function notHostFooter() {
     .then((eventInfo) => {
       var participant = eventInfo.data().participants.length;
       var maximumParticipants = eventInfo.data().maximumParticipants;
-
+      var showOption = document.getElementById("notHostOption");
       var buttonsForHost = document.getElementById("hostOption")
-      buttonsForHost.classList.add("hidden")
-      loadEventDetailNav();
-      // if (participant == maximumParticipants) {
-      //   footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
-      //       <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
-      //       <h1 class="text-white font-bold text-[22px]">No spots available</h1>
-      //       <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
-      //   </section>`;
-      // } else {
-      //   footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
-      //         <a href="./main.html" class="invert"><img src="./images/home.svg" class="w-[30px] h-[30px]"></a>
-      //         <button class="bg-white rounded-[5px] px-20 font-bold text-xl min-w-[224px] min-h-[40px]" id="attendBtn">Attend</button>
-      //         <button id="likeBtn"><img src="./images/heart.png" class="w-[30px] h-[30px]" id="like"></button>
-      //     </section>`;
-      //   checkUserLiked();
-      //   checkUserAttendance();
-      //   like_btn = document.getElementById("likeBtn");
-      //   like_btn.addEventListener("click", () => {
-      //     pressLikeBtn();
-      //     likedEventCollection();
-      //   });
 
-      //   attend_btn = document.getElementById("attendBtn");
-      //   attend_btn.addEventListener("click", () => {
-      //     pressAttendBtn();
-      //     attendEvent();
-      //   });
-      // }
+      buttonsForHost.classList.add("hidden")
+      if (participant == maximumParticipants) {
+        showOption.innerHTML = `<h1 class= "bg-[#e1ae17] text-white rounded-[5px] text-center pt-1 font-bold text-[22px] min-h-[40px]">No spots available</h1>`;
+      } else {
+        showOption.innerHTML = `<button class="bg-[#e1ae17] text-white rounded-[5px] px-20 font-bold text-xl w-full min-h-[40px]" id="attendBtn">Attend</button>`;
+      }
+      showOption.classList.add("mt-7")
+      checkUserLiked();
+      checkUserAttendance();
+      like_btn = document.getElementById("likeBtn");
+      like_btn.addEventListener("click", () => {
+        pressLikeBtn();
+        likedEventCollection();
+      });
+
+      attend_btn = document.getElementById("attendBtn");
+      attend_btn.addEventListener("click", () => {
+        pressAttendBtn();
+        attendEvent();
     });
+  });
 }
 
 function deleteEvent() {
@@ -278,8 +270,10 @@ function hostOrNot() {
       .get()
       .then((userInfo) => {
         if (userInfo.data().hasOwnProperty("myposts")) {
-          //check if the user has "myposts" field
           if (userInfo.data()["myposts"].includes(eventID)) {
+            var heartBtn = document.getElementById("likeBtn")
+            heartBtn.classList.add("hidden");
+
             editBtn.addEventListener("click", () => {
               localStorage.setItem("editOrNot", "1");
               window.location.href = "create_event.html?docID=" + eventID;
@@ -304,10 +298,3 @@ function hostOrNot() {
   });
 }
 hostOrNot();
-
-function loadEventDetailNav() {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) 
-      console.log($("#eventDetailNav").load("./text/event_detail_nav.html"));
-  });
-}
