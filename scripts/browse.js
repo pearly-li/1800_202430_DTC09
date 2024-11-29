@@ -38,6 +38,11 @@ let filterDropDownBtn = document.getElementById("filterDropDownBtn")
 filterDropDownBtn.addEventListener("click", toggleDropDown)
 
 async function clickFilterButton() {
+    dropDown = document.getElementById("filterDropDown")
+    if (dropDown.classList.contains("flex") == true) {
+        toggleDropDown()
+    }
+    
     currentEventPageNumber = 1
 
     await loadAllEvents()
@@ -130,13 +135,13 @@ async function filterResults() {
             continue;
         }
 
-        if (filterEventSize == "one on one" && doc.data().scale != 1) {
+        if (filterEventSize == "one on one" && doc.data().maximumParticipants != 1) {
             continue;
-        } else if (filterEventSize == "small" && (doc.data().scale < 2 || doc.data().scale > 6)) {
+        } else if (filterEventSize == "small" && (doc.data().maximumParticipants < 2 || doc.data().maximumParticipants > 6)) {
             continue;
-        } else if (filterEventSize == "medium" && (doc.data().scale < 7 || doc.data().scale > 12)) {
+        } else if (filterEventSize == "medium" && (doc.data().maximumParticipants < 7 || doc.data().maximumParticipants > 12)) {
             continue;
-        } else if (filterEventSize == "large" && doc.data().scale < 13) {
+        } else if (filterEventSize == "large" && doc.data().maximumParticipants < 13) {
             continue;
         }
 
@@ -241,30 +246,32 @@ function updateNavbarButtons() {
     // Resets the navbar
     document.getElementById("pagination_navbar").innerHTML = ""
 
-    createPageBtns()
-
-    if (document.getElementById(`${currentEventPageNumber}`)) {
-        let currentPageBtn = document.getElementById(`${currentEventPageNumber}`)
-        currentPageBtn.classList.add("bg-slate-200")
-        currentPageBtn.disabled = true;
-    }
-
-    if (maxEventPageNumber == 1) {
-        btn = document.getElementById("nextBtn")
-        btn.classList.add("invisible")
-        btn.disabled = true;
-
-        btn = document.getElementById("prevBtn")
-        btn.classList.add("invisible")
-        btn.disabled = true;
-    } else if (currentEventPageNumber == 1) {
-        btn = document.getElementById("prevBtn")
-        btn.classList.add("invisible")
-        btn.disabled = true;
-    } else if (currentEventPageNumber == maxEventPageNumber) {
-        btn = document.getElementById("nextBtn")
-        btn.classList.add("invisible")
-        btn.disabled = true;
+    if (eventBrowsingList.length > 0) {
+        createPageBtns()
+    
+        if (document.getElementById(`${currentEventPageNumber}`)) {
+            let currentPageBtn = document.getElementById(`${currentEventPageNumber}`)
+            currentPageBtn.classList.add("bg-slate-200")
+            currentPageBtn.disabled = true;
+        }
+    
+        if (currentEventPageNumber == 1 && maxEventPageNumber == 1) {
+            nextBtn = document.getElementById("nextBtn")
+            nextBtn.classList.add("invisible")
+            nextBtn.disabled = true;
+    
+            prevBtn = document.getElementById("prevBtn")
+            prevBtn.classList.add("invisible")
+            prevBtn.disabled = true;
+        } else if (currentEventPageNumber == 1) {
+            prevBtn = document.getElementById("prevBtn")
+            prevBtn.classList.add("invisible")
+            prevBtn.disabled = true;
+        } else if (currentEventPageNumber == maxEventPageNumber) {
+            nextBtn = document.getElementById("nextBtn")
+            nextBtn.classList.add("invisible")
+            nextBtn.disabled = true;
+        }
     }
 
 
@@ -332,6 +339,8 @@ async function setup() {
     filterEventDate = document.getElementById("date").value
 
     await filterResults()
+    console.log(currentEventPageNumber)
+    console.log(maxEventPageNumber)
     console.log(eventBrowsingList)
 
     updateNavbarButtons()
