@@ -13,11 +13,11 @@ function compareIfTodayOrLater(today, eventDate) {
         return true;
     } else if (eventDate.year == today.year && eventDate.month > today.month) {
         return true;
-    } else if (eventDate.month == today.month && eventDate.day > today.day) {
+    } else if (eventDate.year == today.year && eventDate.month == today.month && eventDate.day > today.day) {
         return true;
-    } else if (eventDate.day == today.day && eventDate.hour > today.hour) {
+    } else if (eventDate.year == today.year && eventDate.month == today.month && eventDate.day == today.day && eventDate.hour > today.hour) {
         return true;
-    } else if (eventDate.hour == today.hour && eventDate.minute > today.minute) {
+    } else if (eventDate.year == today.year && eventDate.month == today.month && eventDate.day == today.day && eventDate.hour == today.hour && eventDate.minute > today.minute) {
         return true;
     } else {
         return false;
@@ -29,11 +29,11 @@ function compareIfYesterdayOrOlder(yesterday, eventDate) {
         return true;
     } else if (eventDate.year == yesterday.year && eventDate.month < yesterday.month) {
         return true;
-    } else if (eventDate.month == yesterday.month && eventDate.day < yesterday.day) {
+    } else if (eventDate.year == yesterday.year && eventDate.month == yesterday.month && eventDate.day < yesterday.day) {
         return true;
-    } else if (eventDate.day == yesterday.day && eventDate.hour < yesterday.hour) {
+    } else if (eventDate.year == yesterday.year && eventDate.month == yesterday.month && eventDate.day == yesterday.day && eventDate.hour < yesterday.hour) {
         return true;
-    } else if (eventDate.hour == yesterday.hour && eventDate.minute < yesterday.minute) {
+    } else if (eventDate.year == yesterday.year && eventDate.month == yesterday.month && eventDate.day == yesterday.day && eventDate.hour == yesterday.hour && eventDate.minute < yesterday.minute) {
         return true;
     } else {
         return false;

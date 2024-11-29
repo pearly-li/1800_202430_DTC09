@@ -23,6 +23,10 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <!-- Import Sweet Alerts -->
+    <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -49,11 +53,11 @@
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Title <span class="text-red-600">*</span></h1>
-            <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2">
+            <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2 w-full">
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Description <span class="text-red-600">*</span></h1>
-            <input type="text" id="description" placeholder="Event Description" class="border rounded pl-2">
+            <textarea id="description" placeholder="Event Description" class="border rounded pl-2 w-full" rows="5"></textarea>
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Category <span class="text-red-600">*</span></h1>
@@ -85,7 +89,7 @@
         <div class="space-y-2">
             <h1 class="text-xl">Maximum Number of Participants <span class="text-red-600">*</span></h1>
             <input required type="number" id="maximumParticipants" placeholder="Maximum Number of Participants"
-                class="border rounded pl-2 p-1 w-[85%]">
+                class="border rounded pl-2 p-1 w-[40%]" min="1">
         </div>
 
         <div class="space-y-2">
@@ -93,10 +97,8 @@
             <div class="flex flex-row gap-1">
                 <input type="text" id="streetNumber" placeholder="Street Num"
                     class="border rounded pl-2 max-w-[30%] flex">
-                <input type="text" id="streetName" placeholder="Street"
-                    class="border rounded pl-2 max-w-[35%] flex">
-                <input type="text" id="city" placeholder="City" 
-                    class="border rounded pl-2 max-w-[35%] flex">
+                <input type="text" id="streetName" placeholder="Street" class="border rounded pl-2 max-w-[35%] flex">
+                <input type="text" id="city" placeholder="City" class="border rounded pl-2 max-w-[35%] flex">
             </div>
         </div>
         <div class="space-y-2">

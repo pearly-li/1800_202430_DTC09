@@ -19,6 +19,7 @@ function createEventDetail() {
       var streetNum = eventInfo.data().streetNumber;
       var streetName = eventInfo.data().streetName;
       var city = eventInfo.data().city;
+      var location = streetNum + " " + streetName + " " + city;
       var description = eventInfo.data().description;
       var activitylevel = eventInfo.data().activityLevel;
       var typeEventValue = eventInfo.data().typeOfEvent;
@@ -39,7 +40,7 @@ function createEventDetail() {
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("maximumParticipants").innerText =
         (participants.length - 1) + "/" + maximumParticipants;
-      document.getElementById("eventAddress").innerText = streetNum + " " + streetName + " " + city;
+      document.getElementById("eventAddress").innerText = location;
       document.getElementById("typeofevent").innerText = typeEventValue;
       document.getElementById("activityLevelNum").innerText =
         "Level " + activitylevel;
@@ -55,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (mapButton) {
     mapButton.addEventListener("click", () => {
       const eventId = mapButton.getAttribute("data-id");
-      localStorage.setItem("eventId", eventId);
+      localStorage.setItem("eventId", eventID);
     });
   }
 });
@@ -199,31 +200,26 @@ function notHostFooter() {
       var buttonsForHost = document.getElementById("hostOption")
 
       buttonsForHost.classList.add("hidden")
-
-      firebase.auth().onAuthStateChanged(function (user) {
-        userEvent
-        if ((!participantList.includes(user.uid)) && (numOfParticipant == maximumParticipants)) {
-          showOption.innerHTML = `<h1 class= "bg-[#e1ae17] text-white rounded-[5px] text-center pt-1 font-bold text-[22px] min-h-[40px]">No spots available</h1>`;
-        } else {
-          showOption.innerHTML = `<button class="bg-[#e1ae17] text-white rounded-[5px] px-20 font-bold text-xl w-full min-h-[40px]" id="attendBtn">Attend</button>`;
-          showOption.classList.add("mt-7")
-          checkUserLiked();
-          checkUserAttendance();
-          like_btn = document.getElementById("likeBtn");
-          like_btn.addEventListener("click", () => {
-            pressLikeBtn();
-            likedEventCollection();
-          });
-    
-          attend_btn = document.getElementById("attendBtn");
-          attend_btn.addEventListener("click", () => {
-            pressAttendBtn();
-            attendEvent();
-        });
-        }
+      if (participant == maximumParticipants) {
+        showOption.innerHTML = `<h1 class= "bg-[#e1ae17] text-white rounded-[5px] text-center pt-1 font-bold text-[22px] min-h-[40px]">No spots available</h1>`;
+      } else {
+        showOption.innerHTML = `<button class="bg-[#e1ae17] text-white rounded-[5px] px-20 font-bold text-xl w-full min-h-[40px]" id="attendBtn">Attend</button>`;
+      }
+      showOption.classList.add("mt-7")
+      checkUserLiked();
+      checkUserAttendance();
+      like_btn = document.getElementById("likeBtn");
+      like_btn.addEventListener("click", () => {
+        pressLikeBtn();
+        likedEventCollection();
       });
 
-  });
+      attend_btn = document.getElementById("attendBtn");
+      attend_btn.addEventListener("click", () => {
+        pressAttendBtn();
+        attendEvent();
+      });
+    });
 }
 
 function deleteEvent() {

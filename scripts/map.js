@@ -11,7 +11,7 @@ function initMap() {
     geocoder = new google.maps.Geocoder();
 
     const locationButton = document.createElement("button");
-    locationButton.textContent = "Use Current Location";
+    locationButton.textContent = "Get Directions";
     locationButton.classList.add("custom-map-control-button");
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
@@ -54,6 +54,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 function displayEventLocation() {
     const eventID = localStorage.getItem("eventId");
 
+
     if (!eventID) {
         alert("No event selected. Please go back and select an event.");
         return;
@@ -64,7 +65,8 @@ function displayEventLocation() {
         .get()
         .then((doc) => {
             if (doc.exists) {
-                const eventLocation = doc.data().location;
+                const eventLocation = doc.data().streetNumber + " " + doc.data().streetName + " " + doc.data().city;
+                console.log("Event Location: " + eventLocation);
 
                 geocoder.geocode({ address: eventLocation }, (results, status) => {
 
