@@ -39,14 +39,9 @@ function createEventDetail() {
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("maximumParticipants").innerText =
-<<<<<<< HEAD
-        (participants.length - 1) + "/" + maximumParticipants;
-      document.getElementById("eventAddress").innerText = location;
-=======
         participants.length - 1 + "/" + maximumParticipants;
       document.getElementById("eventAddress").innerText =
         streetNum + " " + streetName + " " + city;
->>>>>>> 0e65ba2 (Changed notHostFooter to participantButtons)
       document.getElementById("typeofevent").innerText = typeEventValue;
       document.getElementById("activityLevelNum").innerText =
         "Level " + activitylevel;
