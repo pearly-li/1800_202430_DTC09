@@ -6,10 +6,10 @@ var userEvent = db.collection("users");
 var image;
 var pressLike;
 var pressAttend;
+var eventRef = db.collection("events")
 
 //fill the information about the event
 function createEventDetail() {
-  let eventRef = db.collection("events");
   eventRef
     .doc(eventID)
     .get()
@@ -39,7 +39,7 @@ function createEventDetail() {
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("maximumParticipants").innerText =
-        participants.length + "/" + maximumParticipants;
+        (participants.length - 1) + "/" + maximumParticipants;
       document.getElementById("eventAddress").innerText = location;
       document.getElementById("typeofevent").innerText = typeEventValue;
       document.getElementById("activityLevelNum").innerText =
@@ -171,6 +171,15 @@ function attendEvent() {
             participants: firebase.firestore.FieldValue.arrayRemove(user.uid),
           });
       }
+      eventRef
+        .doc(eventID)
+        .get()
+        .then((eventInfo) => {
+          var participants = eventInfo.data().participants;
+          var maximumParticipants = eventInfo.data().maximumParticipants;
+          document.getElementById("maximumParticipants").innerText =
+            (participants.length - 1) + "/" + maximumParticipants;
+        })
     } else {
       console.log("Error, no user signed in");
     }
@@ -184,7 +193,8 @@ function notHostFooter() {
     .doc(eventID)
     .get()
     .then((eventInfo) => {
-      var participant = eventInfo.data().participants.length;
+      var participantList = eventInfo.data().participants;
+      var numOfParticipant = eventInfo.data().participants.length - 1;
       var maximumParticipants = eventInfo.data().maximumParticipants;
       var showOption = document.getElementById("notHostOption");
       var buttonsForHost = document.getElementById("hostOption")

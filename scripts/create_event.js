@@ -57,7 +57,6 @@ function createEvent() {
             streetNumber: document.getElementById("streetNumber").value,
             streetName: document.getElementById("streetName").value,
             city: document.getElementById("city").value,
-            // location: document.getElementById("streetNumber").value + " " + document.getElementById("streetName").value + " " + document.getElementById("city").value,
             dateTime: dateTime,
             last_updated: firebase.firestore.FieldValue.serverTimestamp(),
           })
