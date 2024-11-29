@@ -60,7 +60,7 @@
                 <img src="./images/info.png" class="w-[17px] h-[17px] mt-1">
                 <h1 class="text-2xl font-bold">Event Details</h1>
             </div>
-            <div class="flex gap-3 mt-1">
+            <div class="flex gap-3 mt-1" id="hostOption">
                 <button class="w-[24px] h-[24px]" id="deleteBtn">
                     <img src="./images/trash-can.png"></button>
                 <div class="popup-overlay" id="popupOverlay">
@@ -88,7 +88,7 @@
             <div class="flex ml-3 mt-3 justify-between">
                 <div class="flex gap-3">
                     <img src="./images/location.png" class="w-[17px] h-[17px]">
-                    <h5 class="font-bold w-[80%]" id="eventAddress"></h5>
+                    <h5 class="font-bold" id="eventAddress"></h5>
                 </div>
                 <a href="./map.html" class="event-map-link" alt="Map Page">
                     <button data-id="" id="mapBtn">
@@ -147,7 +147,8 @@
     </main>
 
 
-    <footer class="sticky bottom-0 mt-auto bg-[#2e394f] z-50" id="footerNav">
+    <footer id="footer_navbar" class="mt-auto">
+        <nav id="footerPlaceholder"></nav>
     </footer>
 
     <!-- Templates -->

@@ -187,6 +187,8 @@ function notHostFooter() {
       var participant = eventInfo.data().participants.length;
       var maximumParticipants = eventInfo.data().maximumParticipants;
 
+      var buttonsForHost = document.getElementById("hostOption")
+      buttonsForHost.classList.add("hidden")
       loadEventDetailNav();
       // if (participant == maximumParticipants) {
       //   footerNavDesign.innerHTML = `<section class="flex my-4 justify-center gap-5 items-center">
