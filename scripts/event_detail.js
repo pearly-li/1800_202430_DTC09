@@ -6,10 +6,10 @@ var userEvent = db.collection("users");
 var image;
 var pressLike;
 var pressAttend;
+var eventRef = db.collection("events")
 
 //fill the information about the event
 function createEventDetail() {
-  let eventRef = db.collection("events");
   eventRef
     .doc(eventID)
     .get()
@@ -170,6 +170,15 @@ function attendEvent() {
             participants: firebase.firestore.FieldValue.arrayRemove(user.uid),
           });
       }
+      eventRef
+        .doc(eventID)
+        .get()
+        .then((eventInfo) => {
+          var participants = eventInfo.data().participants;
+          var maximumParticipants = eventInfo.data().maximumParticipants;
+          document.getElementById("maximumParticipants").innerText =
+            (participants.length - 1) + "/" + maximumParticipants;
+        })
     } else {
       console.log("Error, no user signed in");
     }
