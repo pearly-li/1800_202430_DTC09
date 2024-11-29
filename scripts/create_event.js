@@ -38,45 +38,46 @@ function createEvent() {
   var category = document.getElementById("category");
   var typeEvent = document.getElementById("typeEvent");
   title = document.getElementById("title").value;
-  (dateTime = document.getElementById("dateTime").value),
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        eventInfo
-          .add({
-            host: user.uid,
-            title: title,
-            description: document.getElementById("description").value,
-            category: category.options[category.selectedIndex].value,
-            typeOfEvent: typeEvent.options[typeEvent.selectedIndex].value,
-            activityLevel: parseInt(
-              document.getElementById("activityLevel").value
-            ),
-            maximumParticipants: parseInt(
-              document.getElementById("maximumParticipants").value
-            ),
-            streetNumber: document.getElementById("streetNumber").value,
-            streetName: document.getElementById("streetName").value,
-            city: document.getElementById("city").value,
-            dateTime: dateTime,
-            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-          })
-          .then((doc) => {
-            console.log("1. Post document added!");
-            console.log(doc.id);
-            if (ImageFile) uploadPic(doc.id);
-            else savePostInfoforUser(doc.id);
-            swal({
-              title: "Event created!",
-              text: "Your event was successfully created.",
-              type: "success",
-              confirmButtonColor: "#e1ae17",
-              confirmButtonText: "Ok",
-            });
+  var dateTime = document.getElementById("dateTime").value;
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      eventInfo
+        .add({
+          host: user.uid,
+          title: title,
+          description: document.getElementById("description").value,
+          category: category.options[category.selectedIndex].value,
+          typeOfEvent: typeEvent.options[typeEvent.selectedIndex].value,
+          activityLevel: parseInt(
+            document.getElementById("activityLevel").value
+          ),
+          maximumParticipants: parseInt(
+            document.getElementById("maximumParticipants").value
+          ),
+          streetNumber: document.getElementById("streetNumber").value,
+          streetName: document.getElementById("streetName").value,
+          city: document.getElementById("city").value,
+          dateTime: dateTime,
+          last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .then((doc) => {
+          console.log("1. Post document added!");
+          console.log(doc.id);
+          // If they used a default image, then we skip uploading it to firebase. Then we save the rest of their inputted fields to firebase.
+          if (ImageFile) uploadPic(doc.id);
+          else savePostInfoforUser(doc.id);
+          swal({
+            title: "Event created!",
+            text: "Your event was successfully created.",
+            type: "success",
+            confirmButtonColor: "#e1ae17",
+            confirmButtonText: "Ok",
           });
-      } else {
-        console.log("Error, no user signed in");
-      }
-    });
+        });
+    } else {
+      console.log("Error, no user signed in");
+    }
+  });
 }
 
 var create_event_btn = document.getElementById("create_event_btn");
