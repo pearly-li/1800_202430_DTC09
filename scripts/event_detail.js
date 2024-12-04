@@ -210,7 +210,8 @@ function participantButtons() {
         ) {
           showOption.innerHTML = `<h1 class= "bg-[#e1ae17] text-white rounded-[5px] text-center pt-1 font-bold text-[22px] min-h-[40px]">No spots available</h1>`;
         } else {
-          showOption.innerHTML = `<button class="bg-[#e1ae17] text-white rounded-[5px] px-20 font-bold text-xl w-full min-h-[40px]" id="attendBtn">Attend</button>`;
+          showOption.innerHTML = `<section class="flex gap-3"><button class="bg-[#e1ae17] text-white rounded-[5px] px-20 font-bold text-xl w-[85%] min-h-[40px]" id="attendBtn">Attend</button>
+          <button id="likeBtn"><img src="./images/heart.png" class="w-[32px] h-[32px] mt-1" id="like"></button></section>`;
           showOption.classList.add("mt-7");
           checkUserLiked();
           checkUserAttendance();
@@ -290,9 +291,6 @@ function hostOrNot() {
       .then((userInfo) => {
         if (userInfo.data().hasOwnProperty("myposts")) {
           if (userInfo.data()["myposts"].includes(eventID)) {
-            var heartBtn = document.getElementById("likeBtn");
-            heartBtn.classList.add("hidden");
-
             editBtn.addEventListener("click", () => {
               localStorage.setItem("editOrNot", "1");
               window.location.href = "create_event.html?docID=" + eventID;

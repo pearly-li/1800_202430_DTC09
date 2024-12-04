@@ -51,22 +51,19 @@
     <!-- <main class="flex flex-col mx-auto justify-center max-w-[390px]"> -->
 
     <main id="eventDetailPageCardShadow"
-        class="flex justify-center flex-col px-2 md:px-0 min-w-full md:min-w-[768px] mx-0 md:mx-auto">
+        class="flex justify-center flex-col px-2 md:px-0 min-w-full md:min-w-[768px] mx-0 md:mx-auto pt-10">
 
         <section class="mx-[22px]">
-            <section class="flex justify-between ml-2">
-                <h1 class="text-3xl font-bold" id="eventTitle"></h1>
-                <button id="likeBtn"><img src="./images/heart.png" class="w-[32px] h-[32px] mt-1" id="like"></button>
-            </section>
-            <h5 class="w-[85%] text-[18px] ml-4 mt-2" id="eventDescription">
+            <h1 class="sm:text-3xl text-[22px] font-bold" id="eventTitle"></h1>
+            <h5 class="w-[85%] sm:text-[18px] text-[15px] ml-2 mt-4" id="eventDescription">
             </h5>
         </section>
 
         <section id="notHostOption" class="mx-[30px]"></section>
-        <section class="flex flex-row justify-between mt-11 mr-[30px]">
+        <section class="flex flex-row justify-between mt-9 mr-[30px]">
             <div class="flex items-center ml-[30px] gap-2">
                 <img src="./images/info.png" class="w-[17px] h-[17px] mt-1">
-                <h1 class="text-2xl font-bold">Event Details</h1>
+                <h1 class="sm:text-2xl text-[19px] font-bold">Event Details</h1>
             </div>
             <div class="flex gap-3 mt-1" id="hostOption">
                 <button class="w-[24px] h-[24px]" id="deleteBtn">
@@ -138,7 +135,7 @@
         <div id="messageBoard" class="flex flex-col space-y-5 mx-[30px] mt-8">
             <div id="messageBoardHeader" class="flex flex-row items-center">
                 <img src="./images/review.png" class="w-[17px] h-[17px] flex-col">
-                <h1 class="text-2xl font-bold pl-2 flex-col">Message Board</h1>
+                <h1 class="sm:text-2xl text-[19px] font-bold pl-2 flex-col">Message Board</h1>
             </div>
             <div class=" overflow-hidden">
                 <div id="messageCardGroup" class="space-y-2 py-2 h-[500px] overflow-y-scroll rounded-[16px]">
