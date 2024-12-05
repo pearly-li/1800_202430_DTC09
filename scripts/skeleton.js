@@ -8,6 +8,7 @@ function loadSkeleton() {
         } else {
             console.log($('#headerPlaceholder').load('./text/nav_before_login.html'));
             console.log($('#footerPlaceholder').load('./text/footer_before_login.html'));
+            console.log($('#event_card_template').load('./text/event_card_template.html'));
         }
     });
 }
