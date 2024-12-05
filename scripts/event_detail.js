@@ -136,11 +136,40 @@ function checkUserAttendance() {
 
 function pressAttendBtn() {
   if (pressAttend === 1) {
-    document.getElementById("attendBtn").innerText = "Attend";
-    pressAttend--;
-  } else {
+    Swal.fire({
+      title: "Are you sure?",
+      html: "Do you really want to cancel <br>your participation in this event?",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#2e394f",
+      cancelButtonColor: "#e1ae17",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.value) {
+        console.log("Participation cancelled.");
+        document.getElementById("attendBtn").innerText = "Attend";
+        pressAttend--;
+        Swal.fire({
+          title: "You’ve opted out",
+          html: "You are no longer attending <br>this event.",
+          icon: "success",
+          confirmButtonColor: "#e1ae17",
+          confirmButtonText: "Ok",
+        });
+      }
+    });
+} else {
     document.getElementById("attendBtn").innerText = "Cancel";
     pressAttend++;
+    Swal.fire({
+      title: "You joined!",
+      icon: "success",
+      confirmButtonColor: "#e1ae17",
+      confirmButtonText: "Ok",
+      html: "You have been successfully added <br>to the event's participant list."
+    });
   }
 }
 
