@@ -19,7 +19,6 @@ function createEventDetail() {
       var streetNum = eventInfo.data().streetNumber;
       var streetName = eventInfo.data().streetName;
       var city = eventInfo.data().city;
-      var location = streetNum + " " + streetName + " " + city;
       var description = eventInfo.data().description;
       var activitylevel = eventInfo.data().activityLevel;
       var typeEventValue = eventInfo.data().typeOfEvent;
