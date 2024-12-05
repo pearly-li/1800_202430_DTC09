@@ -108,10 +108,11 @@ create_event_btn.addEventListener("click", () => {
   ) {
     swal({
       title: "Missing Information",
-      text: "Please fill out all required fields before creating the event.",
+      text: "Please fill out all required fields <br>before creating the event.",
       type: "error",
       confirmButtonColor: "#e3342f",
       confirmButtonText: "OK",
+      html: true
     });
     return;
   } else createEvent();
