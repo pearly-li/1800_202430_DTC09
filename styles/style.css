@@ -141,7 +141,7 @@ main h1 {
   height: auto;
   width: auto;
   font-weight: bold;
-  font-family: Helvetica;
+  font-family: sans-serif;
   background-color: #e1ae17;
   color: white;
   font-weight: bold;
@@ -156,6 +156,7 @@ main h1 {
   background-color: #2e394f;
   color: white;
   font-weight: bold;
+  font-family: sans-serif;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-right: 15px;
