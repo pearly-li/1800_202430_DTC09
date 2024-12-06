@@ -100,15 +100,15 @@ It has the following subfolders and files:
     │   └── write_message.js        # JS file for writing message functionality
     │
     ├── styles                   # Folder for styles
-    │   └── style.css     
+    │   └── style.css             # The stylesheet
     │     
     └── text                     # Folder for text
-        ├── event_card_template.html       #
-        ├── footer_after_login.html        #
-        ├── footer_before_login.html       #
-        ├── main_nav.html                  #
-        ├── nav_after_login.html           #
-        └── nav_before_login.html          # 
+        ├── event_card_template.html       # Template for event cards
+        ├── footer_after_login.html        # Footer for after user logs in
+        ├── footer_before_login.html       # Footer for before user logs in
+        ├── main_nav.html                  # Navigation bar for main page (no back button)
+        ├── nav_after_login.html           # Navigation bar for after logging in 
+        └── nav_before_login.html          # Navigation bar for before logging in
 
 
 
