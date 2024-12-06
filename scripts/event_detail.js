@@ -159,6 +159,8 @@ function pressAttendBtn() {
         });
       }
     });
+    document.getElementById("attendBtn").innerText = "Attend";
+    pressAttend--;
   } else {
     document.getElementById("attendBtn").innerText = "Cancel";
     pressAttend++;
