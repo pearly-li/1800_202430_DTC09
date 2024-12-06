@@ -42,7 +42,7 @@ Content of the project folder:
 ```
  Top level of project folder: 
 ├── .gitignore               # Git ignore file
-├── browse.html              # landing HTML file, this is what users see when you come to url
+├── browse.html              # 
 ├── event_detail.html        #
 ├── index.html               #
 ├── liked_events.html        #
