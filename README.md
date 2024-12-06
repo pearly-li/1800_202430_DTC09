@@ -21,13 +21,13 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
 Here are the steps ...
-* 
+* Here is a link to our deployed product:
+<br>
+https://dtc09-socialscout.web.app/
 
 ## 5. Known Bugs and Limitations
 Here are some known bugs:
-* ...
-* ...
-* ...
+* None we are aware of
 
 ## 6. Features for Future
 What we'd like to build in the future:
