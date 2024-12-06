@@ -41,16 +41,16 @@ Content of the project folder:
 ```
  Top level of project folder: 
 ├── .gitignore               # Git ignore file
-├── browse.html              # 
-├── event_detail.html        #
-├── index.html               #
-├── liked_events.html        #
-├── login.html               #
-├── main.html                #
-├── map.html                 #
-├── README.md                #
-├── template.html            #
-└── user_profile.html        #
+├── browse.html              # Browse page
+├── event_detail.html        # Event detail page
+├── index.html               # Landing page
+├── liked_events.html        # Liked event page
+├── login.html               # Login page
+├── main.html                # Main page
+├── map.html                 # Map page
+├── README.md                # The read me file
+├── template.html            # Template file for HTML
+└── user_profile.html        # Profile page
 
 It has the following subfolders and files:
     ├── images                  # Folder for images
