@@ -113,8 +113,8 @@ function appendMessageCards(docID) {
       newCard = cardTemplate.content.cloneNode(true);
 
       today = new Date();
-      yesterday = today
-      tomorrow = today
+      yesterday = new Date()
+      tomorrow = new Date()
       yesterday.setDate(yesterday.getDate() - 1)
       tomorrow.setDate(yesterday.getDate() + 1)
       

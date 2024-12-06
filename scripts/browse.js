@@ -12,10 +12,10 @@ var filterEventType = document.getElementById("type").value
 var filterEventDate = document.getElementById("date").value
 
 var today = new Date();
-var yesterday = today
-var tomorrow = today
+var yesterday = new Date()
+var tomorrow = new Date()
 yesterday.setDate(yesterday.getDate() - 1)
-tomorrow.setDate(yesterday.getDate() + 1)
+tomorrow.setDate(tomorrow.getDate() + 1)
 
 var todayEachComponent = getDateList(today)
 var tomorrowEachComponent = getDateList(tomorrow)
@@ -311,7 +311,7 @@ function displayResults() {
 
                     newCard.querySelector(".event_card_title").innerHTML = title;
                     newCard.querySelector(".event_card_date").innerHTML = dateDisplay;
-                    newCard.querySelector(".event_card_time").innerHTML = formatTimeAgo(dateDisplay, todayEachComponent, dateEachComponent);;
+                    newCard.querySelector(".event_card_time").innerHTML = formatTimeAgo(dateDisplay, todayEachComponent, dateEachComponent);
                     newCard.querySelector('img').src = image;
                     newCard.querySelector('a').href = "event_detail.html?docID=" + docID;
 

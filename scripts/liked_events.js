@@ -1,6 +1,6 @@
 var today = new Date();
-var yesterday = today
-var tomorrow = today
+var yesterday = new Date()
+var tomorrow = new Date()
 yesterday.setDate(yesterday.getDate() - 1)
 tomorrow.setDate(yesterday.getDate() + 1)
 
