@@ -38,7 +38,7 @@ function createEventDetail() {
       document.getElementById("eventTitle").innerText = title;
       document.getElementById("eventDescription").innerText = description;
       document.getElementById("maximumParticipants").innerText =
-        (participants.length - 1) + "/" + maximumParticipants;
+        participants.length - 1 + "/" + maximumParticipants;
       document.getElementById("eventAddress").innerText =
         streetNum + " " + streetName + " " + city;
       document.getElementById("typeofevent").innerText = typeEventValue;
@@ -159,7 +159,7 @@ function pressAttendBtn() {
         });
       }
     });
-} else {
+  } else {
     document.getElementById("attendBtn").innerText = "Cancel";
     pressAttend++;
     Swal.fire({
@@ -167,13 +167,11 @@ function pressAttendBtn() {
       icon: "success",
       confirmButtonColor: "#e1ae17",
       confirmButtonText: "Ok",
-      html: "You have been successfully added <br>to the event's participant list."
+      html: "You have been successfully added <br>to the event's participant list.",
     });
   }
 }
 
-//Add information about the event user press attend button on a "event"collection under the currently signed-in user and show chat button
-//Remove the information when user press cancel button and the chat button
 function attendEvent() {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {

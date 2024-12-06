@@ -32,7 +32,7 @@ Here are some known bugs:
 
 ## 6. Features for Future
 What we'd like to build in the future:
-* ...
+* 
 * ...
 * ...
 	
@@ -42,17 +42,76 @@ Content of the project folder:
 ```
  Top level of project folder: 
 ├── .gitignore               # Git ignore file
-├── index.html               # landing HTML file, this is what users see when you come to url
-└── README.md
+├── browse.html              # landing HTML file, this is what users see when you come to url
+├── event_detail.html        #
+├── index.html               #
+├── liked_events.html        #
+├── login.html               #
+├── main.html                #
+├── map.html                 #
+├── README.md                #
+├── template.html            #
+└── user_profile.html        #
 
 It has the following subfolders and files:
-├── .git                     # Folder for git repo
-├── images                   # Folder for images
-    /blah.jpg                # Acknowledge source
-├── scripts                  # Folder for scripts
-    /blah.js                 # 
-├── styles                   # Folder for styles
-    /blah.css                # 
+    ├── images                  # Folder for images
+    │   ├── antenna.png             # 
+    │   ├── avatar1.png             # 
+    │   ├── avatar2.png             #
+    │   ├── avatar3.png             #
+    │   ├── avatar4.png             #
+    │   ├── avatar5.png             #
+    │   ├── avatar6.png             #
+    │   ├── browse.svg              #
+    │   ├── cafeLandingPage.jpg     #
+    │   ├── create_event.svg        #
+    │   ├── dropdown.svg            #
+    │   ├── f_heart.png             #
+    │   ├── heart.png               #
+    │   ├── home.svg                #
+    │   ├── info.png                #
+    │   ├── lighting.png            #
+    │   ├── location.png            #
+    │   ├── logo_text.png           #
+    │   ├── no_img.jpg              #
+    │   ├── person.png              #
+    │   ├── review.png              #
+    │   ├── social_scout.png
+    │   ├── trash-can.png
+    │   ├── user.png
+    │   └── writing.png
+    │     
+    ├── scripts                   # Folder for scripts
+    │   ├── authentication.js       #
+    │   ├── browse.js               #
+    │   ├── create_event.js
+    │   ├── delete_old_events.js
+    │   ├── edit.js
+    │   ├── event_details.js
+    │   ├── firebaseAPI_TEAM09.js
+    │   ├── liked_events.js
+    │   ├── main_skeleton.js
+    │   ├── main.js
+    │   ├── map.js
+    │   ├── message_list.js
+    │   ├── navbar.js
+    │   ├── profile.js
+    │   ├── script.js
+    │   ├── show_event_card.js
+    │   ├── skeleton.js
+    │   ├── tailwind.config.js
+    │   └── write_message.js
+    │
+    ├── styles                   # Folder for styles
+    │   └── style.css     
+    │     
+    └── text                     # Folder for text
+        ├── event_card_template.html       #
+        ├── footer_after_login.html        #
+        ├── footer_before_login.html       #
+        ├── main_nav.html                  #
+        ├── nav_after_login.html           #
+        └── nav_before_login.html          # 
 
 
 
