@@ -32,14 +32,14 @@ function appendMessageCards(docID) {
       newCard = cardTemplate.content.cloneNode(true);
 
       today = new Date();
-      yesterday = today;
-      tomorrow = today;
-      yesterday.setDate(yesterday.getDate() - 1);
-      tomorrow.setDate(yesterday.getDate() + 1);
-
-      todayEachComponent = getDateList(today);
-      tomorrowEachComponent = getDateList(tomorrow);
-      yesterdayEachComponent = getDateList(yesterday);
+      yesterday = new Date()
+      tomorrow = new Date()
+      yesterday.setDate(yesterday.getDate() - 1)
+      tomorrow.setDate(yesterday.getDate() + 1)
+      
+      todayEachComponent = getDateList(today)
+      tomorrowEachComponent = getDateList(tomorrow)
+      yesterdayEachComponent = getDateList(yesterday)
 
       message_date_components = doc.data().message_created_at;
       display_date = checkIfTodayOrTomorrowOrYesterday(

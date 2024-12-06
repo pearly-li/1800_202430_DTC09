@@ -1,8 +1,8 @@
 var today = new Date();
-var yesterday = today;
-var tomorrow = today;
+var yesterday = new Date();
+var tomorrow = new Date();
 yesterday.setDate(yesterday.getDate() - 1);
-tomorrow.setDate(yesterday.getDate() + 1);
+tomorrow.setDate(tomorrow.getDate() + 1);
 
 var todayEachComponent = getDateList(today);
 var tomorrowEachComponent = getDateList(tomorrow);
@@ -30,7 +30,7 @@ async function loadAllUpcomingEvents() {
         let dateEachComponent = getDateList(new Date(doc.data().dateTime));
         let dateTime = checkIfTodayOrTomorrowOrYesterday(
           todayEachComponent,
-          todayEachComponent,
+          tomorrowEachComponent,
           yesterdayEachComponent,
           dateEachComponent
         );

@@ -43,12 +43,16 @@ function compareIfYesterdayOrOlder(yesterday, eventDate) {
 function checkIfTodayOrTomorrowOrYesterday(today, tomorrow, yesterday, eventDate) {
 
     if (today.year === eventDate.year && today.month === eventDate.month && today.day === eventDate.day) {
+        console.log("Today")
         return "Today";
     } else if (tomorrow.year === eventDate.year && tomorrow.month === eventDate.month && tomorrow.day === eventDate.day) {
+        console.log("Tomorrow")
         return "Tomorrow";
     } else if (yesterday.year === eventDate.year && yesterday.month === eventDate.month && yesterday.day === eventDate.day) {
+        console.log("Yesterday")
         return "Yesterday";
     } else {
+        console.log("ELse")
         return formatDate(eventDate)
     }
 }
