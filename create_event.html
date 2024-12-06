@@ -41,7 +41,7 @@
     <!-- In an ideal world, I would've made a better form validator but it was breaking due to our many different types of inputs, ie. image upload, text, dateTime. Carly's TechTips' template doesn't work for inputs other than strings. I defaulted to just putting "required" next to the input tags which triggers the browser's automatic Please fill in the field prompt. It will suffice for this project. - Pearly-->
     <main class="flex justify-center flex-col space-y-7 px-10 md:px-0 min-w-full md:min-w-[768px] mx-0 md:mx-auto">
         <div class="flex flex-col space-y-2">
-            <h1 class="text-xl">Event Picture <span class="text-red-600">*</span></h1>
+            <h1 class="text-xl">Event Picture</h1>
 
             <input type="file" id="image" accept="image/*" class="rounded text-[gray] pl-2">
 
@@ -53,15 +53,15 @@
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Title <span class="text-red-600">*</span></h1>
-            <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2 w-full">
+            <input type="text" id="title" placeholder="Event Title" class="border rounded pl-2 w-full" required>
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Description <span class="text-red-600">*</span></h1>
-            <textarea id="description" placeholder="Event Description" class="border rounded pl-2 w-full" rows="5"></textarea>
+            <textarea id="description" placeholder="Event Description" class="border rounded pl-2 w-full" rows="5" required></textarea>
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Category <span class="text-red-600">*</span></h1>
-            <select id="category" class="max-w-[200px] border rounded">
+            <select id="category" class="max-w-[200px] border rounded" required>
                 <option value="">Choose one</option>
                 <option value="Arts & Crafts">Arts & Crafts</option>
                 <option value="Book Club">Book Club</option>
@@ -74,7 +74,7 @@
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Type of Event <span class="text-red-600">*</span></h1>
-            <select id="typeEvent" class="max-w-[200px] border rounded">
+            <select id="typeEvent" class="max-w-[200px] border rounded" required>
                 <option value="">Choose one</option>
                 <option value="In Person">In-Person</option>
                 <option value="Virtual">Virtual</option>
@@ -84,26 +84,26 @@
             <h1 class="text-xl">Activity Level <span class="text-red-600">*</span></h1>
             <p>Please enter an activity level between 1-10. 1 being low energy, and 10 being high energy.</span></p>
             <input required type="number" id="activityLevel" placeholder="Activity Level"
-                class="border rounded pl-2 p-1 w-[40%]" min="1" max="10">
+                class="border rounded pl-2 p-1 w-[40%]" min="1" max="10" required>
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Maximum Number of Participants <span class="text-red-600">*</span></h1>
             <input required type="number" id="maximumParticipants" placeholder="Maximum Number of Participants"
-                class="border rounded pl-2 p-1 w-[40%]" min="1">
+                class="border rounded pl-2 p-1 w-[40%]" min="1" required>
         </div>
 
         <div class="space-y-2">
             <h1 class="text-xl">Location <span class="text-red-600">*</span></h1>
             <div class="flex flex-row gap-1">
                 <input type="text" id="streetNumber" placeholder="Street Num"
-                    class="border rounded pl-2 max-w-[30%] flex">
-                <input type="text" id="streetName" placeholder="Street" class="border rounded pl-2 max-w-[35%] flex">
-                <input type="text" id="city" placeholder="City" class="border rounded pl-2 max-w-[35%] flex">
+                    class="border rounded pl-2 max-w-[30%] flex" required>
+                <input type="text" id="streetName" placeholder="Street" class="border rounded pl-2 max-w-[35%] flex" required>
+                <input type="text" id="city" placeholder="City" class="border rounded pl-2 max-w-[35%] flex" required>
             </div>
         </div>
         <div class="space-y-2">
             <h1 class="text-xl">Date and Time <span class="text-red-600">*</span></h1>
-            <input type="datetime-local" id="dateTime" placeholder="Event Date and Time" class="border rounded pl-2">
+            <input type="datetime-local" id="dateTime" placeholder="Event Date and Time" class="border rounded pl-2" required>
         </div>
 
         <div>

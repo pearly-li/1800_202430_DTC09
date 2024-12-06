@@ -33,7 +33,7 @@ function listenFileSelect() {
 }
 listenFileSelect();
 
-function createEvent() {
+async function createEvent() {
   var eventInfo = db.collection("events");
   var category = document.getElementById("category");
   var typeEvent = document.getElementById("typeEvent");
@@ -72,7 +72,8 @@ function createEvent() {
               confirmButtonColor: "#e1ae17",
               confirmButtonText: "Ok",
             });
-          });
+          })
+          .then(console.log("Uploaded"));
       } else {
         console.log("Error, no user signed in");
       }
@@ -81,7 +82,40 @@ function createEvent() {
 
 var create_event_btn = document.getElementById("create_event_btn");
 create_event_btn.addEventListener("click", () => {
-  createEvent();
+  //Check if the user fill in all required information
+  var event_title = document.getElementById("title").value;
+  var event_dateTime = document.getElementById("dateTime").value;
+  var event_category = document.getElementById("category").value;
+  var event_typeEvent = document.getElementById("typeEvent").value;
+  var event_description = document.getElementById("description").value;
+  var event_activityLevel = document.getElementById("activityLevel").value;
+  var event_maximumParticipants = document.getElementById("maximumParticipants").value;
+  var event_streetNumber = document.getElementById("streetNumber").value;
+  var event_streetName = document.getElementById("streetName").value;
+  var event_city = document.getElementById("city").value;
+
+  if (
+    !event_title ||
+    !event_description ||
+    !event_category ||
+    !event_typeEvent ||
+    !event_activityLevel ||
+    !event_maximumParticipants ||
+    !event_streetNumber ||
+    !event_streetName ||
+    !event_city ||
+    !event_dateTime
+  ) {
+    swal({
+      title: "Missing Information",
+      text: "Please fill out all required fields <br>before creating the event.",
+      type: "error",
+      confirmButtonColor: "#e3342f",
+      confirmButtonText: "OK",
+      html: true
+    });
+    return;
+  } else createEvent();
 });
 
 function uploadPic(postDocID) {

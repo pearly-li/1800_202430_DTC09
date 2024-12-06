@@ -34,10 +34,10 @@ function editMessage() {
           })
           .then(() => {
             // Show alert when message is posted successfully
-            swal({
+            Swal.fire({
               title: "Message updated!",
               text: "Message was successfully updated.",
-              type: "success",
+              icon: "success",
               confirmButtonColor: "#e1ae17",
               confirmButtonText: "Ok",
             });
@@ -90,10 +90,10 @@ function writeMessage() {
           })
           .then(() => {
             // Show alert when message is posted successfully
-            swal({
+            Swal.fire({
               title: "Message posted!",
               text: "Message was successfully posted.",
-              type: "success",
+              icon: "success",
               confirmButtonColor: "#e1ae17",
               confirmButtonText: "Ok",
             });
