@@ -13,16 +13,15 @@ List team members and/or short bio's here...
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
 * HTML, CSS, JavaScript
-* Bootstrap 5.0 (Frontend library)
 * Firebase 8.0 (BAAS - Backend as a Service)
-* ...
+* Sweet Alert 2 (Frontend library to make the popup more visually pleasing)
+* Tailwind 3.0
+* Google Maps API
 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
 Here are the steps ...
-* ...
-* ...
-* ...
+* 
 
 ## 5. Known Bugs and Limitations
 Here are some known bugs:
@@ -32,9 +31,9 @@ Here are some known bugs:
 
 ## 6. Features for Future
 What we'd like to build in the future:
-* 
-* ...
-* ...
+* Modularize code for reusability and better organization
+* Add an edit message feature
+* Create a map with all event pinpoints for visuals
 	
 ## 7. Contents of Folder
 Content of the project folder:
@@ -55,52 +54,50 @@ Content of the project folder:
 
 It has the following subfolders and files:
     ├── images                  # Folder for images
-    │   ├── antenna.png             # 
-    │   ├── avatar1.png             # 
-    │   ├── avatar2.png             #
-    │   ├── avatar3.png             #
-    │   ├── avatar4.png             #
-    │   ├── avatar5.png             #
-    │   ├── avatar6.png             #
-    │   ├── browse.svg              #
-    │   ├── cafeLandingPage.jpg     #
-    │   ├── create_event.svg        #
-    │   ├── dropdown.svg            #
-    │   ├── f_heart.png             #
-    │   ├── heart.png               #
-    │   ├── home.svg                #
-    │   ├── info.png                #
-    │   ├── lighting.png            #
-    │   ├── location.png            #
-    │   ├── logo_text.png           #
-    │   ├── no_img.jpg              #
-    │   ├── person.png              #
-    │   ├── review.png              #
-    │   ├── social_scout.png
-    │   ├── trash-can.png
-    │   ├── user.png
-    │   └── writing.png
+    │   ├── antenna.png             # Event type icon
+    │   ├── avatar1.png             # One option for  selecting 
+    │   ├── avatar2.png             # One option for selecting 
+    │   ├── avatar3.png             # One option for selecting 
+    │   ├── avatar4.png             # One option for selecting 
+    │   ├── avatar5.png             # One option for selecting 
+    │   ├── avatar6.png             # One option for selecting 
+    │   ├── browse.svg              # Search icon
+    │   ├── cafeLandingPage.jpg     # Landing page image
+    │   ├── create_event.svg        # Create event icon
+    │   ├── f_heart.png             # Clicked like button icon
+    │   ├── heart.png               # Unclicked like button icon
+    │   ├── home.svg                # Home icon
+    │   ├── info.png                # Event detail icon
+    │   ├── lighting.png            # Activity level ic on
+    │   ├── location.png            # Location icon 
+    │   ├── logo_text.png           # Text logo image
+    │   ├── no_img.jpg              # Default event image
+    │   ├── person.png              # Maximum participants icon
+    │   ├── review.png              # Message board icon
+    │   ├── social_scout.png        # Full logo image
+    │   ├── trash-can.png           # Delete event icon
+    │   ├── user.png                # Default profile image
+    │   └── writing.png             # Edit event icon
     │     
     ├── scripts                   # Folder for scripts
-    │   ├── authentication.js       #
-    │   ├── browse.js               #
-    │   ├── create_event.js
-    │   ├── delete_old_events.js
-    │   ├── edit.js
-    │   ├── event_details.js
-    │   ├── firebaseAPI_TEAM09.js
-    │   ├── liked_events.js
-    │   ├── main_skeleton.js
-    │   ├── main.js
-    │   ├── map.js
-    │   ├── message_list.js
-    │   ├── navbar.js
-    │   ├── profile.js
-    │   ├── script.js
-    │   ├── show_event_card.js
-    │   ├── skeleton.js
-    │   ├── tailwind.config.js
-    │   └── write_message.js
+    │   ├── authentication.js       # JS file for authentication
+    │   ├── browse.js               # JS file for browse page functionality 
+    │   ├── create_event.js         # JS file for create event page functionality
+    │   ├── delete_old_events.js    # JS file for deleting old event functionality
+    │   ├── edit.js                 # JS file for editing event detail functionality
+    │   ├── event_details.js        # JS file for event detail page functionality
+    │   ├── firebaseAPI_TEAM09.js   # JS file for connecting Firebase functionality
+    │   ├── liked_events.js         # JS file for liked event page functionality
+    │   ├── main.js                 # JS file for main page functionality
+    │   ├── map.js                  # JS file for map page functionality
+    │   ├── message_list.js         # JS file for displaying message functionality
+    │   ├── navbar.js               # JS file for navbar functionality
+    │   ├── profile.js              # JS file for profile page functionality
+    │   ├── script.js               # JS file for logging out functionality
+    │   ├── show_event_card.js      # JS file for showing event card functionality
+    │   ├── skeleton.js             # JS file for skeleton functionality
+    │   ├── tailwind.config.js      # Js file for tailwind
+    │   └── write_message.js        # JS file for writing message functionality
     │
     ├── styles                   # Folder for styles
     │   └── style.css     
