@@ -117,7 +117,7 @@ function viewDirections(userLocation) {
                         const request = {
                             origin: userLocation,
                             destination: destination,
-                            travelMode: google.maps.TravelMode.TRANSIT, // Can be DRIVING, WALKING, TRANSIT, or BICYCLING
+                            travelMode: google.maps.TravelMode.DRIVING, // Can be DRIVING, WALKING, TRANSIT, or BICYCLING
                         };
 
                         directionsService.route(request, (result, status) => {
@@ -180,7 +180,7 @@ function openGoogleMapsDirections(userLocation) {
                     if (status === "OK") {
                         const destination = results[0].geometry.location;
 
-                        const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${destination.lat()},${destination.lng()}&travelmode=transit`;
+                        const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${destination.lat()},${destination.lng()}&travelmode=driving`;
 
                         window.open(googleMapsUrl, "_blank");
                     } else {
